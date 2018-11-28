@@ -35,8 +35,8 @@ public class PathRenderer : MonoBehaviour {
 
 
         LineRenderer lineRenderer = GetComponent<LineRenderer>();
-        var points = new Vector3[lengthOfLineRenderer];
 
         lineRenderer.SetPositions(queue.ToArray());
     }
+
 }

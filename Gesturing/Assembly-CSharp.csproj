@@ -54,18 +54,21 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\CircularQueue.cs" />
+     <Compile Include="Assets\Gesture.cs" />
+     <Compile Include="Assets\GestureMonitor.cs" />
+     <Compile Include="Assets\Normalizer.cs" />
      <Compile Include="Assets\PathRenderer.cs" />
  <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/Gandalf/Desktop/Unity/Gesturing/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+ <HintPath>C:/Users/Gandalf/Desktop/Unity/CSSE-Senior-Project-Team-11/Gesturing/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>C:/Users/Gandalf/Desktop/Unity/Gesturing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>C:/Users/Gandalf/Desktop/Unity/CSSE-Senior-Project-Team-11/Gesturing/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/Gandalf/Desktop/Unity/Gesturing/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/Gandalf/Desktop/Unity/CSSE-Senior-Project-Team-11/Gesturing/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>C:/Users/Gandalf/Desktop/Unity/Gesturing/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>C:/Users/Gandalf/Desktop/Unity/CSSE-Senior-Project-Team-11/Gesturing/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
