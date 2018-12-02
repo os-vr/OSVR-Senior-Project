@@ -2,17 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CircularQueue<T> : IEnumerable<T> {
+public class CircularQueue : IEnumerable<GTransform> {
 
     private int maxSize;
-    private LinkedList<T> data;
+    private LinkedList<GTransform> data;
 
     public CircularQueue(int maxSize){
-        this.data = new LinkedList<T>();
+        this.data = new LinkedList<GTransform>();
         this.maxSize = maxSize;
     }
 
-    public void Enqueue(T t)
+    public void Enqueue(GTransform t)
     {
         data.AddFirst(t);
         if(data.Count > maxSize)
@@ -31,9 +31,9 @@ public class CircularQueue<T> : IEnumerable<T> {
         data.Clear();
     }
 
-    public IEnumerator<T> GetEnumerator()
+    public IEnumerator<GTransform> GetEnumerator()
     {
-        foreach(T t in data)
+        foreach(GTransform t in data)
         {
             yield return t;
         }
@@ -44,10 +44,14 @@ public class CircularQueue<T> : IEnumerable<T> {
         return GetEnumerator();
     }
 
-    public T[] ToArray()
+    public Vector3[] ToArray()
     {
-        T[] ret = new T[maxSize];
-        data.CopyTo(ret, 0);
+        Vector3[] ret = new Vector3[maxSize];
+        int counter = 0;
+        foreach (GTransform g in data)
+        {
+            ret[counter++] = g.position;
+        }
         return ret;
     }
 

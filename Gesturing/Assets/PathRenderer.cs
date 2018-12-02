@@ -6,14 +6,12 @@ public class PathRenderer : MonoBehaviour {
 
     public Color c1 = Color.yellow;
     public Color c2 = Color.red;
-    public int lengthOfLineRenderer = 200;
-    public CircularQueue<Vector3> queue;
-
+    public int lengthOfLineRenderer = 100;
+    public LineRenderer lineRenderer;
 
     void Start()
     {
-        queue = new CircularQueue<Vector3>(lengthOfLineRenderer);
-        LineRenderer lineRenderer = gameObject.AddComponent<LineRenderer>();
+        lineRenderer = gameObject.AddComponent<LineRenderer>();
         lineRenderer.widthMultiplier = 0.2f;
         lineRenderer.positionCount = lengthOfLineRenderer;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
@@ -26,17 +24,16 @@ public class PathRenderer : MonoBehaviour {
         lineRenderer.colorGradient = gradient;
     }
 
+
+    public void SetPath(CircularQueue queue)
+    {
+        lineRenderer.SetPositions(queue.ToArray());
+    }
+
     void Update()
     {
 
-        Vector3 newPos = Input.mousePosition;
-        newPos = Camera.main.ScreenToWorldPoint(new Vector3(newPos.x, newPos.y, 10));
-        queue.Enqueue(newPos);
-
-
-        LineRenderer lineRenderer = GetComponent<LineRenderer>();
-
-        lineRenderer.SetPositions(queue.ToArray());
+        
     }
 
 }
