@@ -21,7 +21,7 @@ public class RotateToUser : MonoBehaviour {
         {
             up = LastUp;
         }
-        Quaternion Look = Quaternion.LookRotation(direction, Camera.transform.up);
+        Quaternion Look = Quaternion.LookRotation(direction, up);
         transform.rotation = Look;
         transform.position = PivotPoint.transform.position - (distanceFromObject * direction.normalized);
     }

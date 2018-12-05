@@ -1,24 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class ScaleToUser : MonoBehaviour {
     public GameObject Camera;
-    public float Scale = 1;
-    public float SizeAtOneMeter;
+    public float FarScale = 1;
+    public float NearScale = 1;
+    Vector3 SizeAtScaleDist;
     public float DisapearAtCloseDistance = -1;
     public bool DisapearWhenFarAway = false;
     public float DisapearAtFarDistance;
     void Start () {
-        if (Scale > 1000000)
+        if (FarScale > 1000000)
         {
             Debug.LogError("Scale is increadibly large, please check the function that supplies this number");
         }
-        if (Scale < 0)
+        if (FarScale <= 1)
         {
-            Debug.LogError("Scale is negative, please use a positve number");
+            Debug.LogError("Scale is to low, please use a higher number");
         }
-        Scale = 1;
+        if (FarScale == null)
+        {
+            FarScale = 1;
+        }
+        SizeAtScaleDist = this.transform.lossyScale;
     }
 	
 	// Update is called once per frame
@@ -50,7 +56,14 @@ public class ScaleToUser : MonoBehaviour {
                 r.enabled = true;
             }
         }
-        //print(this.transform.lossyScale);
-        //this.transform.localScale = (distance) * this.transform.lossyScale;
+        if (distance < FarScale)
+        {
+            distance = (float)System.Math.Log(distance, NearScale);
+        }
+        else
+        {
+            distance = (float)System.Math.Log(distance, FarScale);
+        }
+        this.transform.localScale = distance * SizeAtScaleDist;
     }
 }
