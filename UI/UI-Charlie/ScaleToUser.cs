@@ -7,6 +7,7 @@ public class ScaleToUser : MonoBehaviour
 {
     public GameObject Camera;
     public GameObject Center;
+    public bool IsCenter;
     public float FarScale = 1;
     public float NearScale = 1;
     public float ScaleDist = 1;
@@ -16,6 +17,10 @@ public class ScaleToUser : MonoBehaviour
     public float DisapearAtFarDistance;
     void Start()
     {
+        if (IsCenter)
+        {
+            Center = this.gameObject;
+        }
         if (FarScale > 1)
         {
             Debug.LogError("FarScale is increadibly large, please check the function that supplies this number");
