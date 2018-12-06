@@ -6,10 +6,11 @@ using System;
 public class ScaleToUser : MonoBehaviour
 {
     public GameObject Camera;
+    public GameObject Center;
     public float FarScale = 1;
     public float NearScale = 1;
     public float ScaleDist = 1;
-    public Vector3 SizeAtScaleDist;
+    Vector3 SizeAtScaleDist;
     public float DisapearAtCloseDistance = -1;
     public bool DisapearWhenFarAway = false;
     public float DisapearAtFarDistance;
@@ -17,8 +18,27 @@ public class ScaleToUser : MonoBehaviour
     {
         if (FarScale > 1)
         {
-            Debug.LogError("Scale is increadibly large, please check the function that supplies this number");
+            Debug.LogError("FarScale is increadibly large, please check the function that supplies this number");
         }
+        if (NearScale > 1)
+        {
+            Debug.LogError("FarScale is increadibly large, please check the function that supplies this number");
+        }
+        if (DisapearAtCloseDistance >= 0)
+        {
+            if (NearScale * (ScaleDist - DisapearAtCloseDistance) > 1)
+            {
+                Debug.LogError("NearScale will cuase negative scale at " + (ScaleDist - (1 / NearScale)) + " pick a smaller NearScale");
+            }
+        }
+        else
+        {
+            if (NearScale * ScaleDist > 1)
+            {
+                Debug.LogError("NearScale will cuase negative scale at "+(ScaleDist - (1/NearScale))+" pick a smaller NearScale");
+            }
+        }
+        
         if (FarScale == null)
         {
             FarScale = 0.1f;
@@ -29,7 +49,7 @@ public class ScaleToUser : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float distance = (Camera.transform.position - this.transform.position).magnitude;
+        float distance = (Camera.transform.position - Center.transform.position).magnitude;
         if (distance < DisapearAtCloseDistance)
         {
             this.GetComponent<Renderer>().enabled = false;
