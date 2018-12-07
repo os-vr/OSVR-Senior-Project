@@ -3,26 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class RotateToUser : MonoBehaviour {
-    public GameObject Camera;
-    public GameObject PivotPoint;
-    public float distanceFromObject;
-    Vector3 LastUp = new Vector3(0,1,0);
+    [Tooltip("The camera that the user uses to see the world")]
+    public GameObject userCamera;
+    [Tooltip("What this object will orbit around")]
+    public GameObject pivotPoint;
+    [Tooltip("Distance this object will orbit around the pivotPoint")]
+    public float distanceFromPivotPoint;
+    Vector3 lastUp = new Vector3(0,1,0);
 
     // Update is called once per frame
     void FixedUpdate() {
-        Vector3 direction = PivotPoint.transform.position - Camera.transform.position;
-        Vector3 up = Camera.transform.up;
+        //vector between objects
+        Vector3 direction = pivotPoint.transform.position - userCamera.transform.position;
+        //up according to camera
+        Vector3 up = userCamera.transform.up;
+        //up is normalized to the plane of the screen
         up = (up - Vector3.Project(up, direction)).normalized;
+        //andle when up is in line with direction, leading to up = 0
         if (up.magnitude != 0)
         {
-            LastUp = up;
+            //update lastUp
+            lastUp = up;
         }
         else
         {
-            up = LastUp;
+            //set up
+            up = lastUp;
         }
+        //find and set rotation
         Quaternion Look = Quaternion.LookRotation(direction, up);
         transform.rotation = Look;
-        transform.position = PivotPoint.transform.position - (distanceFromObject * direction.normalized);
+        //set position
+        transform.position = pivotPoint.transform.position - (distanceFromPivotPoint * direction.normalized);
     }
 }
