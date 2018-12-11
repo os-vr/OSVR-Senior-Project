@@ -45,16 +45,31 @@ public class ScaleToUser : MonoBehaviour
     }
     void Start()
     {
-        if (itemRenderer)
-        {
-            renderList.Add(this.gameObject.GetComponent<Renderer>());
-        }
         if (childrenRenderer)
         {
             foreach (Renderer r in this.gameObject.GetComponentsInChildren<Renderer>())
             {
                 renderList.Add(r);
             }
+            if (!itemRenderer)
+            {
+                renderList.Remove(this.gameObject.GetComponent<Renderer>());
+            }
+        }
+        else
+        {
+            if (itemRenderer)
+            {
+                renderList.Add(this.gameObject.GetComponent<Renderer>());
+            }
+            else
+            {
+                Debug.Log("None of the renderers are requested to be assigned, so this means the item will not disappear. Set the disappearAtNearDistance to a negative distance and turn DisappearAtFarDistance to false instead");
+            }
+        }
+        if (renderList.Count == 0 && (itemRenderer || childrenRenderer))
+        {
+            Debug.Log("No renderers are selected dispite the fact that the options were selected. Check if the renderers are in the right place.");
         }
         if (isCenter)
         {
