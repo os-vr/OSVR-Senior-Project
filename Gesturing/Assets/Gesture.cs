@@ -9,10 +9,27 @@ public class Gesture {
     public bool isEnabled { get; set; }
     public Normalizer normalizer;
     public UnityEvent completeEvent;
+    private int currentStage;
+
+    public Gesture(Normalizer n)
+    {
+        normalizer = n;
+        stages = new List<Stage>();
+        isEnabled = true;
+        currentStage = 0;
+    }
+
+    public Gesture()
+    {
+        stages = new List<Stage>();
+        isEnabled = true;
+        currentStage = 0;
+    }
 
     public Gesture(List<Stage> st)
     {
         completeEvent = new UnityEvent();
+        currentStage = 0;
 
         stages = new List<Stage>();
         isEnabled = true;
@@ -25,11 +42,38 @@ public class Gesture {
 
     public void CheckStages(GTransform gTransform)
     {
-        stages[0].Passes(gTransform);
+        //Debug.Log(currentStage);
+        if (!isEnabled)
+        {
+            return;
+        }
+        GTransform normData = normalizer.Normalize(gTransform);
+
+        if (currentStage >= stages.Count)
+        {
+            Debug.Log("Gesture complete");
+            CompleteGesture();
+            currentStage = 0;
+            //isEnabled = false;
+        }
+        else
+        {
+            switch (stages[currentStage].Passes(normData))
+            {
+                case GSuccess.PASS:
+                    Debug.Log(normData.position);
+                    currentStage++;
+                    break;
+                case GSuccess.HALT:
+                    Debug.Log(normData.position);
+                    currentStage = 0;
+                    break;
+            }
+        }
     }
 
 
-    void AddStage(Stage stage)
+    public void AddStage(Stage stage)
     {
         stages.Add(stage);
     }
@@ -43,9 +87,9 @@ public class Gesture {
         completeEvent.Invoke();
     }
 
-    void AddEvent(UnityAction eventAction)
+    public void AddEvent(UnityEvent eventAction)
     {
-        completeEvent.AddListener(eventAction);
+        completeEvent = eventAction;
     }
 
     void ClearEvents()

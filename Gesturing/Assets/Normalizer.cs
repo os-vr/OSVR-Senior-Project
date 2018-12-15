@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface Normalizer {
 
-    Transform Normalize();
+    GTransform Normalize(GTransform transform);
 }

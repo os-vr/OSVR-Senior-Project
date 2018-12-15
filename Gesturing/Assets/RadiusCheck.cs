@@ -23,6 +23,7 @@ public class RadiusCheck : Check
         if(sphereCollider.bounds.Contains(gTransform.position))
         {
             sphere.GetComponent<Renderer>().material.SetColor("_WireColor", Color.red);
+            Debug.Log("Sphere");
             return GSuccess.PASS;
         }
 
