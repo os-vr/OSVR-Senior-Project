@@ -2,17 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using TMPro;
 
-public class GestureMonitor : MonoBehaviour
+public class ContinuousGestureMonitor : MonoBehaviour
 {
     PathRenderer pathRenderer;
     Dictionary<string, Gesture> gestureMap;
     CircularQueue dataQueue;
     public Normalizer DefaultNormalizer;
+    public TextMeshPro t;
 
     // Use this for initialization
     void Start()
     {
+        DefaultNormalizer = new ViewingNormalizer();
+        //pathRenderer = gameObject.AddComponent<PathRenderer>();
+
         gestureMap = new Dictionary<string, Gesture>();
         dataQueue = new CircularQueue(100);
 
@@ -40,7 +45,6 @@ public class GestureMonitor : MonoBehaviour
     {
         gestureMap.Add(name, g);
     }
-
     void setGestureEnabled(string name, bool enabled)
     {
         if (gestureMap.ContainsKey(name))

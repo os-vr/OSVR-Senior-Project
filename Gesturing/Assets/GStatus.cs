@@ -2,6 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum GSuccess{
+public enum GStatus{
     HALT, CONTINUE, PASS
 }

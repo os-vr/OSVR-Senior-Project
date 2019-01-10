@@ -12,7 +12,7 @@ public class PathRenderer : MonoBehaviour {
     void Start()
     {
         lineRenderer = gameObject.AddComponent<LineRenderer>();
-        lineRenderer.widthMultiplier = 0.2f;
+        lineRenderer.widthMultiplier = 0.01f;
         lineRenderer.positionCount = lengthOfLineRenderer;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
 

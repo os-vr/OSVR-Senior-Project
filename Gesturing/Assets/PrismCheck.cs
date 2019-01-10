@@ -8,8 +8,8 @@ public class PrismCheck : Check {
     private Vector3 position2;
     private BoxCollider boxCollider;
     private GameObject box;
-    public GSuccess passValue;
-    public GSuccess failValue;
+    public GStatus passValue;
+    public GStatus failValue;
 
     public PrismCheck(Vector3 pos1, Vector3 pos2)
     {
@@ -21,8 +21,9 @@ public class PrismCheck : Check {
         
     }
 
-    public GSuccess CheckPoint(GTransform gTransform)
+    public GStatus CheckPoint(GTransform gTransform)
     {
+
         if (boxCollider.bounds.Contains(gTransform.position))
         {
             box.GetComponent<Renderer>().material.SetColor("_WireColor", Color.red);
@@ -39,12 +40,16 @@ public class PrismCheck : Check {
     {
         box = GameObject.CreatePrimitive(PrimitiveType.Cube);
         boxCollider = box.GetComponent<BoxCollider>();
+        box.GetComponent<Renderer>().enabled = false;
+        //box.GetComponent<Renderer>().material = new Material(Shader.Find("WireframeShader"));
+        //box.transform.position = (position1 + position2)/2;
+        //box.transform.localScale = position2 - position1;
 
-        box.GetComponent<Renderer>().material = new Material(Shader.Find("WireframeShader"));
-        box.transform.position = (position1 + position2)/2;
-        box.transform.localScale = position2 - position1;
 
 
-
+    }
+    public GStatus CheckAll(List<GTransform> transforms)
+    {
+        return GStatus.HALT;
     }
 }

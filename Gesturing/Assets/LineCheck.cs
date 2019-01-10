@@ -17,9 +17,9 @@ public class LineCheck : Check
         this.VisualizeCheck();
     }
 
-    public GSuccess CheckPoint(GTransform gTransform)
+    public GStatus CheckPoint(GTransform gTransform)
     {
-        return GSuccess.CONTINUE;
+        return GStatus.CONTINUE;
     }
 
 
@@ -31,6 +31,11 @@ public class LineCheck : Check
         //lineRenderer.material = new Material(Shader.Find("WireframeShader"));
         //lineRenderer.SetPositions(new Vector3[] { firstPosition, secondPosition });
         //lineRenderer.widthMultiplier = .2f;
+    }
+
+    public GStatus CheckAll(List<GTransform> transforms)
+    {
+        return GStatus.HALT;
     }
 
 
