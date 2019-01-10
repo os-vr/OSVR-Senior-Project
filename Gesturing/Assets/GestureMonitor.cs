@@ -1,41 +1,38 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
-public class GestureMonitor : MonoBehaviour {
+public class GestureMonitor : MonoBehaviour
+{
     PathRenderer pathRenderer;
     Dictionary<string, Gesture> gestureMap;
     CircularQueue dataQueue;
+    public Normalizer DefaultNormalizer;
 
-	// Use this for initialization
-	void Start () {
-
-        pathRenderer = gameObject.AddComponent<PathRenderer>();
-
+    // Use this for initialization
+    void Start()
+    {
         gestureMap = new Dictionary<string, Gesture>();
         dataQueue = new CircularQueue(100);
 
-        Gesture gesture = new Gesture(new List<Stage> { new Stage(), });
-        gestureMap["Default"] = gesture;
-
-        drawStages();
     }
-	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update()
+    {
         Vector3 newPos = Input.mousePosition;
-        newPos = Camera.main.ScreenToWorldPoint(new Vector3(newPos.x, newPos.y, 10));
+        newPos = Camera.main.ScreenToWorldPoint(new Vector3(newPos.x, newPos.y, .28f));
         GTransform nextDataPoint = new GTransform(newPos, Quaternion.identity);
         dataQueue.Enqueue(nextDataPoint);
 
-        pathRenderer.SetPath(dataQueue);
+        //pathRenderer.SetPath(dataQueue);
 
-
-
-        foreach(Gesture g in gestureMap.Values)
+        foreach (Gesture g in gestureMap.Values)
         {
             g.CheckStages(nextDataPoint);
         }
+
 
     }
 
@@ -56,7 +53,7 @@ public class GestureMonitor : MonoBehaviour {
 
     void drawStages()
     {
-     
+
     }
 
 }
