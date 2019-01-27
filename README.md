@@ -44,6 +44,9 @@ Buttons are using UnityEvents that trigger upon collision.
 #### Keyboard
 The Keyboard is an example Asset that uses our Button UI element.
 
+### Sliders
+
+
 ## Future Updates
 ### Gesturing
 More continuous monitoring support
