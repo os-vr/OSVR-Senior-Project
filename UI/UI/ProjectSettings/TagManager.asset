@@ -3,7 +3,11 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FloorCollide
+  - ExcludeTeleport
+  - TeleportIgnore
+  - IsClicked
   layers:
   - Default
   - TransparentFX
@@ -14,8 +18,8 @@ TagManager:
   - 
   - 
   - PostProcessing
-  - 
-  - 
+  - Activation
+  - Hover
   - 
   - 
   - 
