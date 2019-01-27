@@ -29,10 +29,8 @@ The Gesture class consists of a few main components: Checks and Normalizers. Bot
 #### Checks
 Checks are the subsections of a gesture that need to be satisfied for a gesture to be complete. For example, RadiusCheck.cs checks to see if the given point exists within a given radius. PrismCheck.cs checks to see if a point lies within a given prism-shaped boundary, etc. 
 
-Combinations of these checks
-
 #### Normalizers
-These functions take the data generated from the Controller Interface and convert them into a more usable form for the Gestures. For example, the FittedNormalizer.cs normalizes all points received to a bounding box of (0,0,0) to (1,1,1). The ViewingNormalizer converts all position data to the coordinates relative to a Camera object from (0,0) to (1,1) in x and y, and distance from screen in the z component. You can implement
+These functions take the data generated from the Controller Interface and convert them into a more usable form for the Gestures. For example, the FittedNormalizer.cs normalizes all points received to a bounding box of (0,0,0) to (1,1,1). The ViewingNormalizer converts all position data to the coordinates relative to a Camera object from (0,0) to (1,1) in x and y, and distance from screen in the z component. You can implement your own normalizers if you need more specific functionality.
 
 Good normalization algorithms are very important for consistent gesture functionality. 
 
