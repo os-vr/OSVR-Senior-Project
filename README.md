@@ -18,7 +18,7 @@ This ContinuousGestureMonitoring class continuously checks for gestures to occur
 It is possible to subclass the GestureMonitor.cs class in order to implement other ways of feeding data to Gestures.
 
 ### Controller
-This Interface generates the Gesture Data that the monitor passes into each of the active gestures. Currently, there is a TouchController for Oculus Rift, but extending this to work for any hardware is as simple as implementing the [function] to generate a GTransform
+This Interface generates the Gesture Data that the monitor passes into each of the active gestures. Currently, there is a TouchController for Oculus Rift, but extending this to work for any hardware is as simple as making a function to generate a GTransform.
 
 #### GTransform
 This is the data object for gesture processing. It consists of a Vector3 position field, and Quaternion rotation field. 
@@ -27,9 +27,7 @@ This is the data object for gesture processing. It consists of a Vector3 positio
 The Gesture class consists of a few main components: Checks and Normalizers. Both of these objects are interfaces, so you can write your own classes to exhibit the desired functionality you would like in a gesture.
 
 #### Checks
-Checks are the subsections of a gesture that need to be satisfied for a gesture to be complete. For example, RadiusCheck.cs checks to see if the given point exists within a given radius. PrismCheck.cs checks to see if a point lies within a given prism-shaped boundary, etc. 
-
-Combinations of these checks
+Checks are the subsections of a gesture that need to be satisfied for a gesture to be complete. For example, RadiusCheck.cs checks to see if the given point exists within a given radius. PrismCheck.cs checks to see if a point lies within a given prism-shaped boundary, etc.
 
 #### Normalizers
 These functions take the data generated from the Controller Interface and convert them into a more usable form for the Gestures. For example, the FittedNormalizer.cs normalizes all points received to a bounding box of (0,0,0) to (1,1,1). The ViewingNormalizer converts all position data to the coordinates relative to a Camera object from (0,0) to (1,1) in x and y, and distance from screen in the z component. You can implement
