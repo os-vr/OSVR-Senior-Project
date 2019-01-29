@@ -39,11 +39,14 @@ Good normalization algorithms are very important for consistent gesture function
 ### Buttons
 Buttons are using UnityEvents that trigger upon collision.
 
-#### Keyboard
+### Keyboard
 The Keyboard is an example Asset that uses our Button UI element.
 
 ### Sliders
+Sliders are using a pivot that moves along a slider.
 
+###Knobs
+Knobs are rotatory sliders that can rotate 360 degrees.
 
 ## Future Updates
 ### Gesturing
