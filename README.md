@@ -36,6 +36,15 @@ Good normalization algorithms are very important for consistent gesture function
 
 ## UI Framework
 
+### Scaling
+The GameObject will change it's scale linearly based on the distance a user is away from the GameObject.
+
+### Pivoting
+The GameObject will change its orientaiton to be flush with the user's view while orbiting around a central GameObject.
+
+### Disappear at distance
+The GameObject will appear and disappear based on the distance the user stands away from the GameObject. This can be a maximum or minmum distance the GameObject should be visible from.
+
 ### Buttons
 Buttons are using UnityEvents that trigger upon collision.
 
@@ -44,6 +53,9 @@ The Keyboard is an example Asset that uses our Button UI element.
 
 ### Sliders
 Sliders are using a pivot that moves along a slider.
+
+### Dropdown
+A Three-Dimensional dropdown that will return one item when one is selected. GameObjects must have a text object and a collider to be part of the dropdown.
 
 ###Knobs
 Knobs are rotatory sliders that can rotate 360 degrees.
