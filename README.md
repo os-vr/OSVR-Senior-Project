@@ -57,7 +57,7 @@ Sliders are using a pivot that moves along a slider.
 ### Dropdown
 A Three-Dimensional dropdown that will return one item when one is selected. GameObjects must have a text object and a collider to be part of the dropdown.
 
-###Knobs
+### Knobs
 Knobs are rotatory sliders that can rotate 360 degrees.
 
 ## Future Updates
