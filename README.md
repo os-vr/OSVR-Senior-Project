@@ -11,7 +11,7 @@ The Discrete Gesture sample checks for gesture occurance after holding then rele
 #### Continuous Gesture Monitoring
 Gesturing/ContinuousGesturing/Assets/Scenes/
 
-This ContinuousGestureMonitoring class continuously checks for gestures to occur. 
+This ContinuousGestureMonitoring class continuously checks for gestures to occur. The available scene is currently setup for mouse input, but is available as a proof of concept, laying the groundwork for future development.
 
 <hr>
 
