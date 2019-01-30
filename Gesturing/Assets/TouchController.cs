@@ -5,15 +5,15 @@ using UnityEngine;
 public class TouchController : IController
 {
 
-    public OVRInput.Controller controllerType;
-    public OVRInput.Button gestureActiveButton;
+    //public OVRInput.Controller controllerType;
+    //public OVRInput.Button gestureActiveButton;
     public float vibrationFrequency = 0.2f;
     public float vibrationAmplitude = 0.2f;
 
     public override void UpdateController()
     {
-        transform.localPosition = OVRInput.GetLocalControllerPosition(controllerType);
-        transform.localRotation = OVRInput.GetLocalControllerRotation(controllerType);
+        //transform.localPosition = OVRInput.GetLocalControllerPosition(controllerType);
+        //transform.localRotation = OVRInput.GetLocalControllerRotation(controllerType);
     }
 
     public override GTransform QueryGTransform()
@@ -29,7 +29,7 @@ public class TouchController : IController
     private void SetVibration(bool isActive)
     {
         int modifier = isActive ? 1 : 0;
-        OVRInput.SetControllerVibration(vibrationFrequency * modifier, vibrationAmplitude * modifier, controllerType);
+        //OVRInput.SetControllerVibration(vibrationFrequency * modifier, vibrationAmplitude * modifier, controllerType);
     }
 
 }

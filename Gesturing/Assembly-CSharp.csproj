@@ -53,20 +53,29 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Check.cs" />
+     <Compile Include="Assets\Checks\Check.cs" />
+     <Compile Include="Assets\Checks\CompositeCheck.cs" />
+     <Compile Include="Assets\Checks\LineCheck.cs" />
+     <Compile Include="Assets\Checks\PrismCheck.cs" />
+     <Compile Include="Assets\Checks\RadiusCheck.cs" />
      <Compile Include="Assets\CircularQueue.cs" />
-     <Compile Include="Assets\CompositeCheck.cs" />
+     <Compile Include="Assets\ContinuousCircleCheck.cs" />
      <Compile Include="Assets\ContinuousGestureMonitor.cs" />
      <Compile Include="Assets\Gesture.cs" />
+     <Compile Include="Assets\GestureEvent.cs" />
+     <Compile Include="Assets\GestureMetaData.cs" />
      <Compile Include="Assets\GestureMonitor.cs" />
+     <Compile Include="Assets\Gestures\CompositeGesture.cs" />
+     <Compile Include="Assets\Gestures\LSwipe.cs" />
+     <Compile Include="Assets\Gestures\SidewaysSwipe.cs" />
+     <Compile Include="Assets\Gestures\UpsideDownL.cs" />
      <Compile Include="Assets\GStatus.cs" />
      <Compile Include="Assets\GTransform.cs" />
-     <Compile Include="Assets\LineCheck.cs" />
-     <Compile Include="Assets\Normalizer.cs" />
+     <Compile Include="Assets\IController.cs" />
+     <Compile Include="Assets\Normalizers\Normalizer.cs" />
+     <Compile Include="Assets\Normalizers\ViewingNormalizer.cs" />
      <Compile Include="Assets\PathRenderer.cs" />
-     <Compile Include="Assets\PrismCheck.cs" />
-     <Compile Include="Assets\RadiusCheck.cs" />
-     <Compile Include="Assets\ViewingNormalizer.cs" />
+     <Compile Include="Assets\TouchController.cs" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMP_SDF-Surface-Mobile.shader" />
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
      <None Include="Assets\TextMesh Pro\Resources\Shaders\TMPro_Properties.cginc" />
