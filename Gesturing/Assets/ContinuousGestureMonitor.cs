@@ -9,11 +9,12 @@ public class ContinuousGestureMonitor : MonoBehaviour
     Dictionary<string, Gesture> gestureMap;
     public TextMeshPro t;
     public IController controller;
+    private Normalizer n;
 
     // Use this for initialization
     void Start()
     {
-        DefaultNormalizer = new ViewingNormalizer();
+        n = new ViewingNormalizer();
 
         gestureMap = new Dictionary<string, Gesture>();
 
@@ -29,8 +30,11 @@ public class ContinuousGestureMonitor : MonoBehaviour
         Vector3 newPos = Input.mousePosition;
         //newPos = Camera.main.ScreenToWorldPoint(new Vector3(newPos.x, newPos.y, 1.0f));
         //GTransform nextDataPoint = new GTransform(newPos, Quaternion.identity);
+        controller.UpdatePosition();
         GTransform nextDataPoint = controller.QueryGTransform();
         //pathRenderer.SetPath(dataQueue);
+
+        t.SetText(n.Normalize(nextDataPoint).position);
 
         foreach (Gesture g in gestureMap.Values)
         {
