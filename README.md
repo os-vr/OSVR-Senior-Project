@@ -5,12 +5,15 @@ This asset allows you to create detectable, customizable gestures to place into 
 
 #### Discrete Gesture Monitoring
 Gesturing/DiscreteGesturing/Assets/Scenes/
+
 The Discrete Gesture sample checks for gesture occurance after holding then releasing the primary index trigger on the right hand touch controller.
 
 #### Continuous Gesture Monitoring
 Gesturing/ContinuousGesturing/Assets/Scenes/
+
 This ContinuousGestureMonitoring class continuously checks for gestures to occur. 
 
+<hr>
 
 ## UI Framework
 Various scenes will demonstrate several UI elements including:
