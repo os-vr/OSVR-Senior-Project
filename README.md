@@ -16,7 +16,9 @@ This ContinuousGestureMonitoring class continuously checks for gestures to occur
 <hr>
 
 ## UI Framework
-Various scenes will demonstrate several UI elements including:
+There will be multiple projects showcasing each element individually as well as a single project that has all of the UI elements bundled into one project under its Assetes folder. The UI-All-In-One is the recommended project to download for testing out the elements.
+
+Additionally, under the Scripts folder of each project are some scripts that you can attach to any object that affect how the object interacts with regards to the headset view.
 
 #### GUI Elements
 Buttons, Sliders, Dropdown menus, Dials, and a Keyboard
