@@ -10,6 +10,18 @@
 /Gesturing/DiscreteGesturing/.vs/*
 /Gesturing/DiscreteGesturing/.vs.meta
 
+/UI/Keyboard/[Tt]emp/
+/UI/Keyboard/[Oo]bj/
+/UI/Keyboard/Assets/AssetStoreTools*
+/UI/Keyboard/.vs/*
+/UI/Keyboard/.vs.meta
+
+/UI/UI-All-In-One/[Tt]emp/
+/UI/UI-All-In-One/[Oo]bj/
+/UI/UI-All-In-One/Assets/AssetStoreTools*
+/UI/UI-All-In-One/.vs/*
+/UI/UI-All-In-One/.vs.meta
+
 ExportedObj/
 *.svd
 *.userprefs
