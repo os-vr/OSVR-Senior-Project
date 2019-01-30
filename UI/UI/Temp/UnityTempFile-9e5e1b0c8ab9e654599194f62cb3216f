@@ -1,0 +1,457 @@
+-debug
+-target:library
+-nowarn:0169
+-langversion:4
+-out:Temp/Assembly-CSharp.dll
+-nostdlib
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AIModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ARModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AccessibilityModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AnimationModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AssetBundleModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.AudioModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.BaselibModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ClothModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ClusterInputModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ClusterRendererModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.CoreModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.CrashReportingModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.DirectorModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.FileSystemHttpModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.GameCenterModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.GridModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.HotReloadModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.IMGUIModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ImageConversionModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.InputModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.JSONSerializeModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.LocalizationModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ParticleSystemModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.PerformanceReportingModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.PhysicsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.Physics2DModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ProfilerModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.ScreenCaptureModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SharedInternalsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteMaskModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SpriteShapeModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.StreamingModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.StyleSheetsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.SubstanceModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TLSModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TerrainModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TerrainPhysicsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TextCoreModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TextRenderingModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TilemapModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.TimelineModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UIModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UIElementsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UNETModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UmbraModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityAnalyticsModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityConnectModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityTestProtocolModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityWebRequestModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityWebRequestAssetBundleModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityWebRequestAudioModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityWebRequestTextureModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.UnityWebRequestWWWModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.VFXModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.VRModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.VehiclesModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.VideoModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.WindModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEngine/UnityEngine.XRModule.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/UnityEditor.dll"
+-r:"C:\Program Files\Unity\Editor\Data\Managed/Unity.Locator.dll"
+-r:Library/ScriptAssemblies/Unity.RenderPipelines.Core.Editor.dll
+-r:Library/ScriptAssemblies/Unity.RenderPipelines.Core.Runtime.dll
+-r:Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll
+-r:Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Runtime.dll
+-r:Library/ScriptAssemblies/Unity.RenderPipelines.Lightweight.Editor.dll
+-r:Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll
+-r:Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll
+-r:Library/ScriptAssemblies/Unity.Postprocessing.Editor.dll
+-r:Library/ScriptAssemblies/Unity.Postprocessing.Runtime.dll
+-r:Library/ScriptAssemblies/Unity.ShaderGraph.Editor.dll
+-r:Library/ScriptAssemblies/Unity.RenderPipelines.Core.ShaderLibrary.dll
+-r:Library/ScriptAssemblies/Unity.TextMeshPro.dll
+-r:Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Timeline/RuntimeEditor/UnityEngine.Timeline.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityGoogleAudioSpatializer/RuntimeEditor/UnityEngine.GoogleAudioSpatializer.dll"
+-r:"C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll"
+-r:"C:/Users/Paula/Documents/Unity Projects/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll"
+-r:"C:/Users/Paula/Documents/Unity Projects/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll"
+-r:"C:/Users/Paula/Documents/Unity Projects/UI/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll"
+-r:"C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport\UnityEditor.iOS.Extensions.Common.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\mscorlib.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.Core.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.Runtime.Serialization.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.Xml.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\System.Xml.Linq.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\UnityScript.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\UnityScript.Lang.dll"
+-r:"C:\Program Files\Unity\Editor\Data\MonoBleedingEdge\lib\mono\unity\Boo.Lang.dll"
+-define:UNITY_5_3_OR_NEWER
+-define:UNITY_5_4_OR_NEWER
+-define:UNITY_5_5_OR_NEWER
+-define:UNITY_5_6_OR_NEWER
+-define:UNITY_2017_1_OR_NEWER
+-define:UNITY_2017_2_OR_NEWER
+-define:UNITY_2017_3_OR_NEWER
+-define:UNITY_2017_4_OR_NEWER
+-define:UNITY_2018_1_OR_NEWER
+-define:UNITY_2018_2_OR_NEWER
+-define:UNITY_2018_3_OR_NEWER
+-define:UNITY_2018_3_1
+-define:UNITY_2018_3
+-define:UNITY_2018
+-define:PLATFORM_ARCH_64
+-define:UNITY_64
+-define:UNITY_INCLUDE_TESTS
+-define:UNITY_ANALYTICS
+-define:ENABLE_AUDIO
+-define:ENABLE_CACHING
+-define:ENABLE_CLOTH
+-define:ENABLE_DUCK_TYPING
+-define:ENABLE_MICROPHONE
+-define:ENABLE_MULTIPLE_DISPLAYS
+-define:ENABLE_PHYSICS
+-define:ENABLE_SPRITES
+-define:ENABLE_GRID
+-define:ENABLE_TILEMAP
+-define:ENABLE_TERRAIN
+-define:ENABLE_TEXTURE_STREAMING
+-define:ENABLE_DIRECTOR
+-define:ENABLE_UNET
+-define:ENABLE_LZMA
+-define:ENABLE_UNITYEVENTS
+-define:ENABLE_WEBCAM
+-define:ENABLE_WWW
+-define:ENABLE_CLOUD_SERVICES_COLLAB
+-define:ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS
+-define:ENABLE_CLOUD_SERVICES_ADS
+-define:ENABLE_CLOUD_HUB
+-define:ENABLE_CLOUD_PROJECT_ID
+-define:ENABLE_CLOUD_SERVICES_USE_WEBREQUEST
+-define:ENABLE_CLOUD_SERVICES_UNET
+-define:ENABLE_CLOUD_SERVICES_BUILD
+-define:ENABLE_CLOUD_LICENSE
+-define:ENABLE_EDITOR_HUB
+-define:ENABLE_EDITOR_HUB_LICENSE
+-define:ENABLE_WEBSOCKET_CLIENT
+-define:ENABLE_DIRECTOR_AUDIO
+-define:ENABLE_DIRECTOR_TEXTURE
+-define:ENABLE_TIMELINE
+-define:ENABLE_EDITOR_METRICS
+-define:ENABLE_EDITOR_METRICS_CACHING
+-define:ENABLE_MANAGED_JOBS
+-define:ENABLE_MANAGED_TRANSFORM_JOBS
+-define:ENABLE_MANAGED_ANIMATION_JOBS
+-define:INCLUDE_DYNAMIC_GI
+-define:INCLUDE_GI
+-define:ENABLE_MONO_BDWGC
+-define:PLATFORM_SUPPORTS_MONO
+-define:RENDER_SOFTWARE_CURSOR
+-define:INCLUDE_PUBNUB
+-define:ENABLE_VIDEO
+-define:ENABLE_CUSTOM_RENDER_TEXTURE
+-define:ENABLE_LOCALIZATION
+-define:PLATFORM_STANDALONE_WIN
+-define:PLATFORM_STANDALONE
+-define:UNITY_STANDALONE_WIN
+-define:UNITY_STANDALONE
+-define:ENABLE_SUBSTANCE
+-define:ENABLE_RUNTIME_GI
+-define:ENABLE_MOVIES
+-define:ENABLE_NETWORK
+-define:ENABLE_CRUNCH_TEXTURE_COMPRESSION
+-define:ENABLE_UNITYWEBREQUEST
+-define:ENABLE_CLOUD_SERVICES
+-define:ENABLE_CLOUD_SERVICES_ANALYTICS
+-define:ENABLE_CLOUD_SERVICES_PURCHASING
+-define:ENABLE_CLOUD_SERVICES_CRASH_REPORTING
+-define:ENABLE_OUT_OF_PROCESS_CRASH_HANDLER
+-define:ENABLE_EVENT_QUEUE
+-define:ENABLE_CLUSTER_SYNC
+-define:ENABLE_CLUSTERINPUT
+-define:ENABLE_VR
+-define:ENABLE_AR
+-define:ENABLE_WEBSOCKET_HOST
+-define:ENABLE_MONO
+-define:NET_2_0_SUBSET
+-define:NET_LEGACY
+-define:ENABLE_PROFILER
+-define:DEBUG
+-define:TRACE
+-define:UNITY_ASSERTIONS
+-define:UNITY_EDITOR
+-define:UNITY_EDITOR_64
+-define:UNITY_EDITOR_WIN
+-define:ENABLE_UNITY_COLLECTIONS_CHECKS
+-define:ENABLE_BURST_AOT
+-define:UNITY_TEAM_LICENSE
+-define:ENABLE_VSTU
+-define:UNITY_POST_PROCESSING_STACK_V2
+-define:VRTK_VERSION_3_3_0
+-define:VRTK_VERSION_3_3_0_OR_NEWER
+-define:VRTK_VERSION_3_1_0_OR_NEWER
+-define:VRTK_VERSION_3_2_0_OR_NEWER
+-define:VRTK_VERSION_3_2_1_OR_NEWER
+Assets/BackAndForth.cs
+Assets/ControllerMove.cs
+Assets/Oculus/AudioManager/Scenes/Scripts/TestScript.cs
+Assets/Oculus/AudioManager/Scripts/Audio/AmbienceEmitter.cs
+Assets/Oculus/AudioManager/Scripts/Audio/AudioManager.cs
+Assets/Oculus/AudioManager/Scripts/Audio/AudioManager_Sound.cs
+Assets/Oculus/AudioManager/Scripts/Audio/MinMaxAttribute.cs
+Assets/Oculus/AudioManager/Scripts/Audio/SoundEmitter.cs
+Assets/Oculus/AudioManager/Scripts/Audio/SoundFX.cs
+Assets/Oculus/AudioManager/Scripts/Audio/SoundFXRef.cs
+Assets/Oculus/AudioManager/Scripts/Utils/FastList.cs
+Assets/Oculus/AudioManager/Scripts/Utils/InspectorNoteAttribute.cs
+Assets/Oculus/Avatar/Samples/GripPoses/Scripts/PoseEditHelper.cs
+Assets/Oculus/Avatar/Samples/RemoteLoopback/Scripts/RemoteLoopbackManager.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/P2PManager.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/PlayerController.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/RemotePlayer.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/RoomManager.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/SocialPlatformManager.cs
+Assets/Oculus/Avatar/Samples/SocialStarter/Assets/Scripts/VoipManager.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatar.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarAsset.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarAssetMesh.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarAssetTexture.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarBase.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarBody.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarComponent.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarDriver.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarHand.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarLocalDriver.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarLogger.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarMaterialManager.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarMeshInstance.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarPacket.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarProjectorRenderComponent.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarRemoteDriver.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarRenderComponent.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSDKCAPI.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSDKManager.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSettings.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSettingsEditor.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSkinnedMeshRenderComponent.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSkinnedMeshRenderPBSComponent.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarSkinnedMeshRenderPBSV2Component.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarTextureCopyManager.cs
+Assets/Oculus/Avatar/Scripts/OvrAvatarTouchController.cs
+Assets/Oculus/LipSync/Scenes/Scripts/EnableSwitch.cs
+Assets/Oculus/LipSync/Scenes/Scripts/LipSyncDemo_Control.cs
+Assets/Oculus/LipSync/Scenes/Scripts/LipSyncDemo_SetCurrentTarget.cs
+Assets/Oculus/LipSync/Scripts/Helpers/OVRLipSyncDebugConsole.cs
+Assets/Oculus/LipSync/Scripts/Helpers/OVRLipSyncTestAudio.cs
+Assets/Oculus/LipSync/Scripts/Helpers/OVRMessenger.cs
+Assets/Oculus/LipSync/Scripts/Helpers/OVRTouchpad.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSync.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncContext.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncContextBase.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncContextCanned.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncContextMorphTarget.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncContextTextureFlip.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncMicInput.cs
+Assets/Oculus/LipSync/Scripts/OVRLipSyncSequence.cs
+Assets/Oculus/Platform/Scripts/AbuseReportOptions.cs
+Assets/Oculus/Platform/Scripts/AbuseReportType.cs
+Assets/Oculus/Platform/Scripts/AchievementType.cs
+Assets/Oculus/Platform/Scripts/AndroidPlatform.cs
+Assets/Oculus/Platform/Scripts/ApplicationOptions.cs
+Assets/Oculus/Platform/Scripts/BufferedAudioStream.cs
+Assets/Oculus/Platform/Scripts/Callback.cs
+Assets/Oculus/Platform/Scripts/CallbackRunner.cs
+Assets/Oculus/Platform/Scripts/CAPI.cs
+Assets/Oculus/Platform/Scripts/CloudStorageDataStatus.cs
+Assets/Oculus/Platform/Scripts/CloudStorageUpdateStatus.cs
+Assets/Oculus/Platform/Scripts/Decoder.cs
+Assets/Oculus/Platform/Scripts/Encoder.cs
+Assets/Oculus/Platform/Scripts/IMicrophone.cs
+Assets/Oculus/Platform/Scripts/IVoipPCMSource.cs
+Assets/Oculus/Platform/Scripts/KeyValuePairType.cs
+Assets/Oculus/Platform/Scripts/LaunchType.cs
+Assets/Oculus/Platform/Scripts/LeaderboardFilterType.cs
+Assets/Oculus/Platform/Scripts/LeaderboardStartAt.cs
+Assets/Oculus/Platform/Scripts/LivestreamingAudience.cs
+Assets/Oculus/Platform/Scripts/LivestreamingMicrophoneStatus.cs
+Assets/Oculus/Platform/Scripts/LivestreamingStartStatus.cs
+Assets/Oculus/Platform/Scripts/MatchmakingCriterionImportance.cs
+Assets/Oculus/Platform/Scripts/MatchmakingOptions.cs
+Assets/Oculus/Platform/Scripts/MatchmakingStatApproach.cs
+Assets/Oculus/Platform/Scripts/MediaContentType.cs
+Assets/Oculus/Platform/Scripts/Message.cs
+Assets/Oculus/Platform/Scripts/MicrophoneInput.cs
+Assets/Oculus/Platform/Scripts/MicrophoneInputNative.cs
+Assets/Oculus/Platform/Scripts/Models/AbuseReportRecording.cs
+Assets/Oculus/Platform/Scripts/Models/AchievementDefinition.cs
+Assets/Oculus/Platform/Scripts/Models/AchievementProgress.cs
+Assets/Oculus/Platform/Scripts/Models/AchievementUpdate.cs
+Assets/Oculus/Platform/Scripts/Models/ApplicationVersion.cs
+Assets/Oculus/Platform/Scripts/Models/AssetDetails.cs
+Assets/Oculus/Platform/Scripts/Models/AssetFileDeleteResult.cs
+Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadCancelResult.cs
+Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadResult.cs
+Assets/Oculus/Platform/Scripts/Models/AssetFileDownloadUpdate.cs
+Assets/Oculus/Platform/Scripts/Models/CloudStorageConflictMetadata.cs
+Assets/Oculus/Platform/Scripts/Models/CloudStorageData.cs
+Assets/Oculus/Platform/Scripts/Models/CloudStorageMetadata.cs
+Assets/Oculus/Platform/Scripts/Models/CloudStorageUpdateResponse.cs
+Assets/Oculus/Platform/Scripts/Models/DeserializeableList.cs
+Assets/Oculus/Platform/Scripts/Models/Error.cs
+Assets/Oculus/Platform/Scripts/Models/HttpTransferUpdate.cs
+Assets/Oculus/Platform/Scripts/Models/InstalledApplication.cs
+Assets/Oculus/Platform/Scripts/Models/LanguagePackInfo.cs
+Assets/Oculus/Platform/Scripts/Models/LaunchBlockFlowResult.cs
+Assets/Oculus/Platform/Scripts/Models/LaunchDetails.cs
+Assets/Oculus/Platform/Scripts/Models/LaunchFriendRequestFlowResult.cs
+Assets/Oculus/Platform/Scripts/Models/LaunchUnblockFlowResult.cs
+Assets/Oculus/Platform/Scripts/Models/LeaderboardEntry.cs
+Assets/Oculus/Platform/Scripts/Models/LinkedAccount.cs
+Assets/Oculus/Platform/Scripts/Models/LivestreamingApplicationStatus.cs
+Assets/Oculus/Platform/Scripts/Models/LivestreamingStartResult.cs
+Assets/Oculus/Platform/Scripts/Models/LivestreamingStatus.cs
+Assets/Oculus/Platform/Scripts/Models/LivestreamingVideoStats.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingAdminSnapshot.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingAdminSnapshotCandidate.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingBrowseResult.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingEnqueuedUser.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingEnqueueResult.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingEnqueueResultAndRoom.cs
+Assets/Oculus/Platform/Scripts/Models/MatchmakingStats.cs
+Assets/Oculus/Platform/Scripts/Models/NetworkingPeer.cs
+Assets/Oculus/Platform/Scripts/Models/OrgScopedID.cs
+Assets/Oculus/Platform/Scripts/Models/Party.cs
+Assets/Oculus/Platform/Scripts/Models/PartyID.cs
+Assets/Oculus/Platform/Scripts/Models/Pid.cs
+Assets/Oculus/Platform/Scripts/Models/PingResult.cs
+Assets/Oculus/Platform/Scripts/Models/PlatformInitialize.cs
+Assets/Oculus/Platform/Scripts/Models/Product.cs
+Assets/Oculus/Platform/Scripts/Models/Purchase.cs
+Assets/Oculus/Platform/Scripts/Models/Room.cs
+Assets/Oculus/Platform/Scripts/Models/RoomInviteNotification.cs
+Assets/Oculus/Platform/Scripts/Models/SdkAccount.cs
+Assets/Oculus/Platform/Scripts/Models/ShareMediaResult.cs
+Assets/Oculus/Platform/Scripts/Models/SystemPermission.cs
+Assets/Oculus/Platform/Scripts/Models/SystemVoipState.cs
+Assets/Oculus/Platform/Scripts/Models/User.cs
+Assets/Oculus/Platform/Scripts/Models/UserAndRoom.cs
+Assets/Oculus/Platform/Scripts/Models/UserProof.cs
+Assets/Oculus/Platform/Scripts/Models/UserReportID.cs
+Assets/Oculus/Platform/Scripts/Packet.cs
+Assets/Oculus/Platform/Scripts/PeerConnectionState.cs
+Assets/Oculus/Platform/Scripts/PermissionGrantStatus.cs
+Assets/Oculus/Platform/Scripts/PermissionType.cs
+Assets/Oculus/Platform/Scripts/Platform.cs
+Assets/Oculus/Platform/Scripts/PlatformInitializeResult.cs
+Assets/Oculus/Platform/Scripts/PlatformInternal.cs
+Assets/Oculus/Platform/Scripts/PlatformSettings.cs
+Assets/Oculus/Platform/Scripts/Request.cs
+Assets/Oculus/Platform/Scripts/RoomJoinability.cs
+Assets/Oculus/Platform/Scripts/RoomJoinPolicy.cs
+Assets/Oculus/Platform/Scripts/RoomMembershipLockStatus.cs
+Assets/Oculus/Platform/Scripts/RoomOptions.cs
+Assets/Oculus/Platform/Scripts/RoomType.cs
+Assets/Oculus/Platform/Scripts/SdkAccountType.cs
+Assets/Oculus/Platform/Scripts/SendPolicy.cs
+Assets/Oculus/Platform/Scripts/ServiceProvider.cs
+Assets/Oculus/Platform/Scripts/ShareMediaStatus.cs
+Assets/Oculus/Platform/Scripts/StandalonePlatform.cs
+Assets/Oculus/Platform/Scripts/StandalonePlatformSettings.cs
+Assets/Oculus/Platform/Scripts/SystemVoipStatus.cs
+Assets/Oculus/Platform/Scripts/TimeWindow.cs
+Assets/Oculus/Platform/Scripts/UserOptions.cs
+Assets/Oculus/Platform/Scripts/UserOrdering.cs
+Assets/Oculus/Platform/Scripts/UserPresenceStatus.cs
+Assets/Oculus/Platform/Scripts/VoipAudioSource.cs
+Assets/Oculus/Platform/Scripts/VoipAudioSourceHiLevel.cs
+Assets/Oculus/Platform/Scripts/VoipBitrate.cs
+Assets/Oculus/Platform/Scripts/VoipDtxState.cs
+Assets/Oculus/Platform/Scripts/VoipInput.cs
+Assets/Oculus/Platform/Scripts/VoipMuteState.cs
+Assets/Oculus/Platform/Scripts/VoipOptions.cs
+Assets/Oculus/Platform/Scripts/VoipPCMSourceNative.cs
+Assets/Oculus/Platform/Scripts/VoipSampleRate.cs
+Assets/Oculus/Platform/Scripts/WindowsPlatform.cs
+"Assets/Oculus/Spatializer/scenes/Standard Assets/Character Controllers/Sources/Scripts/MouseLook.cs"
+Assets/Oculus/Spatializer/scripts/helpers/ONSPReflectionZone.cs
+Assets/Oculus/Spatializer/scripts/OculusSpatializerUnity.cs
+Assets/Oculus/Spatializer/scripts/ONSPAmbisonicsNative.cs
+Assets/Oculus/Spatializer/scripts/ONSPAudioSource.cs
+Assets/Oculus/Spatializer/scripts/ONSPProfiler.cs
+Assets/Oculus/Spatializer/scripts/ONSPVersion.cs
+Assets/Oculus/VoiceMod/Scenes/Scripts/VoiceModDemo_Logic.cs
+Assets/Oculus/VoiceMod/Scripts/Helpers/OVRDebugConsole.cs
+Assets/Oculus/VoiceMod/Scripts/Helpers/OVRMicInput.cs
+Assets/Oculus/VoiceMod/Scripts/OVRVoiceMod.cs
+Assets/Oculus/VoiceMod/Scripts/OVRVoiceModContext.cs
+Assets/Oculus/VR/Scripts/Composition/OVRCameraComposition.cs
+Assets/Oculus/VR/Scripts/Composition/OVRComposition.cs
+Assets/Oculus/VR/Scripts/Composition/OVRCompositionUtil.cs
+Assets/Oculus/VR/Scripts/Composition/OVRDirectComposition.cs
+Assets/Oculus/VR/Scripts/Composition/OVRExternalComposition.cs
+Assets/Oculus/VR/Scripts/Composition/OVRSandwichComposition.cs
+Assets/Oculus/VR/Scripts/OVRBoundary.cs
+Assets/Oculus/VR/Scripts/OVRCameraRig.cs
+Assets/Oculus/VR/Scripts/OVRCommon.cs
+Assets/Oculus/VR/Scripts/OVRDebugHeadController.cs
+Assets/Oculus/VR/Scripts/OVRDisplay.cs
+Assets/Oculus/VR/Scripts/OVRHaptics.cs
+Assets/Oculus/VR/Scripts/OVRHapticsClip.cs
+Assets/Oculus/VR/Scripts/OVRHeadsetEmulator.cs
+Assets/Oculus/VR/Scripts/OVRInput.cs
+Assets/Oculus/VR/Scripts/OVRLayerAttribute.cs
+Assets/Oculus/VR/Scripts/OVRLint.cs
+Assets/Oculus/VR/Scripts/OVRManager.cs
+Assets/Oculus/VR/Scripts/OVRMixedReality.cs
+Assets/Oculus/VR/Scripts/OVROnCompleteListener.cs
+Assets/Oculus/VR/Scripts/OVROverlay.cs
+Assets/Oculus/VR/Scripts/OVRPlatformMenu.cs
+Assets/Oculus/VR/Scripts/OVRPlugin.cs
+Assets/Oculus/VR/Scripts/OVRProfile.cs
+Assets/Oculus/VR/Scripts/OVRTracker.cs
+Assets/Oculus/VR/Scripts/Util/OVRChromaticAberration.cs
+Assets/Oculus/VR/Scripts/Util/OVRCubemapCapture.cs
+Assets/Oculus/VR/Scripts/Util/OVRDebugInfo.cs
+Assets/Oculus/VR/Scripts/Util/OVRGazePointer.cs
+Assets/Oculus/VR/Scripts/Util/OVRGearVrControllerTest.cs
+Assets/Oculus/VR/Scripts/Util/OVRGrabbable.cs
+Assets/Oculus/VR/Scripts/Util/OVRGrabber.cs
+Assets/Oculus/VR/Scripts/Util/OVRGridCube.cs
+Assets/Oculus/VR/Scripts/Util/OVRInputModule.cs
+Assets/Oculus/VR/Scripts/Util/OVRMixedRealityCaptureSettings.cs
+Assets/Oculus/VR/Scripts/Util/OVRModeParms.cs
+Assets/Oculus/VR/Scripts/Util/OVRMonoscopic.cs
+Assets/Oculus/VR/Scripts/Util/OVRPhysicsRaycaster.cs
+Assets/Oculus/VR/Scripts/Util/OVRPlayerController.cs
+Assets/Oculus/VR/Scripts/Util/OVRPointerEventData.cs
+Assets/Oculus/VR/Scripts/Util/OVRProfiler.cs
+Assets/Oculus/VR/Scripts/Util/OVRProgressIndicator.cs
+Assets/Oculus/VR/Scripts/Util/OVRRaycaster.cs
+Assets/Oculus/VR/Scripts/Util/OVRRecord.cs
+Assets/Oculus/VR/Scripts/Util/OVRResetOrientation.cs
+Assets/Oculus/VR/Scripts/Util/OVRSceneSampleController.cs
+Assets/Oculus/VR/Scripts/Util/OVRScreenFade.cs
+Assets/Oculus/VR/Scripts/Util/OVRTrackedRemote.cs
+Assets/Oculus/VR/Scripts/Util/OVRWaitCursor.cs
+Assets/RotateLikeChild.cs
+Assets/Scripts/ButtonScript.cs
+Assets/Scripts/color.cs
+Assets/Scripts/DisappearAtDistance.cs
+Assets/Scripts/Pointer.cs
+Assets/Scripts/RotateToUser.cs
+Assets/Scripts/ScaleToUser.cs
+Assets/Scripts/SetCorrectCameraHeight.cs
+Assets/Text.cs
+Assets/TutorialInfo/Scripts/Readme.cs
