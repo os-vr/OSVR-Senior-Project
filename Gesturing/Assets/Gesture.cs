@@ -4,15 +4,16 @@ using UnityEngine;
 using UnityEngine.Events;
 
 public class Gesture {
-    List<Check> stages;
-	public Event result;
+    protected List<Check> stages;
     public bool isEnabled { get; set; }
     public Normalizer normalizer;
-    public UnityEvent completeEvent;
-    private int currentStage;
+    public GestureEvent completeEvent;
+    protected int currentStage;
+    protected List<GTransform> usedPoints;
 
     public Gesture(Normalizer n)
     {
+        usedPoints = new List<GTransform>();
         normalizer = n;
         stages = new List<Check>();
         isEnabled = true;
@@ -21,6 +22,7 @@ public class Gesture {
 
     public Gesture()
     {
+        usedPoints = new List<GTransform>();
         stages = new List<Check>();
         isEnabled = true;
         currentStage = 0;
@@ -28,7 +30,7 @@ public class Gesture {
 
     public Gesture(List<Check> st)
     {
-        completeEvent = new UnityEvent();
+        usedPoints = new List<GTransform>();
         currentStage = 0;
 
         stages = new List<Check>();
@@ -42,46 +44,26 @@ public class Gesture {
 
     public bool GestureCompleted(List<GTransform> transforms)
     {
-        /*List<GTransform> normalizedTransforms = normalizer.Normalize(transforms[0]);
-
-        foreach (GTransform g in normalizedTransforms)
-        {
-            bool anyCheckPasses = false;
-
-            foreach (Check c in checks)
-            {
-                if (c.CheckPasses(g) == GStatus.PASS)
-                {
-                    anyCheckPasses = true;
-                }
-            }
-
-            if (!anyCheckPasses)
-                return false;
-
-        }
-        completeEvent.Invoke();*/
         return true;
     }
 
-    public void CheckStages(GTransform gTransform)
+    public virtual bool CheckStages(GTransform gTransform)
     {
-        //Debug.Log(currentStage);
-        if (!isEnabled)
-        {
-            return;
-        }
         GTransform normData = normalizer.Normalize(gTransform);
-
         if (currentStage >= stages.Count)
         {
             Debug.Log("Gesture complete");
-            CompleteGesture();
+            GestureMetaData gmd = GestureMetaData.GetGestureMetaData(usedPoints);
+            CompleteGesture(gmd);
+            
+
             currentStage = 0;
-            //isEnabled = false;
+            return true;
         }
         else
         {
+            //Debug.Log(normData.position);
+            usedPoints.Add(gTransform);
             switch (stages[currentStage].CheckPoint(normData))
             {
                 case GStatus.PASS:
@@ -90,10 +72,13 @@ public class Gesture {
                     break;
                 case GStatus.HALT:
                     Debug.Log(normData.position);
+                    Debug.Log("resetting");
                     currentStage = 0;
+                    usedPoints.Clear();
                     break;
             }
         }
+        return false;
     }
 
 
@@ -106,17 +91,17 @@ public class Gesture {
 
 
 
-    void CompleteGesture()
+    protected void CompleteGesture(GestureMetaData data)
     {
-        completeEvent.Invoke();
+        completeEvent.Invoke(data);
     }
 
-    public void AddEvent(UnityEvent eventAction)
+    public void AddEvent(GestureEvent eventAction)
     {
         completeEvent = eventAction;
     }
 
-    void ClearEvents()
+    protected void ClearEvents()
     {
         completeEvent.RemoveAllListeners();
     }
