@@ -33,10 +33,10 @@ public class DropDownControl : MonoBehaviour
 
         }
     }
-    public bool interactable_ = true;
+    public bool interactable = true;
     private bool interactable_past = true;
     private bool Interactable = true;
-    public bool interactable {
+    public bool interactable_ {
         get{
             return Interactable;
         }
@@ -47,9 +47,16 @@ public class DropDownControl : MonoBehaviour
             {
                 op.Disabled = !value;
             }
-            foreach (GameObject op in scrollingOptions)
+            if (scrollingOptions.Length == 0)
             {
-                op.GetComponentInChildren<DropDownItem>().setEnabled(value);
+                return;
+            }
+            if (scrollingOptions[0])
+            {
+                foreach (GameObject op in scrollingOptions)
+                {
+                    op.GetComponentInChildren<DropDownItem>().setEnabled(value);
+                }
             }
         }
     }
@@ -151,10 +158,10 @@ public class DropDownControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(interactable_ != interactable_past)
+        if(interactable != interactable_past)
         {
-            interactable = interactable_;
-            interactable_past = interactable_;
+            interactable_ = interactable;
+            interactable_past = interactable;
         }
         if (DropDownBoxGradient)
         {
@@ -186,7 +193,7 @@ public class DropDownControl : MonoBehaviour
     }
     void activate_dropdown()
     {
-        if (activated == false && interactable)
+        if (activated == false && interactable_)
         {
             activated = true;
             int position = 2;
@@ -240,7 +247,6 @@ public class DropDownControl : MonoBehaviour
                     }
                 }
                 DropDownItem DDI = inst.gameObject.GetComponentInChildren<Collider>().gameObject.AddComponent<DropDownItem>() as DropDownItem;
-
                 if (extra != null)
                 {
                     extra.transform.parent = inst.transform;
@@ -281,7 +287,7 @@ public class DropDownControl : MonoBehaviour
     }
     public void SliderUpdate()
     {
-        if (!interactable)
+        if (!interactable_)
         {
             return;
         }
@@ -312,14 +318,14 @@ public class DropDownControl : MonoBehaviour
     }
     void OnTriggerEnter(Collider enter)
     {
-        if (interactable)
+        if (interactable_)
         {
             OnTriggerStay(enter);
         }
     }
     void OnTriggerStay(Collider enter)
     {
-        if (!interactable)
+        if (!interactable_)
         {
             return;
         }
@@ -354,7 +360,7 @@ public class DropDownControl : MonoBehaviour
     }
     void OnTriggerExit(Collider exit)
     {
-        if (!interactable)
+        if (!interactable_)
         {
             return;
         }
