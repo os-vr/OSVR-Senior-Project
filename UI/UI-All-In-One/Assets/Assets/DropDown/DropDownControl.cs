@@ -33,7 +33,8 @@ public class DropDownControl : MonoBehaviour
 
         }
     }
-    public bool back = true;
+    public bool interactable_ = true;
+    private bool interactable_past = true;
     private bool Interactable = true;
     public bool interactable {
         get{
@@ -45,6 +46,10 @@ public class DropDownControl : MonoBehaviour
             foreach (Option op in options)
             {
                 op.Disabled = !value;
+            }
+            foreach (GameObject op in scrollingOptions)
+            {
+                op.GetComponentInChildren<DropDownItem>().setEnabled(value);
             }
         }
     }
@@ -93,7 +98,7 @@ public class DropDownControl : MonoBehaviour
     public onValueChange onValueChanged = new onValueChange();
     [SerializeField]
     public Option[] options;
-
+    public float last_activation = -1;
     void Awake()
     {
         maxOptionsShown = options.Length;
@@ -146,25 +151,26 @@ public class DropDownControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(interactable_ != interactable_past)
+        {
+            interactable = interactable_;
+            interactable_past = interactable_;
+        }
         if (DropDownBoxGradient)
         {
             if (Hovering - Time.time > -0.08)
             {
-                if (Hovering - Time.time > -0.20)
-                {
-                    back = false;
-                }
                 hoverTime += Time.deltaTime * 8;
+            }
+            if (hoverTime > 0)
+            {
+                hoverTime -= Time.deltaTime * 4;
             }
             if (hoverTime > 1)
             {
                 hoverTime = 1;
             }
             this.GetComponent<Renderer>().material.color = grad.Evaluate(hoverTime);
-            if (hoverTime > 0)
-            {
-                hoverTime -= Time.deltaTime * 4;
-            }
         }
     }
     void deactivate_dropdown()
@@ -213,21 +219,22 @@ public class DropDownControl : MonoBehaviour
                         {
                             extra = Instantiate(opt.extrasHovered, this.transform.position + this.transform.up * -position * changeInHeight, this.transform.rotation);
                         }
+                    }
+                    else
+                    {
+                        if (opt.Pressed)
+                        {
+                            if (opt.extrasPressed != null)
+                            {
+                                extra = Instantiate(opt.extrasPressed, this.transform.position + this.transform.up * -position * changeInHeight, this.transform.rotation);
+                            }
+
+                        }
                         else
                         {
-                            if (opt.Pressed)
+                            if (opt.extras != null)
                             {
-                                if (opt.extrasPressed != null)
-                                {
-                                    extra = Instantiate(opt.extrasPressed, this.transform.position + this.transform.up * -position * changeInHeight, this.transform.rotation);
-                                }
-                                else
-                                {
-                                    if (opt.extras != null)
-                                    {
-                                        extra = Instantiate(opt.extras, this.transform.position + this.transform.up * -position * changeInHeight, this.transform.rotation);
-                                    }
-                                }
+                                extra = Instantiate(opt.extras, this.transform.position + this.transform.up * -position * changeInHeight, this.transform.rotation);
                             }
                         }
                     }
@@ -322,24 +329,28 @@ public class DropDownControl : MonoBehaviour
             {
                 onHover.Invoke();
             }
-            Hovering = Time.time;
         }
         if (enter.gameObject.layer == LayerMask.NameToLayer("Activating"))
         {
-            if (!activated)
+            if (Time.time - last_activation < 0.08)
             {
-                activate_dropdown();
-                back = false;
+                last_activation = Time.time;
             }
             else
             {
-                if (back)
+                if (!activated)
                 {
+                    last_activation = Time.time;
+                    activate_dropdown();
+                }
+                else
+                {
+                    last_activation = Time.time;
                     deactivate_dropdown();
                 }
             }
-            Hovering = Time.time;
         }
+        Hovering = Time.time;
     }
     void OnTriggerExit(Collider exit)
     {
