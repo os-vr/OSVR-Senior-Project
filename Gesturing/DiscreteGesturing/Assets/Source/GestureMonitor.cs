@@ -22,6 +22,8 @@ public class GestureMonitor : MonoBehaviour {
     public bool displayGestureVisible = true;
     public bool renderDebugPath = true;
 
+    public UnityEvent<string> gestureObservedCallback;
+
     private GestureMetaData metaData;
 
     void GenerateGestures()
@@ -222,11 +224,14 @@ public class GestureMonitor : MonoBehaviour {
 
     void CheckGestures(List<GTransform> transforms)
     {
-        foreach (Gesture g in gestureMap.Values)
+        foreach (string name in gestureMap.Keys)
         {
+            Gesture g = gestureMap[name];
             if (g.isEnabled && g.GestureCompleted(transforms))
             {
                 g.FireEvent(metaData);
+                OnGestureCompletedCallback(name);
+                break;
             }
         }
     }
@@ -244,24 +249,56 @@ public class GestureMonitor : MonoBehaviour {
     }
 
 
-    void PopulateQueue()
-    {
+    void PopulateQueue(){
         GTransform nextDataPoint = controller.QueryGTransform();
         dataQueue.Enqueue(nextDataPoint);
         pathRenderer.SetPositions(dataQueue);
     }
 
-    void AddGesture(string name, Gesture g)
-    {
+
+    void AddGesture(string name, Gesture g){
         gestureMap.Add(name, g);
     }
 
-    void setGestureEnabled(string name, bool enabled)
-    {
+
+    void SetTrackGesture(string name, bool enabled){
         if (gestureMap.ContainsKey(name)){
             gestureMap[name].isEnabled = enabled;
         }
     }
+
+
+    void SetTrackGesture(List<string> names, bool enabled){
+        foreach (string s in names) {
+            if (gestureMap.ContainsKey(name)){
+                gestureMap[name].isEnabled = enabled;
+            }
+        }
+    }
+
+    void OnGestureCompletedCallback(string gestureName) {
+        gestureObservedCallback.Invoke(gestureName);
+    }
+
+    void AddGestureCompleteCallback(UnityAction<string> eve){
+        gestureObservedCallback.AddListener(eve);
+    }
+
+    void RemoveGestureCompleteCallback(UnityAction<string> eve){
+        gestureObservedCallback.RemoveListener(eve);
+    }
+
+    void RemoveAllGestureCompleteCallbacks(){
+        gestureObservedCallback.RemoveAllListeners();
+    }
+
+
+    void SetTrackAllGestures(bool enabled){
+        foreach (Gesture g in gestureMap.Values){
+            g.isEnabled = enabled;
+        }
+    }
+
 
     private void DisplayHints(GestureMetaData data)
     {
