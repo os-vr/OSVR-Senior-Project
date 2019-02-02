@@ -50,10 +50,18 @@ namespace Gestures
 
 
             gestureMap["Square"] = new Gesture(new List<Check> {
-            new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, 1, 0)),
-            new LineCheck(new Vector3(-1, 1, 0), new Vector3(-1, -1, 0)),
-            new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)),
-            new LineCheck(new Vector3(1, -1, 0), new Vector3(1, 1, 0))},
+                new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, 1, 0)),
+                new LineCheck(new Vector3(-1, 1, 0), new Vector3(-1, -1, 0)),
+                new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)),
+                new LineCheck(new Vector3(1, -1, 0), new Vector3(1, 1, 0)),
+
+                new RadiusCheck(new Vector3(1, 1, 0)),
+                new RadiusCheck(new Vector3(-1, 1, 0)),
+                new RadiusCheck(new Vector3(-1, -1, 0)),
+                new RadiusCheck(new Vector3(1, -1, 0)),
+
+            },
+
 
                 new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
                 new GestureEvent(delegate (GestureMetaData data) { SetText("Square", data); }));
@@ -152,13 +160,13 @@ namespace Gestures
 
         void Start()
         {
-
             if (pathRenderer == null)
             {
                 pathRenderer = gameObject.AddComponent<DefaultGestureLineRenderer>();
             }
 
-            viewNormalizer = new ViewNormalizer(Camera.main.transform);
+            viewNormalizer = viewNormalizer ?? new ViewNormalizer(Camera.main.transform);
+
             dataQueue = new GTransformBuffer(512);
 
             if(gestureObservedCallback == null) {

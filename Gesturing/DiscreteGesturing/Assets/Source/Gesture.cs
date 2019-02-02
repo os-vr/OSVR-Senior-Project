@@ -80,7 +80,6 @@ namespace Gestures
                     {
                         checksPassed++;
                         checkHitList[i] = true;
-                        break;
                     }
                 }
 
