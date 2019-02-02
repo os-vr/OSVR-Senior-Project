@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class GestureRenderer : MonoBehaviour {
-    public abstract void SetPositions(GTransformBuffer buffer);
+namespace Gestures {
+    public abstract class GestureRenderer : MonoBehaviour {
+        public abstract void SetPositions(GTransformBuffer buffer);
+    }
 }

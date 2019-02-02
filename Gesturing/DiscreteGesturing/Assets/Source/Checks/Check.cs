@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface Check{
+namespace Gestures {
+    public interface Check {
 
-    GStatus CheckPasses(GTransform transform);
-    void VisualizeCheck(bool active);
+        GStatus CheckPasses(GTransform transform);
+        void VisualizeCheck(bool active);
+    }
 }
