@@ -34,6 +34,8 @@ public class DropDownControl : MonoBehaviour
         }
     }
     public bool interactable = true;
+    public LayerMask hovering;
+    public LayerMask activating;
     private bool interactable_past = true;
     private bool Interactable = true;
     public bool interactable_ {
@@ -62,54 +64,79 @@ public class DropDownControl : MonoBehaviour
     }
     [Tooltip("The sub item that will be created in the dropdown")]
     public GameObject template;
+
     [Tooltip("The difference in the heights of the item when drawn")]
     public float changeInHeight;
+
     [Tooltip("The item that will surround all the items in the dropdown")]
     public GameObject boundingBox;
+
     [Tooltip("The option that is selected if there is no input")]
     public string defaultString = "default";
+
     [HideInInspector]
     [Tooltip("where in the list the item will appear in the drop down. If it will not appear in the dropdown, set to -1")]
     public int defaultnumber = -1;
+
     [Tooltip("How many options you can display")]
     public int maxOptionsShown = 5;
+
     [Tooltip("Old implementation of sliders for testing")]
     public Slider oldSlider;
+
     [Tooltip("Affects when an item will be faded out in the slider implementation")]
     public float hangpercentage = 0.5f;
+
     [Tooltip("Will the dropdown box use gradient or switch implementation")]
     public bool DropDownBoxGradient = true;
+
+    [Tooltip("gradient for the box")]
+    public Gradient boxGradient;
+
+    [Tooltip("how long will the gradient transition take for the box")]
+    public float BoxFade = 1.0f;
+
     [Tooltip("Will the dropdown items use gradient or switch implementation")]
     public bool DropDownItemGradient = true;
-    [Tooltip("gradient for the box")]
-    public Gradient grad;
+
     [Tooltip("gradient for the items")]
-    public Gradient buttonGrad;
-    float Hovering = -1;
-    float hoverTime = 0;
-    float slider = 0;
-    GameObject[] scrollingOptions;
+    public Gradient buttonGradient;
+
+    [Tooltip("how long will the gradient transition take for the item")]
+    public float ItemFade = 1.0f;
+
     [HideInInspector]
-    public TextMeshPro label;
+    public TextMesh label;
+
     public UnityEvent onDropClick;
+
     public UnityEvent onSelectClick;
+
     public UnityEvent onHover;
+
     public UnityEvent onEnter;
+
     public UnityEvent onExit;
-    //public class valueChangeEvent : UnityEvent<int> { }
-    //public valueChangeEvent onValueChange;
+
     bool activated;
+
     [System.Serializable]
     public class onValueChange : UnityEvent<int> { };
     [SerializeField]
     public onValueChange onValueChanged = new onValueChange();
+
     [SerializeField]
     public Option[] options;
-    public float last_activation = -1;
+
+    float Hovering = -1;
+    float hoverTime = 0;
+    float slider = 0;
+    GameObject[] scrollingOptions;
+    float last_activation = -1;
     void Awake()
     {
         maxOptionsShown = options.Length;
-        this.label = this.GetComponentInChildren<TextMeshPro>();
+        this.label = this.GetComponentInChildren<TextMesh>();
         label.text = defaultString;
         if (oldSlider != null)
         {
@@ -151,7 +178,7 @@ public class DropDownControl : MonoBehaviour
     // Use this for initialization
     void Start()
     {
-        label = this.gameObject.GetComponentInChildren<TextMeshPro>();
+        label = this.gameObject.GetComponentInChildren<TextMesh>();
         activated = false;
     }
 
@@ -165,19 +192,33 @@ public class DropDownControl : MonoBehaviour
         }
         if (DropDownBoxGradient)
         {
-            if (Hovering - Time.time > -0.08)
-            {
-                hoverTime += Time.deltaTime * 8;
-            }
             if (hoverTime > 0)
             {
-                hoverTime -= Time.deltaTime * 4;
+                if (BoxFade == 0)
+                {
+                    hoverTime = 0;
+                }
+                else
+                {
+                    hoverTime -= Time.deltaTime * (1 / BoxFade);
+                }
+            }
+            if (Hovering - Time.time > -0.08)
+            {
+                if (BoxFade == 0)
+                {
+                    hoverTime = 1;
+                }
+                else
+                {
+                    hoverTime += Time.deltaTime * 2 * (1 / BoxFade);
+                }
             }
             if (hoverTime > 1)
             {
                 hoverTime = 1;
             }
-            this.GetComponent<Renderer>().material.color = grad.Evaluate(hoverTime);
+            this.GetComponent<Renderer>().material.color = boxGradient.Evaluate(hoverTime);
         }
     }
     void deactivate_dropdown()
@@ -252,6 +293,9 @@ public class DropDownControl : MonoBehaviour
                     extra.transform.parent = inst.transform;
 
                 }
+                DDI.ItemFade = ItemFade;
+                DDI.setActivatinglayer(activating);
+                DDI.setHoveringlayer(hovering);
                 DDI.index = i;
                 DDI.Extra = extra;
                 DDI.label = op;
@@ -262,11 +306,11 @@ public class DropDownControl : MonoBehaviour
                 text.text = op;
                 if (DropDownItemGradient)
                 {
-                    DDI.grad = buttonGrad;
+                    DDI.gradient = buttonGradient;
                 }
                 else
                 {
-                    DDI.grad = options[i].buttonGrad;
+                    DDI.gradient = options[i].buttonGrad;
                 }
                 position++;
                 if (i > maxOptionsShown - 1)
@@ -329,14 +373,14 @@ public class DropDownControl : MonoBehaviour
         {
             return;
         }
-        if (enter.gameObject.layer == LayerMask.NameToLayer("Hovering"))
+        if (((1 << enter.gameObject.layer) & hovering) != 0)
         {
             if (onHover != null)
             {
                 onHover.Invoke();
             }
         }
-        if (enter.gameObject.layer == LayerMask.NameToLayer("Activating"))
+        if (((1 << enter.gameObject.layer) & activating) != 0)
         {
             if (Time.time - last_activation < 0.08)
             {
@@ -364,7 +408,7 @@ public class DropDownControl : MonoBehaviour
         {
             return;
         }
-        if (exit.gameObject.layer == LayerMask.NameToLayer("Hovering"))
+        if (exit.gameObject.layer == hovering)
         {
             if (onExit != null)
             {
@@ -372,7 +416,7 @@ public class DropDownControl : MonoBehaviour
             }
             Hovering = -1;
         }
-        if (exit.gameObject.layer == LayerMask.NameToLayer("Activating"))
+        if (exit.gameObject.layer == activating)
         {
             Hovering = -1;
         }
@@ -389,5 +433,13 @@ public class DropDownControl : MonoBehaviour
         }
         onValueChanged.Invoke(chosen);
         label.text = options[chosen].label;
+    }
+    public void setHoveringlayer(LayerMask hovering)
+    {
+        this.hovering = hovering;
+    }
+    public void setActivatinglayer(LayerMask activating)
+    {
+        this.activating = activating;
     }
 }

@@ -14,11 +14,14 @@ public class DropDownItem : MonoBehaviour {
     public picked onValueChanged = new picked();
     bool triggered;
     float Hovering = -1;
-    public Gradient grad;
+    public Gradient gradient;
+    public float ItemFade = 1.0f;
     public UnityEvent onHover;
     float hoverTime = 0;
-	// Use this for initialization
-	void Start () {
+    private LayerMask hovering;
+    private LayerMask activating;
+    // Use this for initialization
+    void Start () {
         triggered = false;
         dropDownControl = this.GetComponentInParent<DropDownControl>();
 	}
@@ -26,13 +29,27 @@ public class DropDownItem : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         dropDownControl.options[index].Hovered = (Hovering - Time.time > -0.08);
-        if (Hovering - Time.time > -0.08)
-        {
-            hoverTime += Time.deltaTime * 8;
-        }
         if (hoverTime > 0)
         {
-            hoverTime -= Time.deltaTime * 4;
+            if (ItemFade == 0)
+            {
+                hoverTime = 1;
+            }
+            else
+            {
+                hoverTime -= Time.deltaTime * (1 / ItemFade);
+            }
+        }
+        if (Hovering - Time.time > -0.08)
+        {
+            if (ItemFade == 0)
+            {
+                hoverTime = 1;
+            }
+            else
+            {
+                hoverTime += Time.deltaTime * 2 * (1 / ItemFade);
+            }
         }
         if (hoverTime < 0)
         { 
@@ -47,7 +64,7 @@ public class DropDownItem : MonoBehaviour {
             return;
         }
         nextStep();
-        this.GetComponent<Renderer>().material.color = grad.Evaluate(hoverTime);
+        this.GetComponent<Renderer>().material.color = gradient.Evaluate(hoverTime);
 	}
     void onTriggerEnter(Collider enter)
     {
@@ -62,7 +79,7 @@ public class DropDownItem : MonoBehaviour {
         {
             return;
         }
-        if (stay.gameObject.layer == LayerMask.NameToLayer("Hovering"))
+        if (((1 << stay.gameObject.layer) & hovering) != 0)
         {
             if (onHover!=null)
             {
@@ -70,7 +87,7 @@ public class DropDownItem : MonoBehaviour {
             }
             Hovering = Time.time;
         }
-        if (stay.gameObject.layer == LayerMask.NameToLayer("Activating"))
+        if (((1 << stay.gameObject.layer) & activating) != 0)
         {
             if (!triggered)
             {
@@ -87,12 +104,12 @@ public class DropDownItem : MonoBehaviour {
         {
             return;
         }
-        if (exit.gameObject.layer == LayerMask.NameToLayer("Hovering"))
+        if (((1 << exit.gameObject.layer) & hovering) != 0)
         {
             Hovering = -1;
             dropDownControl.options[index].Hovered = false;
         }
-        if (exit.gameObject.layer == LayerMask.NameToLayer("Activating"))
+        if (((1 << exit.gameObject.layer) & activating) != 0)
         {
             triggered = false;
             Hovering = -1;
@@ -153,5 +170,13 @@ public class DropDownItem : MonoBehaviour {
                 }
             }
         }
+    }
+    public void setHoveringlayer(LayerMask hovering)
+    {
+        this.hovering = hovering;
+    }
+    public void setActivatinglayer(LayerMask activating)
+    {
+        this.activating = activating;
     }
 }
