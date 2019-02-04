@@ -7,8 +7,9 @@ namespace Gestures {
     public class GestureMetaData {
         public Vector3 range;
         public Vector3 gestureCenter;
-        public float percentMatch;
+        //public float percentMatch;
         public string gestureName;
+        public int dataPointCount;
 
         public static GestureMetaData GetGestureMetaData(List<GTransform> transforms) {
             Vector3 min = transforms[0].position;
@@ -24,6 +25,7 @@ namespace Gestures {
 
             ret.range = max - min;
             ret.gestureCenter = centroid / transforms.Count;
+            ret.dataPointCount = transforms.Count;
 
             return ret;
         }

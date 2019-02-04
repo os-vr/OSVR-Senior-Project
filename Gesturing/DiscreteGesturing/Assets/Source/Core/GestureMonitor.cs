@@ -42,7 +42,6 @@ namespace Gestures
             Gesture.gestureVisualContainer = new GameObject();
             Gesture.gestureVisualContainer.name = "Gesture Visual Container";
 
-            //gestureFailedCallback.AddListener(delegate (GestureMetaData data) { SetText("No Gesture", data); });
         }
 
 
@@ -213,6 +212,14 @@ namespace Gestures
         }
 
 
+
+        public void SetMaxBufferSize(int size) {
+            dataQueue.SetMaxSize(size);
+        }
+
+        public void SetBufferWrap(bool circular) {
+            dataQueue.SetCircular(circular);
+        }
 
     }
 }

@@ -18,7 +18,7 @@ public class TrackerSetup : MonoBehaviour {
 
         tracker.AddGestureCompleteCallback(GestureComplete);
         tracker.AddGestureFailedCallback(GestureFailed);
-        tracker.SetTrackAllGestures(false);
+        tracker.SetTrackAllGestures(true);
         tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Question" }, true);
 
         DefaultGestureLineRenderer pathRenderer = gameObject.AddComponent<DefaultGestureLineRenderer>();
@@ -27,6 +27,17 @@ public class TrackerSetup : MonoBehaviour {
 	
     void GestureComplete(GestureMetaData data) {
         SetText(data.gestureName, data);
+
+        if (data.gestureName.Equals("Circle")) {
+            tracker.SetMaxBufferSize(128);
+            tracker.SetBufferWrap(true);
+        }
+
+        if (data.gestureName.Equals("Horizontal")) {
+            tracker.SetMaxBufferSize(512);
+            tracker.SetBufferWrap(false);
+        }
+
     }
 
     void GestureFailed(GestureMetaData data) {

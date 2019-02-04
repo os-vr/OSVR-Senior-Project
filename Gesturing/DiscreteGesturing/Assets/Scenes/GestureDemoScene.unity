@@ -474,16 +474,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 365669534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2cacdbd68ba22e46992ef1232c34b17, type: 3}
+  m_Script: {fileID: 11500000, guid: 8113374cd556ae54b9cd7e7cf6def8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathRenderer: {fileID: 0}
-  controller: {fileID: 298671156}
   text: {fileID: 1649422117}
-  gestureNames: []
-  displayGestureString: 
-  displayGestureVisible: 1
-  renderDebugPath: 0
 --- !u!1 &425571917
 GameObject:
   m_ObjectHideFlags: 0
