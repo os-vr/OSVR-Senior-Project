@@ -9,7 +9,7 @@ namespace Gestures {
         private GameObject sphere;
 
 
-        public RadiusCheck(Vector3 position, float radius = 0.25f) {
+        public RadiusCheck(Vector3 position, float radius = 0.4f) {
             this.position = position;
             this.radius = radius;
 

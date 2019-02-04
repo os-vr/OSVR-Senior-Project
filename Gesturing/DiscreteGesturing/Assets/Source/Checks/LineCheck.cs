@@ -8,9 +8,9 @@ namespace Gestures {
         private Vector3 firstPosition;
         private Vector3 secondPosition;
         private GameObject line;
-        private float precision = 0.20f;
+        private float precision;
 
-        public LineCheck(Vector3 firstPosition, Vector3 secondPosition, float precision = 0.25f) {
+        public LineCheck(Vector3 firstPosition, Vector3 secondPosition, float precision = 0.4f) {
             this.firstPosition = firstPosition;
             this.secondPosition = secondPosition;
             this.precision = precision;
@@ -22,7 +22,7 @@ namespace Gestures {
         public GStatus CheckPasses(GTransform g) {
 
             float distance = Vector3.Distance(g.position, GetClosestPointOnLineSegment(firstPosition, secondPosition, g.position));
-            if (distance > precision) {
+            if (distance > precision/2.0f) {
                 return GStatus.FAIL;
             }
 

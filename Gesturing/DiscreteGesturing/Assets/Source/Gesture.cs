@@ -73,14 +73,18 @@ namespace Gestures
                     }
                 }
 
+                bool anyCheckPassed = false;
                 for (int i = 0; i < checks.Count; i++)
                 {
                     Check c = checks[i];
                     if (c.CheckPasses(g) == GStatus.PASS)
                     {
-                        checksPassed++;
                         checkHitList[i] = true;
+                        anyCheckPassed = true;
                     }
+                }
+                if (anyCheckPassed) {
+                    checksPassed++;
                 }
 
             }

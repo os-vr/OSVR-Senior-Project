@@ -5,14 +5,14 @@ using UnityEngine;
 namespace Gestures {
     public class ArcCheck : Check {
         private GameObject line;
-        private float precision = 0.25f;
+        private float precision;
         private Vector3 startPosition;
         private float degrees;
         private Vector3 center;
         private float radius;
         private const float eps = 0.01f;
 
-        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.25f) {
+        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f) {
             this.startPosition = startPosition;
             this.degrees = degrees;
             this.center = center;
@@ -36,7 +36,7 @@ namespace Gestures {
 
             bool inArc = isClockwise(sectorStart, direction) && !isClockwise(sectorEnd, direction);
             bool prettyClose = (Vector3.Dot(sectorStart, direction) >= (1.0f - eps)) || (Vector3.Dot(sectorEnd, direction) >= (1.0f - eps));
-            bool withinRadius = (distance < radius + precision && distance > radius - precision);
+            bool withinRadius = (distance < radius + precision/2.0f && distance > radius - precision/2.0f);
 
             if (withinRadius && (inArc || prettyClose)) {
                 return GStatus.PASS;
