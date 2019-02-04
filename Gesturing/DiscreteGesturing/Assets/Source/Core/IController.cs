@@ -8,7 +8,6 @@ namespace Gestures
 
         public abstract GTransform QueryGTransform();
         public abstract bool GestureActive();
-        public abstract void UpdateController();
 
     }
 }

@@ -58,8 +58,6 @@ namespace Gestures
 
         void Update()
         {
-            controller.UpdateController();
-
             bool gestureActive = controller.GestureActive();
             bool gestureStarted = gestureActive && !gestureActivePreviousFlag;
             bool gestureEnded = !gestureActive && gestureActivePreviousFlag;
