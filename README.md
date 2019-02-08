@@ -11,12 +11,14 @@ The Discrete Gesture sample checks for gesture occurance after holding then rele
 #### Continuous Gesture Monitoring
 Gesturing/ContinuousGesturing/Assets/Scenes/
 
-This ContinuousGestureMonitoring class continuously checks for gestures to occur. 
+This ContinuousGestureMonitoring class continuously checks for gestures to occur. The available scene is currently setup for mouse input, but is available as a proof of concept, laying the groundwork for future development.
 
 <hr>
 
 ## UI Framework
-Various scenes will demonstrate several UI elements including:
+There will be multiple projects showcasing each element individually as well as a single project that has all of the UI elements bundled into one project under its Assetes folder. The UI-All-In-One is the recommended project to download for testing out the elements.
+
+Additionally, under the Scripts folder of each project are some scripts that you can attach to any object that affect how the object interacts with regards to the headset view.
 
 #### GUI Elements
 Buttons, Sliders, Dropdown menus, Dials, and a Keyboard
