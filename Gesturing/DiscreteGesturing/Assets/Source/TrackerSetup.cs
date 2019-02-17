@@ -64,23 +64,7 @@ public class TrackerSetup : MonoBehaviour {
                new GestureEvent()));
 
 
-        tracker.AddGesture("Square", new Gesture(new List<Check> {
-                new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, 1, 0)),
-                new LineCheck(new Vector3(-1, 1, 0), new Vector3(-1, -1, 0)),
-                new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)),
-                new LineCheck(new Vector3(1, -1, 0), new Vector3(1, 1, 0)),
-
-                new RadiusCheck(new Vector3(1, 1, 0)),
-                new RadiusCheck(new Vector3(-1, 1, 0)),
-                new RadiusCheck(new Vector3(-1, -1, 0)),
-                new RadiusCheck(new Vector3(1, -1, 0)),
-
-            },
-
-
-            new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-            new GestureEvent()));
-
+        tracker.AddGesture("Square", new SquareGesture());
 
 
         tracker.AddGesture("Letter-J", new Gesture(new List<Check> {
@@ -91,6 +75,45 @@ public class TrackerSetup : MonoBehaviour {
 
           new CompositeNormalizer(new Vector3(-1, -.5f, 0), new Vector3(0, 1, 0)),
           new GestureEvent()));
+
+
+        tracker.AddGesture("2", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
+            new LineCheck(new Vector3(.5f, .5f, 0), new Vector3(-.5f, -1, 0)),
+            new LineCheck(new Vector3(-.5f, -1, 0), new Vector3(.5f, -1, 0)),
+            },
+
+          new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+          new GestureEvent()));
+
+
+        tracker.AddGesture("3", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(.5f, .5f, 0), 90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
+
+            new ArcCheck(new Vector3(.5f, -.5f, 0), -90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(.5f, -.5f, 0), 90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,-.5f,0)),
+
+            new LineCheck(new Vector3(0, 0, 0), new Vector3(-.5f, 0, 0)),
+
+            },
+
+         new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+         new GestureEvent()));
+
+
+
+        tracker.AddGesture("4", new Gesture(new List<Check> {
+            new LineCheck(new Vector3(0, -1, 0), new Vector3(0, 1, 0)),
+            new LineCheck(new Vector3(0, 1, 0), new Vector3(-.5f, 0, 0)),
+            new LineCheck(new Vector3(-.5f, 0, 0), new Vector3(.5f, 0, 0)),
+            },
+
+         new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+         new GestureEvent()));
 
 
         tracker.AddGesture("Letter-S", new Gesture(new List<Check> {
@@ -187,9 +210,10 @@ public class TrackerSetup : MonoBehaviour {
 
 
     private void SetText(string name, GestureMetaData data) {
-        string newText = "Gesture Name: " + name + "\n" +
+        string newText = "Gesture Detected: " + name + "\n" +
                          "Scale: " + data.range.ToString("G4") + "\n" +
-                         "Position: " + data.gestureCenter.ToString("G4");
+                         "Position: " + data.gestureCenter.ToString("G4") + "\n" +
+                         "Precision: " + data.precision.ToString("G4");
         text.SetText(newText);
     }
 

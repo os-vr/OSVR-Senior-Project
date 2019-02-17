@@ -1,12 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
+
     public class RadiusCheck : Check {
         private Vector3 position;
         private float radius;
-        private GameObject sphere;
 
 
         public RadiusCheck(Vector3 position, float radius = 0.4f) {
@@ -16,13 +17,12 @@ namespace Gestures {
             BuildGestureVisualization();
         }
 
-        public GStatus CheckPasses(GTransform gTransform) {
+        override public float CheckPasses(GTransform gTransform) {
             float distance = Vector3.Distance(gTransform.position, position);
             if (distance > radius) {
-                return GStatus.FAIL;
+                return -1;
             }
-
-            return GStatus.PASS;
+            return 1;
         }
 
 
@@ -31,18 +31,15 @@ namespace Gestures {
         }
 
         private void BuildGestureVisualization() {
-            sphere = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            sphere.GetComponent<Renderer>().material = Resources.Load<Material>("Transparent");
-            sphere.transform.position = position;
-            sphere.transform.localScale = new Vector3(radius, radius, radius);
-            sphere.SetActive(false);
+            visualizationObject = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+            visualizationObject.GetComponent<Renderer>().material = Resources.Load<Material>("Transparent");
+            visualizationObject.transform.position = position;
+            visualizationObject.transform.localScale = new Vector3(radius, radius, radius);
+            visualizationObject.SetActive(false);
 
-            sphere.transform.parent = Gesture.gestureVisualContainer.transform;
+            visualizationObject.transform.parent = Gesture.gestureVisualContainer.transform;
         }
 
-        public void VisualizeCheck(bool active) {
-            sphere.SetActive(active);
 
-        }
     }
 }

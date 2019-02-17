@@ -8,6 +8,7 @@ using UnityEngine.UI;
 
 namespace Gestures
 {
+    [ExecuteInEditMode]
     public class GestureMonitor : MonoBehaviour
     {
         public LineRenderer pathRenderer;
@@ -17,17 +18,19 @@ namespace Gestures
         private Dictionary<string, Gesture> gestureMap = new Dictionary<string, Gesture>();
         public List<string> gestureNames;
         private GTransformBuffer dataQueue;
-        public int maxBufferSize = 512;
+        public int bufferSize = 512;
         private bool gestureActivePreviousFlag = false;
 
-        private Gesture displayGesture = null;
+        public Gesture displayGesture = null;
         public string displayGestureString = "";
-        public bool displayGestureVisible = true;
-        public bool renderDebugPath = true;
+        public bool displayGestureVisible = false;
+        public bool renderDebugPath = false;
 
         private UnityEvent<GestureMetaData> gestureObservedCallback;
         private UnityEvent<GestureMetaData> gestureFailedCallback;
         private GestureMetaData metaData;
+
+        //public List<LineCheck> list = new List<LineCheck>();
 
 
 
@@ -36,12 +39,7 @@ namespace Gestures
             viewNormalizer = viewNormalizer ?? new ViewNormalizer(Camera.main.transform);
             gestureObservedCallback = new GestureEvent();
             gestureFailedCallback = new GestureEvent();
-            dataQueue = new GTransformBuffer(maxBufferSize);
-
-
-            Gesture.gestureVisualContainer = new GameObject();
-            Gesture.gestureVisualContainer.name = "Gesture Visual Container";
-
+            dataQueue = new GTransformBuffer(bufferSize);
         }
 
 
@@ -99,6 +97,7 @@ namespace Gestures
                 if (g.isEnabled && g.GestureCompleted(transforms))
                 {
                     metaData.gestureName = name;
+                    metaData.precision = g.gestureCompletionPrecision;
                     g.FireEvent(metaData);
                     OnGestureCompletedCallback(metaData);
                     gestureCompleted = true;
@@ -219,5 +218,11 @@ namespace Gestures
             dataQueue.SetCircular(circular);
         }
 
+
+        //public void OnValidate() {
+        //    for (int i = 0; i < list.Count; i++) {
+        //        list[i].Validate();
+        //    }
+        //}
     }
 }

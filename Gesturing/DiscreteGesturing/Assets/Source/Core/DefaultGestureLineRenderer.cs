@@ -30,6 +30,7 @@ namespace Gestures {
                 new GradientAlphaKey[] { new GradientAlphaKey(startColor.a, 0.0f), new GradientAlphaKey(endColor.a, 1.0f) }
             );
             lineRenderer.colorGradient = gradient;
+            lineRenderer.widthMultiplier = widthMultiplier;
         }
     }
 }

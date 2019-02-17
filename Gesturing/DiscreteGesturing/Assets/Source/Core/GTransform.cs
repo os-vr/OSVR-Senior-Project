@@ -8,14 +8,16 @@ namespace Gestures {
 
         public Vector3 position;
         public Quaternion rotation;
+        public Vector3 velocity;
 
-        public GTransform(Vector3 pos, Quaternion quat) {
+        public GTransform(Vector3 pos, Quaternion quat, Vector3 vel) {
             position = pos;
             rotation = quat;
+            velocity = vel;
         }
 
         public GTransform Copy() {
-            return new GTransform(position, rotation);
+            return new GTransform(position, rotation, velocity);
         }
     }
 }

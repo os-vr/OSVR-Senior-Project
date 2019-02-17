@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+
     public class ArcCheck : Check {
-        private GameObject line;
         private float precision;
         private Vector3 startPosition;
         private float degrees;
@@ -26,7 +26,7 @@ namespace Gestures {
             return Mathf.Sign(degrees) * (-v1.x * v2.y + v1.y * v2.x) >= 0;
         }
 
-        public GStatus CheckPasses(GTransform g) {
+        override public float CheckPasses(GTransform g) {
 
             Vector3 position = g.position;
             Vector3 direction = (position - center).normalized;
@@ -39,16 +39,16 @@ namespace Gestures {
             bool withinRadius = (distance < radius + precision/2.0f && distance > radius - precision/2.0f);
 
             if (withinRadius && (inArc || prettyClose)) {
-                return GStatus.PASS;
+                return Mathf.Abs((distance - radius))/(precision/2.0f);
             }
-            return GStatus.FAIL;
+            return -1;
 
         }
 
 
         private void BuildGestureVisualization() {
-            line = new GameObject();
-            LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
+            visualizationObject = new GameObject();
+            LineRenderer lineRenderer = visualizationObject.AddComponent<LineRenderer>();
             lineRenderer.material = Resources.Load<Material>("Transparent");
 
             Vector3[] arr = new Vector3[100];
@@ -67,14 +67,11 @@ namespace Gestures {
             lineRenderer.SetPositions(arr);
             lineRenderer.widthMultiplier = precision;
 
-            line.SetActive(false);
-
-            line.transform.parent = Gesture.gestureVisualContainer.transform;
+            visualizationObject.SetActive(false);
+  
+            visualizationObject.transform.parent = Gesture.gestureVisualContainer.transform;
         }
 
 
-        public void VisualizeCheck(bool active) {
-            line.SetActive(active);
-        }
     }
 }

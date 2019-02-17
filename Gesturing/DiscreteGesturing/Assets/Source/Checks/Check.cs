@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
-    public interface Check {
 
-        GStatus CheckPasses(GTransform transform);
-        void VisualizeCheck(bool active);
+    [System.Serializable]
+    public abstract class Check {
+        protected GameObject visualizationObject;
+
+        public abstract float CheckPasses(GTransform transform);
+        public virtual void BuildEditor() { }
+
+        public void VisualizeCheck(bool active) {
+            visualizationObject.SetActive(active);
+        }
     }
+
 }

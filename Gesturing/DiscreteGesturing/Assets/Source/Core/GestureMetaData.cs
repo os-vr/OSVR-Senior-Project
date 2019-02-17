@@ -10,6 +10,7 @@ namespace Gestures {
         //public float percentMatch;
         public string gestureName;
         public int dataPointCount;
+        public float precision;
 
         public static GestureMetaData GetGestureMetaData(List<GTransform> transforms) {
             Vector3 min = transforms[0].position;

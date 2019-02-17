@@ -4,11 +4,15 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
+
+    [ExecuteInEditMode]
+    [System.Serializable]
     public class LineCheck : Check {
-        private Vector3 firstPosition;
-        private Vector3 secondPosition;
-        private GameObject line;
-        private float precision;
+
+        public Vector3 firstPosition;
+        public Vector3 secondPosition;
+        public float precision;
+        private LineRenderer lineRenderer;
 
         public LineCheck(Vector3 firstPosition, Vector3 secondPosition, float precision = 0.4f) {
             this.firstPosition = firstPosition;
@@ -18,15 +22,14 @@ namespace Gestures {
             BuildGestureVisualization();
         }
 
-
-        public GStatus CheckPasses(GTransform g) {
+        override public float CheckPasses(GTransform g) {
 
             float distance = Vector3.Distance(g.position, GetClosestPointOnLineSegment(firstPosition, secondPosition, g.position));
             if (distance > precision/2.0f) {
-                return GStatus.FAIL;
+                return -1;
             }
 
-            return GStatus.PASS;
+            return distance/(precision/2.0f);
         }
 
 
@@ -49,21 +52,21 @@ namespace Gestures {
         }
 
         private void BuildGestureVisualization() {
-            line = new GameObject();
+            visualizationObject = new GameObject();
 
-            LineRenderer lineRenderer = line.AddComponent<LineRenderer>();
+            lineRenderer = visualizationObject.AddComponent<LineRenderer>();
             lineRenderer.material = Resources.Load<Material>("Transparent");
             lineRenderer.SetPositions(new Vector3[] { firstPosition, secondPosition });
             lineRenderer.widthMultiplier = precision;
-            line.SetActive(false);
+            visualizationObject.SetActive(false);
 
-            line.transform.parent = Gesture.gestureVisualContainer.transform;
+            visualizationObject.transform.parent = Gesture.GetVisualContainerTransform();
         }
 
-        public void VisualizeCheck(bool active) {
-            line.SetActive(active);
+        public void Validate() {
+            lineRenderer.SetPositions(new Vector3[] { firstPosition, secondPosition });
+            lineRenderer.widthMultiplier = precision;
         }
-
-
     }
+
 }
