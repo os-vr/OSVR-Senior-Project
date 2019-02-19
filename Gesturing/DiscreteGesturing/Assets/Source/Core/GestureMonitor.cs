@@ -66,8 +66,8 @@ namespace Gestures
 
             if (gestureEnded){
                 List<GTransform> transforms = new List<GTransform>(dataQueue);
-                transforms = viewNormalizer.Normalize(transforms);
                 metaData = GestureMetaData.GetGestureMetaData(transforms);
+                transforms = viewNormalizer.Normalize(transforms);
 
                 if (renderDebugPath && displayGesture != null)
                 {

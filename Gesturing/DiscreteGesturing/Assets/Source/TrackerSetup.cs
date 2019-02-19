@@ -10,7 +10,7 @@ public class TrackerSetup : MonoBehaviour {
     public TextMeshPro text;
     private GestureMonitor tracker;
 
-    void Start () {
+    void Awake () {
         tracker = gameObject.AddComponent<GestureMonitor>();
         tracker.controller = GetComponentInChildren<IController>();
 
@@ -38,10 +38,16 @@ public class TrackerSetup : MonoBehaviour {
             tracker.SetBufferWrap(false);
         }
 
+        if (data.gestureName.Equals("Square")) {
+            tracker.pathRenderer.startColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+            tracker.pathRenderer.endColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+        }
+
     }
 
+
     void GestureFailed(GestureMetaData data) {
-        
+        text.SetText("---");
     }
 
     void Update () {
