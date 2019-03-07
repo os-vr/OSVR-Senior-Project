@@ -17,8 +17,6 @@ namespace Gestures
         public float gestureCompleteConfidence = 1.0f;
         public float gestureCompletionPrecision = -1.0f;
 
-        public static GameObject gestureVisualContainer;
-
         public Gesture(List<Check> st, Normalizer norm, UnityEvent<GestureMetaData> eve)
         {
             normalizer = norm;
@@ -38,14 +36,15 @@ namespace Gestures
             checks.Add(newCheck);
         }
 
-        public void VisualizeGesture(bool active)
+        public void VisualizeGesture(Rect grid)
         {
+            //**
             foreach (Check c in checks) {
-                c.VisualizeCheck(active);
+                c.VisualizeCheck(grid);
             }
 
             foreach (Check c in sequentialChecks) {
-                c.VisualizeCheck(active);
+                c.VisualizeCheck(grid);
             }
 
         }
@@ -118,12 +117,6 @@ namespace Gestures
             completeEvent.RemoveAllListeners();
         }
 
-        public static Transform GetVisualContainerTransform() {
-            if(gestureVisualContainer == null) {
-                gestureVisualContainer = new GameObject("Gesture Visualization OBJ");
-            }
-            return gestureVisualContainer.transform;
-        }
 
 
 

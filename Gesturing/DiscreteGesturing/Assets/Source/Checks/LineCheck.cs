@@ -18,8 +18,6 @@ namespace Gestures {
             this.firstPosition = firstPosition;
             this.secondPosition = secondPosition;
             this.precision = precision;
-
-            BuildGestureVisualization();
         }
 
         override public float CheckPasses(GTransform g) {
@@ -51,22 +49,31 @@ namespace Gestures {
             }
         }
 
-        private void BuildGestureVisualization() {
-            visualizationObject = new GameObject();
 
-            lineRenderer = visualizationObject.AddComponent<LineRenderer>();
-            lineRenderer.material = Resources.Load<Material>("Transparent");
-            lineRenderer.SetPositions(new Vector3[] { firstPosition, secondPosition });
-            lineRenderer.widthMultiplier = precision;
-            visualizationObject.SetActive(false);
+        override public void VisualizeCheck(Rect grid) {
+            GL.PushMatrix();
+            Material mat = new Material(Shader.Find("Sprites/Default"));
+            mat.SetPass(0);
+            GL.Begin(GL.QUADS);
+            GL.Color(Color.black);
 
-            visualizationObject.transform.parent = Gesture.GetVisualContainerTransform();
+            Vector2 seg = (secondPosition - firstPosition).normalized;
+            Vector3 norm = new Vector3(seg.y, -seg.x);
+            Vector3 p1 = firstPosition + precision/8 * norm;
+            Vector3 p2 = firstPosition + -precision/8 * norm;
+            Vector3 p3 = secondPosition + -precision/8 * norm;
+            Vector3 p4 = secondPosition + precision / 8 * norm;
+
+            Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
+
+            GL.Vertex(Vector3.Scale(p1, size) + new Vector3(grid.position.x, grid.position.y));
+            GL.Vertex(Vector3.Scale(p2, size) + new Vector3(grid.position.x, grid.position.y));
+            GL.Vertex(Vector3.Scale(p3, size) + new Vector3(grid.position.x, grid.position.y));
+            GL.Vertex(Vector3.Scale(p4, size) + new Vector3(grid.position.x, grid.position.y));
+            GL.End();
+            GL.PopMatrix();
         }
 
-        public void Validate() {
-            lineRenderer.SetPositions(new Vector3[] { firstPosition, secondPosition });
-            lineRenderer.widthMultiplier = precision;
-        }
     }
 
 }

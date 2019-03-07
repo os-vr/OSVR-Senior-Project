@@ -21,17 +21,146 @@ namespace Gestures
         public int bufferSize = 512;
         private bool gestureActivePreviousFlag = false;
 
-        public Gesture displayGesture = null;
-        public string displayGestureString = "";
-        public bool displayGestureVisible = false;
-        public bool renderDebugPath = false;
-
         private UnityEvent<GestureMetaData> gestureObservedCallback;
         private UnityEvent<GestureMetaData> gestureFailedCallback;
         private GestureMetaData metaData;
 
         //public List<LineCheck> list = new List<LineCheck>();
 
+        
+        void OnEnable() {
+            AddGesture("sq", new SquareGesture());
+
+
+            AddGesture("Vertical",
+          new Gesture(new List<Check> {
+               new LineCheck(new Vector3(0, 1, 0), new Vector3(0, -1, 0)) },
+              new LineNormalizer(),
+              new GestureEvent()));
+
+
+            AddGesture("Horizontal",
+               new Gesture(new List<Check> {
+               new LineCheck(new Vector3(-1, 0, 0), new Vector3(1, 0, 0)) },
+                   new LineNormalizer(),
+                   new GestureEvent()));
+
+
+            AddGesture("Square", new SquareGesture());
+
+
+            AddGesture("Letter-J", new Gesture(new List<Check> {
+            new LineCheck(new Vector3(0, 1, 0), new Vector3(0, 0, 0)),
+            new ArcCheck(new Vector3(0, 0, 0), 90, new Vector3(-.5f,0,0)),
+            new ArcCheck(new Vector3(-.5f, -.5f, 0), 90, new Vector3(-.5f,0,0)),
+            },
+
+              new CompositeNormalizer(new Vector3(-1, -.5f, 0), new Vector3(0, 1, 0)),
+              new GestureEvent()));
+
+
+            AddGesture("2", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
+            new LineCheck(new Vector3(.5f, .5f, 0), new Vector3(-.5f, -1, 0)),
+            new LineCheck(new Vector3(-.5f, -1, 0), new Vector3(.5f, -1, 0)),
+            },
+
+              new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+              new GestureEvent()));
+
+
+            AddGesture("3", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(.5f, .5f, 0), 90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
+
+            new ArcCheck(new Vector3(.5f, -.5f, 0), -90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(.5f, -.5f, 0), 90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,-.5f,0)),
+
+            new LineCheck(new Vector3(0, 0, 0), new Vector3(-.5f, 0, 0)),
+
+            },
+
+             new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+             new GestureEvent()));
+
+
+            AddGesture("4", new Gesture(new List<Check> {
+            new LineCheck(new Vector3(0, -1, 0), new Vector3(0, 1, 0)),
+            new LineCheck(new Vector3(0, 1, 0), new Vector3(-.5f, 0, 0)),
+            new LineCheck(new Vector3(-.5f, 0, 0), new Vector3(.5f, 0, 0)),
+            },
+
+            new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+            new GestureEvent()));
+
+
+            AddGesture("Letter-S", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(-.5f,.5f,0), -90, new Vector3(0,.5f,0)),
+
+            new ArcCheck(new Vector3(0, 0, 0), 90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(.5f,-.5f,0), 90, new Vector3(0,-.5f,0)),
+            new ArcCheck(new Vector3(0,-1,0), 90, new Vector3(0,-.5f,0)),
+            },
+
+              new CompositeNormalizer(new Vector3(-.5f, -1.0f, 0), new Vector3(.5f, 1.0f, 0)),
+              new GestureEvent()));
+
+
+            AddGesture("Letter-P", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,.5f,0)),
+            new ArcCheck(new Vector3(.5f,.5f,0), 90, new Vector3(0,.5f,0)),
+
+            new LineCheck(new Vector3(0,1,0), new Vector3(0,-1,0)),
+
+
+            },
+
+                new List<Check>{
+                new RadiusCheck(new Vector3(0,-1,0)),
+                new RadiusCheck(new Vector3(0,1,0)),
+                new RadiusCheck(new Vector3(.5f,.5f,0)),
+                new RadiusCheck(new Vector3(0,0,0)),
+                },
+
+              new CompositeNormalizer(new Vector3(0, -1.0f, 0), new Vector3(0.5f, 1.0f, 0)),
+              new GestureEvent()));
+
+
+
+            AddGesture("Letter-Z", new Gesture(new List<Check> {
+            new LineCheck(new Vector3(-1, 1, 0), new Vector3(1, 1, 0)),
+            new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, -1, 0)),
+            new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)) },
+
+               new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+               new GestureEvent()));
+
+
+            AddGesture("Triangle", new Gesture(new List<Check> {
+            new LineCheck(new Vector3(-1, -1, 0), new Vector3(0, 1.0f, 0)),
+            new LineCheck(new Vector3(0, 1.0f, 0), new Vector3(1, -1, 0)),
+            new LineCheck(new Vector3(1, -1, 0),new Vector3(-1, -1, 0))},
+
+                new CompositeNormalizer(),
+                new GestureEvent()));
+
+
+            AddGesture("Circle", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0)),
+            },
+
+               new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+               new GestureEvent()));
+
+        }
 
 
         void Awake()
@@ -40,18 +169,6 @@ namespace Gestures
             gestureObservedCallback = new GestureEvent();
             gestureFailedCallback = new GestureEvent();
             dataQueue = new GTransformBuffer(bufferSize);
-        }
-
-
-        void UpdateDebugTools()
-        {
-            if (gestureMap.ContainsKey(displayGestureString))
-            {
-                if (displayGesture != null)
-                    displayGesture.VisualizeGesture(false);
-                displayGesture = gestureMap[displayGestureString];
-                displayGesture.VisualizeGesture(displayGestureVisible);
-            }
         }
 
         void Update()
@@ -69,10 +186,6 @@ namespace Gestures
                 metaData = GestureMetaData.GetGestureMetaData(transforms);
                 transforms = viewNormalizer.Normalize(transforms);
 
-                if (renderDebugPath && displayGesture != null)
-                {
-                    RenderList(displayGesture.normalizer.Normalize(transforms));
-                }
 
                 CheckGestures(transforms);
             }
@@ -84,7 +197,6 @@ namespace Gestures
 
             gestureActivePreviousFlag = gestureActive;
 
-            UpdateDebugTools();
         }
 
 
@@ -218,11 +330,5 @@ namespace Gestures
             dataQueue.SetCircular(circular);
         }
 
-
-        //public void OnValidate() {
-        //    for (int i = 0; i < list.Count; i++) {
-        //        list[i].Validate();
-        //    }
-        //}
     }
 }

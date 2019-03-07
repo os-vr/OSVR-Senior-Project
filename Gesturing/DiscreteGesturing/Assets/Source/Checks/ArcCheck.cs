@@ -18,7 +18,6 @@ namespace Gestures {
             this.center = center;
             this.radius = Vector3.Distance(center, startPosition);
             this.precision = precision;
-            BuildGestureVisualization();
 
         }
 
@@ -45,33 +44,34 @@ namespace Gestures {
 
         }
 
-
-        private void BuildGestureVisualization() {
-            visualizationObject = new GameObject();
-            LineRenderer lineRenderer = visualizationObject.AddComponent<LineRenderer>();
-            lineRenderer.material = Resources.Load<Material>("Transparent");
-
-            Vector3[] arr = new Vector3[100];
+        override public void VisualizeCheck(Rect grid) {
+            GL.PushMatrix();
+            Material mat = new Material(Shader.Find("Sprites/Default"));
+            mat.SetPass(0);
+            GL.Begin(GL.TRIANGLE_STRIP);
+           
+            GL.Color(Color.black);
 
             float startRadians = Mathf.Atan2(center.y - startPosition.y, center.x - startPosition.x) + Mathf.PI;
             float endRadians = startRadians - degrees * Mathf.PI / 180;
             float radianDifference = endRadians - startRadians;
 
-            float r = radianDifference / 100.0f;
-            for (int i = 0; i < 100; i++) {
-                Vector3 pos = center + radius * new Vector3(Mathf.Cos(startRadians + r * i), Mathf.Sin(startRadians + r * i), 0) * (1.0f);
-                arr[i] = pos;
+            Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
+
+            int divisions = 16;
+            float r = radianDifference / divisions;
+
+            for (int i = 0; i <= divisions; i++) {
+                Vector3 pos = center + radius * new Vector3(Mathf.Cos(startRadians + r * i), Mathf.Sin(startRadians + r * i), 0);
+               
+                Vector3 norm = (center - pos).normalized;
+                GL.Vertex(Vector3.Scale(pos + precision / 8 * norm, size) + new Vector3(grid.position.x, grid.position.y));
+                GL.Vertex(Vector3.Scale(pos - precision / 8 * norm, size) + new Vector3(grid.position.x, grid.position.y));
             }
 
-            lineRenderer.positionCount = 100;
-            lineRenderer.SetPositions(arr);
-            lineRenderer.widthMultiplier = precision;
-
-            visualizationObject.SetActive(false);
-  
-            visualizationObject.transform.parent = Gesture.gestureVisualContainer.transform;
+            GL.End();
+            GL.PopMatrix();
         }
-
 
     }
 }

@@ -7,7 +7,6 @@ namespace Gestures {
     public class GestureMetaData {
         public Vector3 range;
         public Vector3 gestureCenter;
-        //public float percentMatch;
         public string gestureName;
         public int dataPointCount;
         public float precision;

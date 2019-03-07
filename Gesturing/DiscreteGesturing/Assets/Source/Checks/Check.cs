@@ -7,14 +7,9 @@ namespace Gestures {
 
     [System.Serializable]
     public abstract class Check {
-        protected GameObject visualizationObject;
-
         public abstract float CheckPasses(GTransform transform);
-        public virtual void BuildEditor() { }
+        public virtual void VisualizeCheck(Rect grid) {}
 
-        public void VisualizeCheck(bool active) {
-            visualizationObject.SetActive(active);
-        }
     }
 
 }
