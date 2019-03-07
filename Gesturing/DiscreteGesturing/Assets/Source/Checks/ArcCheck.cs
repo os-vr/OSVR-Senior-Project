@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
@@ -71,6 +72,15 @@ namespace Gestures {
 
             GL.End();
             GL.PopMatrix();
+
+
+
+            EditorGUILayout.BeginHorizontal();
+            startPosition = EditorGUILayout.Vector3Field("Start : ", startPosition);
+            center = EditorGUILayout.Vector3Field("Center : ", center);
+            degrees = EditorGUILayout.Slider("Degrees : ", degrees, 0, 90);
+            EditorGUILayout.EndHorizontal();
+
         }
 
     }

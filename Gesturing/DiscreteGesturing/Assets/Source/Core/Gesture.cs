@@ -5,7 +5,6 @@ using UnityEngine.Events;
 
 namespace Gestures
 {
-
     public class Gesture
     {
         public List<Check> checks;

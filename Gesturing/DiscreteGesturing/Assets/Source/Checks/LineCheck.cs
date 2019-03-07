@@ -1,12 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
 
-    [ExecuteInEditMode]
-    [System.Serializable]
     public class LineCheck : Check {
 
         public Vector3 firstPosition;
@@ -72,6 +68,11 @@ namespace Gestures {
             GL.Vertex(Vector3.Scale(p4, size) + new Vector3(grid.position.x, grid.position.y));
             GL.End();
             GL.PopMatrix();
+
+            EditorGUILayout.BeginHorizontal();
+            firstPosition = EditorGUILayout.Vector3Field("First Position: ", firstPosition);
+            secondPosition = EditorGUILayout.Vector3Field("Second Position: ", secondPosition);
+            EditorGUILayout.EndHorizontal();
         }
 
     }

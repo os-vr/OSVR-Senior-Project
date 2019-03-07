@@ -24,10 +24,5 @@ namespace Gestures {
         }
 
 
-        public bool CheckAll(List<GTransform> transforms) {
-            return true;
-        }
-
-
     }
 }
