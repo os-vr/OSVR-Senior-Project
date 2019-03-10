@@ -8,6 +8,10 @@ namespace Gestures {
         public List<GTransform> Normalize(List<GTransform> data) {
             List<GTransform> normalizedData = new List<GTransform>();
 
+            if(data.Count == 0) {
+                return normalizedData;
+            }
+
             Vector3 first = data[0].position;
             Vector3 last = data[data.Count - 1].position;
 

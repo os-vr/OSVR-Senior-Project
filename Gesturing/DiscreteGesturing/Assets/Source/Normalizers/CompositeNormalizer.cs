@@ -33,6 +33,10 @@ namespace Gestures {
             List<GTransform> normalizedData = new List<GTransform>();
 
             int count = data.Count;
+            if(count == 0) {
+                return normalizedData;
+            }
+
             Vector3 range = new Vector3(0, 0, 0);
             Vector3 min = data[0].position;
             Vector3 max = data[0].position;

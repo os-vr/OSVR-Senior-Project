@@ -17,6 +17,10 @@ namespace Gestures {
             int count = data.Count;
             List<GTransform> normalizedData = new List<GTransform>();
 
+            if(count == 0) {
+                return normalizedData;
+            }
+
             for (int i = 0; i < data.Count; i++) {
                 GTransform trans = data[i].Copy();
                 centroid += trans.position;

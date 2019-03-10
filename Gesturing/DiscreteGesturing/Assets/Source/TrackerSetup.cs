@@ -18,15 +18,26 @@ public class TrackerSetup : MonoBehaviour {
 
         tracker.AddGestureCompleteCallback(GestureComplete);
         tracker.AddGestureFailedCallback(GestureFailed);
+        tracker.AddGestureStartCallback(GestureStart);
+
         tracker.SetTrackAllGestures(true);
-        tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Question" }, true);
+        tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Horizontal" }, false);
 
         DefaultGestureLineRenderer pathRenderer = gameObject.AddComponent<DefaultGestureLineRenderer>();
         tracker.pathRenderer = pathRenderer.lineRenderer;
     }
+
+    
+    void GestureStart() {
+        tracker.pathRenderer.startColor = Color.blue;
+        tracker.pathRenderer.endColor = Color.blue;
+    }
+
 	
     void GestureComplete(GestureMetaData data) {
         SetText(data.gestureName, data);
+        tracker.pathRenderer.startColor = Color.green;
+        tracker.pathRenderer.endColor = Color.green;
 
         if (data.gestureName.Equals("Circle")) {
             tracker.SetMaxBufferSize(128);
@@ -55,6 +66,99 @@ public class TrackerSetup : MonoBehaviour {
 	}
 
     void GenerateGestures() {
+
+
+
+        tracker.AddGesture("Ring", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
+            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
+            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
+            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
+            },
+
+          new CompositeNormalizer(new Vector3(-1, 0, -1), new Vector3(1, 0, 1)),
+          new GestureEvent()));
+
+
+
+        tracker.AddGesture("Fireball", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0)),
+            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0)),
+
+            new LineCheck(new Vector3(0,1, 0), new Vector3(0, -1, 0)),
+            new RadiusCheck(new Vector3(0,0, 0)),
+
+            },
+
+          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new GestureEvent()));
+
+
+
+
+        tracker.AddGesture("Lightning",
+        new Gesture(new List<Check> {
+            new LineCheck(new Vector3(0,1, 0), new Vector3(-1, 0, 0)),
+            new LineCheck(new Vector3(-1,0, 0), new Vector3(1, 0, 0)),
+            new LineCheck(new Vector3(1,0, 0), new Vector3(0, -1, 0)),
+         },
+
+        new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+        new GestureEvent()));
+
+
+
+        tracker.AddGesture("Parry",
+         new Gesture(new List<Check> {
+            new LineCheck(new Vector3(-1,1, 0), new Vector3(-1, -1, 0)),
+            new LineCheck(new Vector3(-1,-1, 0), new Vector3(1, 1, 0)),
+
+          },
+
+         new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+         new GestureEvent()));
+
+
+        float dp = 0.3f;
+        tracker.AddGesture("Diamond",
+          new Gesture(new List<Check> {
+            new LineCheck(new Vector3(0,1, 0), new Vector3(1, 0, 0), dp),
+            new LineCheck(new Vector3(1,0, 0), new Vector3(0, -1, 0), dp),
+            new LineCheck(new Vector3(0,-1, 0), new Vector3(-1, 0, 0), dp),
+            new LineCheck(new Vector3(-1,0, 0), new Vector3(0, 1, 0), dp),
+
+            new LineCheck(new Vector3(0,1, 0), new Vector3(0, .5f, 0), dp),
+
+            new LineCheck(new Vector3(0,.5f, 0), new Vector3(.5f, 0, 0), dp),
+            new LineCheck(new Vector3(.5f,0, 0), new Vector3(0, -.5f, 0), dp),
+            new LineCheck(new Vector3(0,-.5f, 0), new Vector3(-.5f, 0, 0), dp),
+            new LineCheck(new Vector3(-.5f,0, 0), new Vector3(0, .5f, 0), dp),
+
+           },
+
+          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new GestureEvent()));
+          
+
+        tracker.AddGesture("Heart",
+           new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, .5f, 0), 90, new Vector3(.5f,.5f,0)),
+            new ArcCheck(new Vector3(.5f, 1.0f, 0), 90, new Vector3(.5f,.5f,0)),
+            new ArcCheck(new Vector3(-1, .5f, 0), 90, new Vector3(-.5f,.5f,0)),
+            new ArcCheck(new Vector3(-.5f, 1.0f, 0), 90, new Vector3(-.5f,.5f,0)),
+            new LineCheck(new Vector3(0, -1f, 0), new Vector3(.75f, -.25f, 0)),
+            new LineCheck(new Vector3(0, -1f, 0), new Vector3(-.75f, -.25f, 0)),
+            new LineCheck(new Vector3(.75f, -.25f, 0), new Vector3(1f, .5f, 0)),
+            new LineCheck(new Vector3(-.75f, -.25f, 0), new Vector3(-1f, .5f, 0)),
+
+            new RadiusCheck(new Vector3(0,.5f,0), .25f),
+            },
+
+           new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+           new GestureEvent()));
+
 
         tracker.AddGesture("Vertical", 
            new Gesture(new List<Check> {

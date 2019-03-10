@@ -17,10 +17,14 @@ namespace Gestures {
         }
 
         void OnGUI() {
+
+            monitor = FindObjectOfType<GestureMonitor>();
+
             if (monitor == null) {
-                monitor = FindObjectOfType<GestureMonitor>().GetComponent<GestureMonitor>();
-                allGestures = new List<string>(monitor.GetGestureMap().Keys);
+                return;
             }
+
+            allGestures = new List<string>(monitor.GetGestureMap().Keys);
 
             selectedGesture = EditorGUILayout.Popup("Gesture", selectedGesture, allGestures.ToArray());
 
@@ -106,6 +110,7 @@ namespace Gestures {
 
 
             GUI.Label(new Rect(gridCenter.x, gridCenter.y, 100, 20), "(0,0)");
+            GUI.Label(new Rect(gridCenter.x, gridCenter.y + gridSize.y / 2, 100, 20), "(0,1)");
 
             /*
             Handles.color = Color.red;
@@ -116,17 +121,44 @@ namespace Gestures {
 
             grid.size /= 2;
 
+           // EditorGUILayout.BeginScrollView(scrollPosition, GUILayout.Height(200));
+
             if (monitor != null) {
                 Dictionary<string, Gesture> dict = monitor.GetGestureMap();
-                Gesture g;
+                Gesture g = null;
                 if (selectedGesture < allGestures.Count) {
                     dict.TryGetValue(allGestures[selectedGesture], out g);
                     if (g != null) {
                         g.VisualizeGesture(grid);
+
+
+
+
+                        GTransformBuffer buffer = monitor.dataQueue;
+                        GL.PushMatrix();
+                        mat.SetPass(0);
+                        GL.Begin(GL.LINES);
+                        GL.Color(Color.red);
+
+                        List<GTransform> transforms = new List<GTransform>(buffer);
+                        transforms = g.normalizer.Normalize(monitor.viewNormalizer.Normalize(transforms));
+                        foreach (GTransform gt in transforms) {
+                            GL.Vertex(gridCenter + Vector3.Scale(new Vector3(gridSize.x/2, -gridSize.y/2, 0), gt.position));
+                        }
+
+                        GL.End();
+                        GL.PopMatrix();
+
+
                     }
+
                 }
+
+
             }
 
         }
+
+         //EditorGUILayout.EndScrollView();
     }
 }

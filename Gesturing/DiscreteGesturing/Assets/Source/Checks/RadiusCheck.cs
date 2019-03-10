@@ -23,6 +23,29 @@ namespace Gestures {
             return 1;
         }
 
+        public override void VisualizeCheck(Rect grid) {
+            GL.PushMatrix();
+            Material mat = new Material(Shader.Find("Sprites/Default"));
+            mat.SetPass(0);
+            GL.Begin(GL.LINE_STRIP);
+            GL.Color(Color.blue);
+
+
+            Vector3 p1 = position;
+            Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
+
+            for(int i = 0; i < 9; i++) {
+                p1 = position + radius * new Vector3(Mathf.Cos(2*3.14159f*i/8.0f), Mathf.Sin(2 * 3.14159f * i / 8.0f));
+                GL.Vertex(Vector3.Scale(p1, size) + new Vector3(grid.position.x, grid.position.y));
+            }
+            GL.End();
+            GL.PopMatrix();
+
+            EditorGUILayout.BeginHorizontal();
+
+            EditorGUILayout.EndHorizontal();
+        }
+
 
     }
 }

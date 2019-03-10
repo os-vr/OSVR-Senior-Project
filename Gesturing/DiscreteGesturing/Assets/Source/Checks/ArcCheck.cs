@@ -6,35 +6,58 @@ using UnityEngine;
 namespace Gestures {
 
     public class ArcCheck : Check {
+
+        public enum ARC_ORIENTATION {
+            XY_PLANE,
+            YZ_PLANE,
+            XZ_PLANE,
+        };
+
         private float precision;
         private Vector3 startPosition;
         private float degrees;
         private Vector3 center;
         private float radius;
         private const float eps = 0.01f;
+        private ARC_ORIENTATION orientation;
 
-        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f) {
+        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY_PLANE) {
             this.startPosition = startPosition;
             this.degrees = degrees;
             this.center = center;
             this.radius = Vector3.Distance(center, startPosition);
             this.precision = precision;
-
+            this.orientation = orientation;
         }
 
-        private bool isClockwise(Vector3 v1, Vector3 v2) {
-            return Mathf.Sign(degrees) * (-v1.x * v2.y + v1.y * v2.x) >= 0;
+        private bool IsClockwise(Vector3 v1, Vector3 v2) {
+            if (orientation == ARC_ORIENTATION.XY_PLANE) {
+                return Mathf.Sign(degrees) * (-v1.x * v2.y + v1.y * v2.x) >= 0;
+            }
+
+            if (orientation == ARC_ORIENTATION.XZ_PLANE) {
+                return Mathf.Sign(degrees) * (-v1.z * v2.x + v1.x * v2.z) >= 0;
+            }
+
+            return Mathf.Sign(degrees) * (-v1.y * v2.z + v1.z * v2.y) >= 0;
+
         }
 
         override public float CheckPasses(GTransform g) {
 
+            Vector3 rotation = new Vector3(
+                (orientation == ARC_ORIENTATION.YZ_PLANE) ? 1 : 0, 
+                (orientation == ARC_ORIENTATION.XZ_PLANE) ? 1 : 0, 
+                (orientation == ARC_ORIENTATION.XY_PLANE) ? 1 : 0);
+            Quaternion qrot = Quaternion.Euler(-degrees*rotation);
+
             Vector3 position = g.position;
             Vector3 direction = (position - center).normalized;
             Vector3 sectorStart = (startPosition - center).normalized;
-            Vector3 sectorEnd = (Quaternion.Euler(0, 0, -degrees) * sectorStart).normalized;
+            Vector3 sectorEnd = (qrot * sectorStart).normalized;
             float distance = Vector3.Distance(position, center);
 
-            bool inArc = isClockwise(sectorStart, direction) && !isClockwise(sectorEnd, direction);
+            bool inArc = IsClockwise(sectorStart, direction) && !IsClockwise(sectorEnd, direction);
             bool prettyClose = (Vector3.Dot(sectorStart, direction) >= (1.0f - eps)) || (Vector3.Dot(sectorEnd, direction) >= (1.0f - eps));
             bool withinRadius = (distance < radius + precision/2.0f && distance > radius - precision/2.0f);
 
@@ -66,8 +89,8 @@ namespace Gestures {
                 Vector3 pos = center + radius * new Vector3(Mathf.Cos(startRadians + r * i), Mathf.Sin(startRadians + r * i), 0);
                
                 Vector3 norm = (center - pos).normalized;
-                GL.Vertex(Vector3.Scale(pos + precision / 8 * norm, size) + new Vector3(grid.position.x, grid.position.y));
-                GL.Vertex(Vector3.Scale(pos - precision / 8 * norm, size) + new Vector3(grid.position.x, grid.position.y));
+                GL.Vertex(Vector3.Scale(pos + precision / 2 * norm, size) + new Vector3(grid.position.x, grid.position.y));
+                GL.Vertex(Vector3.Scale(pos - precision / 2 * norm, size) + new Vector3(grid.position.x, grid.position.y));
             }
 
             GL.End();
@@ -78,7 +101,7 @@ namespace Gestures {
             EditorGUILayout.BeginHorizontal();
             startPosition = EditorGUILayout.Vector3Field("Start : ", startPosition);
             center = EditorGUILayout.Vector3Field("Center : ", center);
-            degrees = EditorGUILayout.Slider("Degrees : ", degrees, 0, 90);
+            degrees = EditorGUILayout.Slider("Degrees : ", degrees, -90, 90);
             EditorGUILayout.EndHorizontal();
 
         }

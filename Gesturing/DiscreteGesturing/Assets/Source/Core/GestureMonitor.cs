@@ -13,7 +13,7 @@ namespace Gestures
         public LineRenderer pathRenderer;
         public IController controller;
 
-        private Normalizer viewNormalizer;
+        public Normalizer viewNormalizer;
         private Dictionary<string, Gesture> gestureMap = new Dictionary<string, Gesture>();
         public GTransformBuffer dataQueue;
         public int bufferSize = 512;
@@ -21,12 +21,14 @@ namespace Gestures
 
         private UnityEvent<GestureMetaData> gestureObservedCallback;
         private UnityEvent<GestureMetaData> gestureFailedCallback;
+        private UnityEvent gestureStartCallback;
         private GestureMetaData metaData;
 
 
         void Awake() {
             gestureObservedCallback = new GestureEvent();
             gestureFailedCallback = new GestureEvent();
+            gestureStartCallback = new UnityEvent();
             viewNormalizer = viewNormalizer ?? new ViewNormalizer(Camera.main.transform);
             dataQueue = new GTransformBuffer(bufferSize);
 
@@ -59,6 +61,7 @@ namespace Gestures
             else if (gestureStarted){
                 dataQueue.Clear();
                 SetLineRendererPositions(dataQueue);
+                OnGestureStartCallback();
             }
 
             gestureActivePreviousFlag = gestureActive;
@@ -183,6 +186,23 @@ namespace Gestures
 
         public void RemoveAllGestureFailedCallbacks() {
             gestureFailedCallback.RemoveAllListeners();
+        }
+
+
+        void OnGestureStartCallback() {
+            gestureStartCallback.Invoke();
+        }
+
+        public void AddGestureStartCallback(UnityAction eve) {
+            gestureStartCallback.AddListener(eve);
+        }
+
+        public void RemoveGestureStartCallback(UnityAction eve) {
+            gestureStartCallback.RemoveListener(eve);
+        }
+
+        public void RemoveAllGestureStartCallbacks() {
+            gestureStartCallback.RemoveAllListeners();
         }
 
 

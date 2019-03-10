@@ -55,10 +55,10 @@ namespace Gestures {
 
             Vector2 seg = (secondPosition - firstPosition).normalized;
             Vector3 norm = new Vector3(seg.y, -seg.x);
-            Vector3 p1 = firstPosition + precision/8 * norm;
-            Vector3 p2 = firstPosition + -precision/8 * norm;
-            Vector3 p3 = secondPosition + -precision/8 * norm;
-            Vector3 p4 = secondPosition + precision / 8 * norm;
+            Vector3 p1 = firstPosition + precision/2 * norm;
+            Vector3 p2 = firstPosition + -precision/2 * norm;
+            Vector3 p3 = secondPosition + -precision/2 * norm;
+            Vector3 p4 = secondPosition + precision /2 * norm;
 
             Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
 
