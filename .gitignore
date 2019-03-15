@@ -14,8 +14,8 @@
 /Gesturing/DiscreteGesturing/.vs/*
 /Gesturing/DiscreteGesturing/.vs.meta
 
-[Aa]ssets/TextMesh*Pro/
-[Aa]ssets/Oculus/
+/Gesturing/DiscreteGesturing/Assets/TextMesh*Pro/
+/Gesturing/DiscreteGesturing/Assets/Oculus/
 
 /UI/Keyboard/[Tt]emp/
 /UI/Keyboard/[Oo]bj/
