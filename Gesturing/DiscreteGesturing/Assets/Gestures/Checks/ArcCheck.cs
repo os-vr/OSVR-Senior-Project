@@ -8,9 +8,9 @@ namespace Gestures {
     public class ArcCheck : Check {
 
         public enum ARC_ORIENTATION {
-            XY_PLANE,
-            YZ_PLANE,
-            XZ_PLANE,
+            XY,
+            YZ,
+            XZ,
         };
 
         private float precision;
@@ -21,7 +21,7 @@ namespace Gestures {
         private const float eps = 0.01f;
         private ARC_ORIENTATION orientation;
 
-        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY_PLANE) {
+        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY) {
             this.startPosition = startPosition;
             this.degrees = degrees;
             this.center = center;
@@ -31,11 +31,11 @@ namespace Gestures {
         }
 
         private bool IsClockwise(Vector3 v1, Vector3 v2) {
-            if (orientation == ARC_ORIENTATION.XY_PLANE) {
+            if (orientation == ARC_ORIENTATION.XY) {
                 return Mathf.Sign(degrees) * (-v1.x * v2.y + v1.y * v2.x) >= 0;
             }
 
-            if (orientation == ARC_ORIENTATION.XZ_PLANE) {
+            if (orientation == ARC_ORIENTATION.XZ) {
                 return Mathf.Sign(degrees) * (-v1.z * v2.x + v1.x * v2.z) >= 0;
             }
 
@@ -46,9 +46,9 @@ namespace Gestures {
         override public float CheckPasses(GTransform g) {
 
             Vector3 rotation = new Vector3(
-                (orientation == ARC_ORIENTATION.YZ_PLANE) ? 1 : 0, 
-                (orientation == ARC_ORIENTATION.XZ_PLANE) ? 1 : 0, 
-                (orientation == ARC_ORIENTATION.XY_PLANE) ? 1 : 0);
+                (orientation == ARC_ORIENTATION.YZ) ? 1 : 0, 
+                (orientation == ARC_ORIENTATION.XZ) ? 1 : 0, 
+                (orientation == ARC_ORIENTATION.XY) ? 1 : 0);
             Quaternion qrot = Quaternion.Euler(-degrees*rotation);
 
             Vector3 position = g.position;

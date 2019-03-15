@@ -10,7 +10,7 @@ public class TrackerSetup : MonoBehaviour {
     public TextMeshPro text;
     private GestureMonitor tracker;
 
-    void Awake () {
+    void Start () {
         tracker = gameObject.AddComponent<GestureMonitor>();
         tracker.controller = GetComponentInChildren<IController>();
 
@@ -21,7 +21,7 @@ public class TrackerSetup : MonoBehaviour {
         tracker.AddGestureStartCallback(GestureStart);
 
         tracker.SetTrackAllGestures(true);
-        tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Horizontal" }, false);
+        tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Horizontal" }, true);
 
         DefaultGestureLineRenderer pathRenderer = gameObject.AddComponent<DefaultGestureLineRenderer>();
         tracker.pathRenderer = pathRenderer.lineRenderer;
@@ -35,7 +35,9 @@ public class TrackerSetup : MonoBehaviour {
 
 	
     void GestureComplete(GestureMetaData data) {
-        SetText(data.gestureName, data);
+        if (!data.gestureName.Equals("Question")) {
+            SetText(data.gestureName, data);
+        }
         tracker.pathRenderer.startColor = Color.green;
         tracker.pathRenderer.endColor = Color.green;
 
@@ -69,14 +71,40 @@ public class TrackerSetup : MonoBehaviour {
 
 
 
-        tracker.AddGesture("Ring", new Gesture(new List<Check> {
-            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
-            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
-            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
-            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ_PLANE),
+        tracker.AddGesture("Ring-XZ", new Gesture(new List<Check> {
+            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
+            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
+            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
+            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
             },
 
           new CompositeNormalizer(new Vector3(-1, 0, -1), new Vector3(1, 0, 1)),
+          new GestureEvent()));
+
+
+        tracker.AddGesture("Ring-XY", new Gesture(new List<Check> {
+
+             new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
+            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
+            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
+
+            },
+
+          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new GestureEvent()));
+
+
+        tracker.AddGesture("Ring-YZ", new Gesture(new List<Check> {
+
+             new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
+            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
+            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
+            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
+
+            },
+
+          new CompositeNormalizer(new Vector3(0, -1, -1), new Vector3(0, 1, 1)),
           new GestureEvent()));
 
 
