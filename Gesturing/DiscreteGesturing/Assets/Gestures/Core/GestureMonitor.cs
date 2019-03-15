@@ -31,7 +31,6 @@ namespace Gestures
             gestureStartCallback = new UnityEvent();
             viewNormalizer = viewNormalizer ?? new ViewNormalizer(Camera.main.transform);
             dataQueue = new GTransformBuffer(bufferSize);
-
         }
 
 
@@ -77,9 +76,10 @@ namespace Gestures
                 Gesture g = gestureMap[name];
                 if (g.isEnabled && g.GestureCompleted(transforms))
                 {
-                    metaData.gestureName = name;
+                    metaData.name = name;
                     metaData.precision = g.gestureCompletionPrecision;
                     g.FireEvent(metaData);
+
                     OnGestureCompletedCallback(metaData);
                     gestureCompleted = true;
                     break;

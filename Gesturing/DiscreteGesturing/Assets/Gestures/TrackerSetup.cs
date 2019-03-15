@@ -9,10 +9,13 @@ public class TrackerSetup : MonoBehaviour {
 
     public TextMeshPro text;
     private GestureMonitor tracker;
+    public LineRenderer lineRenderer;
 
     void Start () {
         tracker = gameObject.AddComponent<GestureMonitor>();
         tracker.controller = GetComponentInChildren<IController>();
+
+        tracker.pathRenderer = lineRenderer;
 
         GenerateGestures();
 
@@ -23,37 +26,35 @@ public class TrackerSetup : MonoBehaviour {
         tracker.SetTrackAllGestures(true);
         tracker.SetTrackGesture(new List<string>() { "Circle", "Triangle", "Horizontal" }, true);
 
-        DefaultGestureLineRenderer pathRenderer = gameObject.AddComponent<DefaultGestureLineRenderer>();
-        tracker.pathRenderer = pathRenderer.lineRenderer;
     }
 
     
     void GestureStart() {
-        tracker.pathRenderer.startColor = Color.blue;
-        tracker.pathRenderer.endColor = Color.blue;
+        lineRenderer.startColor = Color.blue;
+        lineRenderer.endColor = Color.blue;
     }
 
 	
     void GestureComplete(GestureMetaData data) {
-        if (!data.gestureName.Equals("Question")) {
-            SetText(data.gestureName, data);
+        if (!data.name.Equals("Question")) {
+            SetText(data.name, data);
         }
-        tracker.pathRenderer.startColor = Color.green;
-        tracker.pathRenderer.endColor = Color.green;
+        lineRenderer.startColor = Color.green;
+        lineRenderer.endColor = Color.green;
 
-        if (data.gestureName.Equals("Circle")) {
+        if (data.name.Equals("Circle")) {
             tracker.SetMaxBufferSize(128);
             tracker.SetBufferWrap(true);
         }
 
-        if (data.gestureName.Equals("Horizontal")) {
+        if (data.name.Equals("Horizontal")) {
             tracker.SetMaxBufferSize(512);
             tracker.SetBufferWrap(false);
         }
 
-        if (data.gestureName.Equals("Square")) {
-            tracker.pathRenderer.startColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
-            tracker.pathRenderer.endColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+        if (data.name.Equals("Square")) {
+            lineRenderer.startColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
+            lineRenderer.endColor = new Color(Random.Range(0, 1.0f), Random.Range(0, 1.0f), Random.Range(0, 1.0f));
         }
 
     }
@@ -349,9 +350,9 @@ public class TrackerSetup : MonoBehaviour {
 
     private void SetText(string name, GestureMetaData data) {
         string newText = "Gesture Detected: " + name + "\n" +
-                         "Scale: " + data.range.ToString("G4") + "\n" +
-                         "Position: " + data.gestureCenter.ToString("G4") + "\n" +
-                         "Precision: " + data.precision.ToString("G4");
+                         "Scale: " + data.scale.ToString("G4") + "\n" +
+                         "Position: " + data.centroid.ToString("G4") + "\n" +
+                         "Time: " + data.time.ToString("G4");
         text.SetText(newText);
     }
 

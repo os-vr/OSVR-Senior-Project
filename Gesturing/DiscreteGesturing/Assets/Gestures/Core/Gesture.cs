@@ -5,15 +5,15 @@ using UnityEngine.Events;
 
 namespace Gestures
 {
-    public class Gesture
-    {
+    public class Gesture {
         public List<Check> checks;
         public List<Check> sequentialChecks;
 
         public bool isEnabled;
         public Normalizer normalizer;
         public UnityEvent<GestureMetaData> completeEvent;
-        public float gestureCompleteConfidence = 1.0f;
+
+        public float gestureCompleteConfidence { get; set; }
         public float gestureCompletionPrecision = -1.0f;
 
         public Gesture(List<Check> st, Normalizer norm, UnityEvent<GestureMetaData> eve)
@@ -23,6 +23,7 @@ namespace Gestures
             checks = st;
             sequentialChecks = new List<Check>();
 
+            gestureCompleteConfidence = 1;
             isEnabled = true;
         }
 
@@ -33,19 +34,6 @@ namespace Gestures
 
         void AddStage(Check newCheck) {
             checks.Add(newCheck);
-        }
-
-        public void VisualizeGesture(Rect grid)
-        {
-            //**
-            foreach (Check c in checks) {
-                c.VisualizeCheck(grid);
-            }
-
-            foreach (Check c in sequentialChecks) {
-                c.VisualizeCheck(grid);
-            }
-
         }
 
 
@@ -94,6 +82,8 @@ namespace Gestures
 
             gestureCompletionPrecision /= transformCount;
 
+            //Short circuit
+
             if (sequentialCheckPtr == sequentialChecks.Count &&
                 checkHitList.TrueForAll(b => b) &&
                 ((float)checksPassed / transformCount) >= gestureCompleteConfidence)
@@ -108,16 +98,24 @@ namespace Gestures
             completeEvent.Invoke(metaData);
         }
 
-        void AddEvent(UnityAction<GestureMetaData> eventAction) {
+        public void AddEvent(UnityAction<GestureMetaData> eventAction) {
             completeEvent.AddListener(eventAction);
         }
 
-        void ClearEvents() {
+        public void ClearEvents() {
             completeEvent.RemoveAllListeners();
         }
 
 
+        public void VisualizeGesture(Rect grid) {
+            foreach (Check c in checks) {
+                c.VisualizeCheck(grid);
+            }
 
+            foreach (Check c in sequentialChecks) {
+                c.VisualizeCheck(grid);
+            }
+        }
 
     }
 }

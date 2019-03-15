@@ -13,7 +13,7 @@ namespace Gestures
 
         public override GTransform QueryGTransform()
         {
-            return new GTransform(transform.position, transform.rotation, new Vector3(0,0,0));
+            return new GTransform(transform.position, transform.rotation, new Vector3(0,0,0), Time.time);
         }
 
         public override bool GestureActive()
