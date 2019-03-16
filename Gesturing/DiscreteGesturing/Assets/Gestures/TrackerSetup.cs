@@ -64,14 +64,10 @@ public class TrackerSetup : MonoBehaviour {
         text.SetText("---");
     }
 
-    void Update () {
-		
-	}
 
     void GenerateGestures() {
 
-
-
+        /*
         tracker.AddGesture("Ring-XZ", new Gesture(new List<Check> {
             new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
             new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
@@ -79,7 +75,7 @@ public class TrackerSetup : MonoBehaviour {
             new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
             },
 
-          new CompositeNormalizer(new Vector3(-1, 0, -1), new Vector3(1, 0, 1)),
+          new FittedNormalizer(new Vector3(-1, 0, -1), new Vector3(1, 0, 1)),
           new GestureEvent()));
 
 
@@ -92,7 +88,7 @@ public class TrackerSetup : MonoBehaviour {
 
             },
 
-          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
           new GestureEvent()));
 
 
@@ -105,7 +101,7 @@ public class TrackerSetup : MonoBehaviour {
 
             },
 
-          new CompositeNormalizer(new Vector3(0, -1, -1), new Vector3(0, 1, 1)),
+          new FittedNormalizer(new Vector3(0, -1, -1), new Vector3(0, 1, 1)),
           new GestureEvent()));
 
 
@@ -121,7 +117,7 @@ public class TrackerSetup : MonoBehaviour {
 
             },
 
-          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
           new GestureEvent()));
 
 
@@ -134,7 +130,7 @@ public class TrackerSetup : MonoBehaviour {
             new LineCheck(new Vector3(1,0, 0), new Vector3(0, -1, 0)),
          },
 
-        new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+        new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
         new GestureEvent()));
 
 
@@ -146,7 +142,7 @@ public class TrackerSetup : MonoBehaviour {
 
           },
 
-         new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+         new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
          new GestureEvent()));
 
 
@@ -167,27 +163,10 @@ public class TrackerSetup : MonoBehaviour {
 
            },
 
-          new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
           new GestureEvent()));
           
-
-        tracker.AddGesture("Heart",
-           new Gesture(new List<Check> {
-            new ArcCheck(new Vector3(0, .5f, 0), 90, new Vector3(.5f,.5f,0)),
-            new ArcCheck(new Vector3(.5f, 1.0f, 0), 90, new Vector3(.5f,.5f,0)),
-            new ArcCheck(new Vector3(-1, .5f, 0), 90, new Vector3(-.5f,.5f,0)),
-            new ArcCheck(new Vector3(-.5f, 1.0f, 0), 90, new Vector3(-.5f,.5f,0)),
-            new LineCheck(new Vector3(0, -1f, 0), new Vector3(.75f, -.25f, 0)),
-            new LineCheck(new Vector3(0, -1f, 0), new Vector3(-.75f, -.25f, 0)),
-            new LineCheck(new Vector3(.75f, -.25f, 0), new Vector3(1f, .5f, 0)),
-            new LineCheck(new Vector3(-.75f, -.25f, 0), new Vector3(-1f, .5f, 0)),
-
-            new RadiusCheck(new Vector3(0,.5f,0), .25f),
-            },
-
-           new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-           new GestureEvent()));
-
+        */
 
         tracker.AddGesture("Vertical", 
            new Gesture(new List<Check> {
@@ -204,6 +183,9 @@ public class TrackerSetup : MonoBehaviour {
 
 
         tracker.AddGesture("Square", new SquareGesture());
+        tracker.AddGesture("Circle", new CircleGesture());
+        tracker.AddGesture("Triangle", new TriangleGesture());
+        tracker.AddGesture("Heart", new HeartGesture());
 
 
         tracker.AddGesture("Letter-J", new Gesture(new List<Check> {
@@ -212,7 +194,7 @@ public class TrackerSetup : MonoBehaviour {
             new ArcCheck(new Vector3(-.5f, -.5f, 0), 90, new Vector3(-.5f,0,0)),
             },
 
-          new CompositeNormalizer(new Vector3(-1, -.5f, 0), new Vector3(0, 1, 0)),
+          new FittedNormalizer(new Vector3(-1, -.5f, 0), new Vector3(0, 1, 0)),
           new GestureEvent()));
 
 
@@ -223,7 +205,7 @@ public class TrackerSetup : MonoBehaviour {
             new LineCheck(new Vector3(-.5f, -1, 0), new Vector3(.5f, -1, 0)),
             },
 
-          new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+          new FittedNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
           new GestureEvent()));
 
 
@@ -240,7 +222,7 @@ public class TrackerSetup : MonoBehaviour {
 
             },
 
-         new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+         new FittedNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
          new GestureEvent()));
 
 
@@ -251,7 +233,7 @@ public class TrackerSetup : MonoBehaviour {
             new LineCheck(new Vector3(-.5f, 0, 0), new Vector3(.5f, 0, 0)),
             },
 
-         new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+         new FittedNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
          new GestureEvent()));
 
 
@@ -265,7 +247,7 @@ public class TrackerSetup : MonoBehaviour {
             new ArcCheck(new Vector3(0,-1,0), 90, new Vector3(0,-.5f,0)),
             },
 
-          new CompositeNormalizer(new Vector3(-.5f, -1.0f, 0), new Vector3(.5f, 1.0f, 0)),
+          new FittedNormalizer(new Vector3(-.5f, -1.0f, 0), new Vector3(.5f, 1.0f, 0)),
           new GestureEvent()));
 
 
@@ -278,15 +260,15 @@ public class TrackerSetup : MonoBehaviour {
 
             },
 
+          new FittedNormalizer(new Vector3(0, -1.0f, 0), new Vector3(0.5f, 1.0f, 0)),
+          new GestureEvent()).AddSequentialChecks(
             new List<Check>{
                 new RadiusCheck(new Vector3(0,-1,0)),
                 new RadiusCheck(new Vector3(0,1,0)),
                 new RadiusCheck(new Vector3(.5f,.5f,0)),
                 new RadiusCheck(new Vector3(0,0,0)),
-            },
-
-          new CompositeNormalizer(new Vector3(0, -1.0f, 0), new Vector3(0.5f, 1.0f, 0)),
-          new GestureEvent()));
+            }
+            ));
 
 
 
@@ -295,29 +277,8 @@ public class TrackerSetup : MonoBehaviour {
             new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, -1, 0)),
             new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)) },
 
-           new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
+           new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
            new GestureEvent()));
-
-
-        tracker.AddGesture("Triangle", new Gesture(new List<Check> {
-            new LineCheck(new Vector3(-1, -1, 0), new Vector3(0, 1.0f, 0)),
-            new LineCheck(new Vector3(0, 1.0f, 0), new Vector3(1, -1, 0)),
-            new LineCheck(new Vector3(1, -1, 0),new Vector3(-1, -1, 0))},
-
-            new CompositeNormalizer(),
-            new GestureEvent()));
-
-
-        tracker.AddGesture("Circle", new Gesture(new List<Check> {
-            new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0)),
-            },
-
-           new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-           new GestureEvent()));
-
 
 
 
@@ -328,7 +289,7 @@ public class TrackerSetup : MonoBehaviour {
 
             new LineCheck(new Vector3(0, 0, 0),new Vector3(0, -1, 0))},
 
-          new CompositeNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
+          new FittedNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
           new GestureEvent(DisplayHints)));
 
 
@@ -352,7 +313,7 @@ public class TrackerSetup : MonoBehaviour {
         string newText = "Gesture Detected: " + name + "\n" +
                          "Scale: " + data.scale.ToString("G4") + "\n" +
                          "Position: " + data.centroid.ToString("G4") + "\n" +
-                         "Time: " + data.time.ToString("G4");
+                         "Speed: " + data.averageSpeed.ToString("G4");
         text.SetText(newText);
     }
 

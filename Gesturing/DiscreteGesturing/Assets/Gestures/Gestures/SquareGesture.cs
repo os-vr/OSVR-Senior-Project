@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Gestures {
     public class SquareGesture : Gesture {
-        public SquareGesture() : 
-
-            base(new List<Check> {
+        public SquareGesture() : base()
+        {
+            this.AddOnceChecks(new List<Check> {
                 new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, 1, 0)),
                 new LineCheck(new Vector3(-1, 1, 0), new Vector3(-1, -1, 0)),
                 new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0)),
@@ -16,12 +16,10 @@ namespace Gestures {
                 new RadiusCheck(new Vector3(-1, 1, 0)),
                 new RadiusCheck(new Vector3(-1, -1, 0)),
                 new RadiusCheck(new Vector3(1, -1, 0)),
-
-            },
-            new CompositeNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-            new GestureEvent())
-        {
+            })
+            .SetNormalizer(new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)));
 
         }
     }
 }
+

@@ -3,14 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
-    public class CompositeNormalizer : Normalizer {
+    public class FittedNormalizer : Normalizer {
 
         private Vector3 bottomLeft, topRight;
         private bool maintainAspectRatio;
 
-        public CompositeNormalizer() : this(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)) { }
+        public FittedNormalizer() : this(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)) { }
 
-        public CompositeNormalizer(Vector3 bottomLeft, Vector3 topRight, bool maintainAspectRatio = false) {
+        public FittedNormalizer(Vector3 bottomLeft, Vector3 topRight, bool maintainAspectRatio = false) {
             this.topRight = topRight;
             this.bottomLeft = bottomLeft;
             this.maintainAspectRatio = maintainAspectRatio;

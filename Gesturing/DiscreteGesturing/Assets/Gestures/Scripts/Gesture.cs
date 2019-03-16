@@ -8,13 +8,25 @@ namespace Gestures
     public class Gesture {
         public List<Check> checks;
         public List<Check> sequentialChecks;
+        public List<Check> alwaysChecks;
 
-        public bool isEnabled;
+        public bool isEnabled { get; set; }
         public Normalizer normalizer;
         public UnityEvent<GestureMetaData> completeEvent;
 
         public float gestureCompleteConfidence { get; set; }
         public float gestureCompletionPrecision = -1.0f;
+
+        public Gesture() {
+            normalizer = null;
+            completeEvent = new GestureEvent();
+            checks = new List<Check>();
+            sequentialChecks = new List<Check>();
+            alwaysChecks = new List<Check>();
+
+            gestureCompleteConfidence = 1;
+            isEnabled = true;
+        }
 
         public Gesture(List<Check> st, Normalizer norm, UnityEvent<GestureMetaData> eve)
         {
@@ -22,24 +34,21 @@ namespace Gestures
             completeEvent = eve;
             checks = st;
             sequentialChecks = new List<Check>();
+            alwaysChecks = new List<Check>();
 
             gestureCompleteConfidence = 1;
             isEnabled = true;
         }
 
-        public Gesture(List<Check> stages, List<Check> sequential, Normalizer norm, UnityEvent<GestureMetaData> eve) : this(stages, norm, eve) {
-            sequentialChecks = sequential;
-        }
-
-
-        void AddStage(Check newCheck) {
-            checks.Add(newCheck);
-        }
-
 
         public bool GestureCompleted(List<GTransform> transforms)
         {
-            List<GTransform> normalizedTransforms = normalizer.Normalize(transforms);
+            List<GTransform> normalizedTransforms = new List<GTransform>(transforms);
+
+            if (normalizer != null) {
+                normalizedTransforms = normalizer.Normalize(normalizedTransforms);
+            }
+
             int sequentialCheckPtr = 0;
             List<bool> checkHitList = new List<bool>(new bool[checks.Count]);
 
@@ -73,10 +82,24 @@ namespace Gestures
                         anyCheckPassed = true;
                     }
                 }
-                if (anyCheckPassed) {
+                
+
+                bool anyCheckFailed = false;
+                for (int i = 0; i < alwaysChecks.Count; i++) {
+                    Check c = alwaysChecks[i];
+                    float f = c.CheckPasses(g);
+                    if (f == -1) {
+                        anyCheckFailed = true;
+                        break;
+                    }
+                }
+
+
+                if (anyCheckPassed && !anyCheckFailed) {
                     checksPassed++;
                 }
                 gestureCompletionPrecision += min;
+
 
             }
 
@@ -98,13 +121,50 @@ namespace Gestures
             completeEvent.Invoke(metaData);
         }
 
-        public void AddEvent(UnityAction<GestureMetaData> eventAction) {
+        public Gesture AddEvent(UnityAction<GestureMetaData> eventAction) {
             completeEvent.AddListener(eventAction);
+            return this;
         }
 
         public void ClearEvents() {
             completeEvent.RemoveAllListeners();
         }
+
+        public Gesture SetNormalizer(Normalizer nm) {
+            normalizer = nm;
+            return this;
+        }
+
+        public Gesture AddOnceCheck(Check newCheck) {
+            checks.Add(newCheck);
+            return this;
+        }
+
+        public Gesture AddOnceChecks(IEnumerable<Check> newChecks) {
+            checks.AddRange(newChecks);
+            return this;
+        }
+
+        public Gesture AddAlwaysCheck(Check newCheck) {
+            alwaysChecks.Add(newCheck);
+            return this;
+        }
+
+        public Gesture AddAlwaysChecks(IEnumerable<Check> newChecks) {
+            alwaysChecks.AddRange(newChecks);
+            return this;
+        }
+
+        public Gesture AddSequentialCheck(Check newCheck) {
+            sequentialChecks.Add(newCheck);
+            return this;
+        }
+
+        public Gesture AddSequentialChecks(IEnumerable<Check> newChecks) {
+            sequentialChecks.AddRange(newChecks);
+            return this;
+        }
+
 
 
         public void VisualizeGesture(Rect grid) {

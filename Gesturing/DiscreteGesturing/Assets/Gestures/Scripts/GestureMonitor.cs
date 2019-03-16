@@ -52,7 +52,7 @@ namespace Gestures
                 List<GTransform> transforms = new List<GTransform>(dataQueue);
                 metaData = GestureMetaData.GetGestureMetaData(transforms);
                 transforms = viewNormalizer.Normalize(transforms);
-
+                RenderList(transforms);
 
                 CheckGestures(transforms);
             }

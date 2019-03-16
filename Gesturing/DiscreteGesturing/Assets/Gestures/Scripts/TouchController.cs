@@ -13,7 +13,8 @@ namespace Gestures
 
         public override GTransform QueryGTransform()
         {
-            return new GTransform(transform.position, transform.rotation, new Vector3(0,0,0), Time.time);
+            Vector3 vel = OVRInput.GetLocalControllerVelocity(controllerType);
+            return new GTransform(transform.position, transform.rotation, vel, Time.time);
         }
 
         public override bool GestureActive()
