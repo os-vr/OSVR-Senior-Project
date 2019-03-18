@@ -31,15 +31,17 @@ namespace Gestures {
             centroid /= count;
             Vector3 userPosition = userTransform.position;
             Vector3 direction = (centroid - userPosition);
-            Quaternion rotation = Quaternion.FromToRotation(direction, new Vector3(direction.x, 0, direction.z));
 
-            
+            float dp = Vector3.Dot(new Vector3(direction.x, 0, direction.z).normalized, direction.normalized);
+            float angle = -Mathf.Sign(direction.y) * Mathf.Acos(dp);
+            Quaternion rotation = Quaternion.AngleAxis(-angle * 360 / (2 * Mathf.PI), new Vector3(direction.z, 0, -direction.x).normalized);
+
             centroid = rotation * (centroid - userPosition) + userPosition;
             centroid = normalizedData[0].position;
-            direction = (centroid - userPosition).normalized;
-            Quaternion rotation2 = Quaternion.FromToRotation(new Vector3(direction.x, 0, direction.z), forward);
+            Vector3 direction2 = (centroid - userPosition).normalized;
+            Quaternion rotation2 = Quaternion.FromToRotation(new Vector3(direction2.x, 0, direction2.z), forward);
             
-
+            
             for (int i = 0; i < data.Count; i++) {
                 GTransform trans = normalizedData[i];
                 
