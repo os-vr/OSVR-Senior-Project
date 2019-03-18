@@ -1,11 +1,13 @@
 ---
-name: Custom issue template
-about: Describe this issue template's purpose here.
+name: OSVR Issue Template
+about: Basic Issue template for issue based branching workflow
 title: ''
 labels: ''
 assignees: ''
 
 ---
+# Project
+UI/GESTURING
 
 # Acceptance Criteria
 
