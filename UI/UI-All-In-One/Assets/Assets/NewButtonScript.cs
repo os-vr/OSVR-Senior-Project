@@ -11,23 +11,25 @@ public class NewButtonScript : MonoBehaviour
     float hovering = -1;
     public Gradient gradient;
     public bool useGradient;
-    public Color start;
-    public Color end;
+    public Color startColor;
+    public Color endColor;
     public float ItemFade = 1.0f;
     public float delay = -0.08f;
     float hoverTime = 0;
 
     public bool onEnterUseForHover = false;
     public bool onEnterUseForActivation = false;
-    public UnityEvent onEnter;
+    public UnityEvent onEnter = new UnityEvent();
 
     public bool onStayUseForHover = false;
     public bool onStayUseForActivation = false;
-    public UnityEvent onHover;
+    public UnityEvent onHover = new UnityEvent();
 
     public bool onExitUseForHover = false;
     public bool onExitUseForActivation = false;
-    public UnityEvent onExit;
+    public UnityEvent onExit = new UnityEvent();
+
+    public UnityEvent onPress = new UnityEvent();
 
     public bool detectOnEnter = true; 
     public bool detectOnHover = true;
@@ -46,9 +48,9 @@ public class NewButtonScript : MonoBehaviour
     void Start()
     {
         triggered = false;
-        if(start == null)
+        if(startColor == null)
         {
-            start = this.GetComponent<Renderer>().material.color;
+            startColor = this.GetComponent<Renderer>().material.color;
         }
         if (extras != null)
         {
@@ -104,16 +106,15 @@ public class NewButtonScript : MonoBehaviour
         nextStep();
         if (!useGradient)
         {
-            print(hoverTime);
             if (hoverTime == 1) {
-                if (end != null)
+                if (endColor != null)
                 {
-                    this.GetComponent<Renderer>().material.color = end;
+                    this.GetComponent<Renderer>().material.color = endColor;
                 }
             }
             else
             {
-                this.GetComponent<Renderer>().material.color = start;
+                this.GetComponent<Renderer>().material.color = startColor;
             }
             return;
         }
@@ -127,13 +128,17 @@ public class NewButtonScript : MonoBehaviour
         {
 
             //LayerMask value is 2 to the power of its layer index
-            if (Mathf.Pow(2, other.gameObject.layer) == activationLayer.value && onEnterUseForActivation)
+            if (Mathf.Pow(2, other.gameObject.layer) == activationLayer.value)
             {
                 Debug.Log("Act Layer Enter");
                 pressed = true;
-                if (onEnter != null)
+                if (onEnter != null && onEnterUseForActivation)
                 {
                     onEnter.Invoke();
+                }
+                if (onPress != null)
+                {
+                    onPress.Invoke();
                 }
             }
 
@@ -165,13 +170,18 @@ public class NewButtonScript : MonoBehaviour
 
             hovered = true;
 
-            if (Mathf.Pow(2, other.gameObject.layer) == activationLayer.value && onStayUseForActivation)
+            if (Mathf.Pow(2, other.gameObject.layer) == activationLayer.value)
             {
                 Debug.Log("Act Layer Stay");
                 pressed = true;
-                if (onHover != null)
+                if (onHover != null && onStayUseForActivation)
                 {
                     onHover.Invoke();
+
+                }
+                if (onPress != null)
+                {
+                    onPress.Invoke();
                 }
                 hovering = Time.time;
             }
