@@ -59,11 +59,12 @@ public class DropDownItem : MonoBehaviour {
         {
             hoverTime = 1;
         }
-        if (dropDownControl.options[index].Disabled || !dropDownControl.DropDownItemGradient)
+        if (dropDownControl.options[index].Disabled || dropDownControl.DropDownItemGradient)
         {
             return;
         }
         nextStep();
+        print("changing color");
         this.GetComponent<Renderer>().material.color = gradient.Evaluate(hoverTime);
 	}
     void onTriggerEnter(Collider enter)
