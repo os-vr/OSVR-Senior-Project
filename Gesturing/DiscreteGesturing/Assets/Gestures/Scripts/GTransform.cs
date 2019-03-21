@@ -4,6 +4,10 @@ using UnityEngine;
 using System;
 
 namespace Gestures {
+
+    /// <summary>
+    /// Data class to contain all necessary information related to a controller transform
+    /// </summary>
     public class GTransform {
 
         public Vector3 position;
@@ -18,6 +22,12 @@ namespace Gestures {
             time = t;
         }
 
+        /// <summary>
+        /// Create a copy of the GTransform instance
+        /// </summary>
+        /// <returns>
+        /// Return new `GTransform` with the same data as the object this method was called on.
+        /// </returns>
         public GTransform Copy() {
             return new GTransform(position, rotation, velocity, time);
         }

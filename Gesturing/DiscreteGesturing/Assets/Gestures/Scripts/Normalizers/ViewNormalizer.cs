@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+
+    /// <summary>
+    /// Normalizer implementation that takes the raw world-space GTransform data and rotates it about the user's position.
+    /// </summary>
+    /// <remarks> 
+    /// The algorithm behind this class is not perfect yet. There are still problems with gestures that are too far above or below the user's eyeline
+    /// </remarks>
     public class ViewNormalizer : Normalizer {
 
         public Transform userTransform;

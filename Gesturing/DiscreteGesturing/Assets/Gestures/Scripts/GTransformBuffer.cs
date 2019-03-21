@@ -4,6 +4,10 @@ using UnityEngine;
 
 
 namespace Gestures {
+
+    /// <summary>
+    /// Internal class which can behave as either a set-size array or a circular array. 
+    /// </summary>
     public class GTransformBuffer : IEnumerable<GTransform> {
 
         private int maxSize;
@@ -55,7 +59,7 @@ namespace Gestures {
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
-
+         
         public Vector3[] ToArray() {
             Vector3[] ret = new Vector3[data.Count];
             int counter = 0;
