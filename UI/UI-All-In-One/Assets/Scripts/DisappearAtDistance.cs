@@ -1,33 +1,78 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// controls the visibility of text based on distance, both close and long range.
+/// </summary>
+/// <remarks>
+/// ensures the screen is not cluttered since most items you care about must be within a certian range to be relevant.
+/// </remarks>
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class DisappearAtDistance : MonoBehaviour {
+    /// <summary>
+    /// Camera for doing vector calculations. The camera that the user uses to see the world
+    /// </summary>
     [Tooltip("The camera that the user uses to see the world")]
     public GameObject userCamera;
+    /// <summary>
+    /// What this object will use as the second point to determine distance and scale, use is center to use this object
+    /// </summary>
     [Tooltip("What this object will use as the second point to determine distance and scale, use is center to use this object")]
     public GameObject pivotPoint;
+    /// <summary>
+    /// Is this object the second point to determine the distance and scale?
+    /// </summary>
     [Tooltip("Is this object the second point to determine the distance and scale?")]
     public bool isCenter;
+    /// <summary>
+    /// Where the object should have its original size
+    /// </summary>
     [Tooltip("Where the object should have its original size")]
     public float scaleDist = 1;
+    /// <summary>
+    /// How close the user should be when this item disappears
+    /// </summary>
     [Tooltip("How close the user should be when this item disappears")]
     public float disapearAtCloseDistance = -1;
+    /// <summary>
+    /// Should this item disappear if the user gets to far away?
+    /// </summary>
     [Tooltip("Should this item disappear if the user gets to far away?")]
     public bool disapearWhenFarAway = false;
+    /// <summary>
+    /// The distance at which this item should disapear
+    /// </summary>
     [Tooltip("The distance at which this item should disapear")]
     public float disapearAtFarDistance = 1000;
+    /// <summary>
+    /// Renderers that will turn on or off as stated by the script
+    /// </summary>
     [Tooltip("Renderers that will turn on or off as stated by the script")]
     public ArrayList renderList = new ArrayList();
+    /// <summary>
+    /// Use all renderers in this item
+    /// </summary>
     [Tooltip("Use all renderers in this item")]
     public bool itemRenderer = true;
+    /// <summary>
+    /// Use all renderers in children
+    /// </summary>
     [Tooltip("Use all renderers in children")]
     public bool childrenRenderer = true;
+    /// <summary>
+    /// Is this item visible?
+    /// </summary>
     [Tooltip("Is this item visible?")]
     public bool isVisible = true;
+    /// <summary>
+    /// use this to know how large items whould be at the scale distance 
+    /// </summary>
     Vector3 sizeAtScaleDist;
-    // Use this for initialization
+    /// <summary>
+    /// Use this for initialization
+    /// </summary>
     void Start () {
+        //handle renderers in children
         if (childrenRenderer)
         {
             foreach (Renderer r in this.gameObject.GetComponentsInChildren<Renderer>())
@@ -55,18 +100,26 @@ public class DisappearAtDistance : MonoBehaviour {
             Debug.Log("No renderers are selected dispite the fact that the options were selected. Check if the renderers are in the right place.");
         }
     }
-    ///Add renderer to the list of renderers to turn on and off
+    /// <summary>
+    /// Add renderer to the list of renderers to turn on and off
+    /// </summary>
+    /// <param name="r"> the renderer you need to add</param>
     void addRenderer(Renderer r)
     {
         renderList.Add(r);
         r.enabled = isVisible;
     }
-    ///Remove renderer to the list of renderers to turn on and off
+    /// <summary>
+    /// Remove renderer to the list of renderers to turn on and off
+    /// </summary>
+    /// <param name="r"> the renderer you need to remove</param>
     void removeRenderer(Renderer r)
     {
         renderList.Remove(r);
     }
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update () {
         //get distance between obejcts
         float distance = (userCamera.transform.position - pivotPoint.transform.position).magnitude;
