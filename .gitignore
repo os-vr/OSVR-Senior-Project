@@ -6,9 +6,18 @@
 
 /Gesturing/DiscreteGesturing/[Tt]emp/
 /Gesturing/DiscreteGesturing/[Oo]bj/
+/Gesturing/DiscreteGesturing/[Ll]ibrary/
+/Gesturing/DiscreteGesturing/[Bb]uild/
+/Gesturing/DiscreteGesturing/[Bb]uilds/
+/Gesturing/DiscreteGesturing/[Ll]ogs/
 /Gesturing/DiscreteGesturing/Assets/AssetStoreTools*
 /Gesturing/DiscreteGesturing/.vs/*
 /Gesturing/DiscreteGesturing/.vs.meta
+
+/Gesturing/DiscreteGesturing/Assets/TextMesh*Pro/
+/Gesturing/DiscreteGesturing/Assets/TextMesh*Pro.meta
+/Gesturing/DiscreteGesturing/Assets/Oculus/
+/Gesturing/DiscreteGesturing/Assets/Oculus.meta
 
 /UI/Keyboard/[Tt]emp/
 /UI/Keyboard/[Oo]bj/
