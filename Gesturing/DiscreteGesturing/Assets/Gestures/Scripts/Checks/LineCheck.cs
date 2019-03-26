@@ -2,14 +2,21 @@
 using UnityEngine;
 
 namespace Gestures {
-
+    /// <summary>
+    /// A Line check to check if 
+    /// </summary>
     public class LineCheck : Check {
 
         public Vector3 firstPosition;
         public Vector3 secondPosition;
         public float precision;
         private LineRenderer lineRenderer;
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="firstPosition">The first point of the line.</param>
+        /// <param name="secondPosition">The second point of the line.</param>
+        /// <param name="precision">Distance from the line considered to be on the line.</param>
         public LineCheck(Vector3 firstPosition, Vector3 secondPosition, float precision = 0.4f) {
             this.firstPosition = firstPosition;
             this.secondPosition = secondPosition;

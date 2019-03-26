@@ -4,12 +4,18 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
-
+    /// <summary>
+    /// A Check to check if a GTransform is within a certain radius of another point.
+    /// </summary>
     public class RadiusCheck : Check {
         private Vector3 position;
         private float radius;
 
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="position">Position vector to check against.</param>
+        /// <param name="radius">A radius tolerance away from the point.</param>
         public RadiusCheck(Vector3 position, float radius = 0.4f) {
             this.position = position;
             this.radius = radius;

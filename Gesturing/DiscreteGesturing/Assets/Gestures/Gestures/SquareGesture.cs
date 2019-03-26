@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+    /// <summary>
+    /// A square gesture set with the FittedNormalizer.
+    /// </summary>
     public class SquareGesture : Gesture {
         public SquareGesture() : base()
         {

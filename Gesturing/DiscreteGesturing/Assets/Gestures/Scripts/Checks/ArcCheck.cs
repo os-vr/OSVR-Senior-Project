@@ -4,7 +4,9 @@ using UnityEditor;
 using UnityEngine;
 
 namespace Gestures {
-
+    /// <summary>
+    /// An Arc check in a single plane.
+    /// </summary>
     public class ArcCheck : Check {
 
         public enum ARC_ORIENTATION {
@@ -21,6 +23,14 @@ namespace Gestures {
         private const float eps = 0.01f;
         private ARC_ORIENTATION orientation;
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="startPosition">The starting position of the arc.</param>
+        /// <param name="degrees">Number of degrees to extent. MUST be between -90 and 90 degrees, otherwise unpredictable consequences occur.</param>
+        /// <param name="center">The center point of circle on which the Arc lies.</param>
+        /// <param name="precision">The distance tolerance from which a point can be considered within the arc.</param>
+        /// <param name="orientation">ARC_ORIENTATION enum, specifying which plane the arc resides in</param>
         public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY) {
             this.startPosition = startPosition;
             this.degrees = degrees;

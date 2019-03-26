@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+    /// <summary>
+    /// A circle gesture set with a FittedNormalizer.
+    /// </summary>
     public class CircleGesture : Gesture {
         public CircleGesture() : base() {
             this.AddOnceChecks(new List<Check> {

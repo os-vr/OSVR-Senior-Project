@@ -4,7 +4,11 @@ using UnityEngine;
 
 
 namespace Gestures {
+    /// <summary>
+    /// A heart gesture set witha FittedNormalizer.
+    /// </summary>
     public class HeartGesture : Gesture {
+        
         public HeartGesture() : base() {
             this.AddOnceChecks(new List<Check>{
 
