@@ -188,6 +188,7 @@ namespace Gestures
         }
 
 
+
         void OnGestureStartCallback() {
             gestureStartCallback.Invoke();
         }
@@ -212,6 +213,11 @@ namespace Gestures
 
         public void SetBufferWrap(bool circular) {
             dataQueue.SetCircular(circular);
+        }
+
+        public void ClearBuffer() {
+            dataQueue.Clear();
+            SetLineRendererPositions(dataQueue);
         }
 
     }
