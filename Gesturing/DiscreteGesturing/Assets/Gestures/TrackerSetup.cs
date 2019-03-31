@@ -15,7 +15,7 @@ public class TrackerSetup : MonoBehaviour {
         tracker = gameObject.AddComponent<GestureMonitor>();
         tracker.controller = GetComponentInChildren<IController>();
 
-        tracker.pathRenderer = lineRenderer;
+        tracker.lineRenderer = lineRenderer;
 
         GenerateGestures();
 
@@ -67,106 +67,10 @@ public class TrackerSetup : MonoBehaviour {
 
     void GenerateGestures() {
 
-        /*
-        tracker.AddGesture("Ring-XZ", new Gesture(new List<Check> {
-            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
-            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
-            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
-            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .4f, ArcCheck.ARC_ORIENTATION.XZ),
-            },
-
-          new FittedNormalizer(new Vector3(-1, 0, -1), new Vector3(1, 0, 1)),
-          new GestureEvent()));
-
-
-        tracker.AddGesture("Ring-XY", new Gesture(new List<Check> {
-
-             new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
-            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
-            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
-            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.XY),
-
-            },
-
-          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-          new GestureEvent()));
-
-
-        tracker.AddGesture("Ring-YZ", new Gesture(new List<Check> {
-
-             new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
-            new ArcCheck(new Vector3(0, 0, 1), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
-            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
-            new ArcCheck(new Vector3(0, 0, -1), 90, new Vector3(0,0,0), .3f, ArcCheck.ARC_ORIENTATION.YZ),
-
-            },
-
-          new FittedNormalizer(new Vector3(0, -1, -1), new Vector3(0, 1, 1)),
-          new GestureEvent()));
-
-
-
-        tracker.AddGesture("Fireball", new Gesture(new List<Check> {
-            new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0)),
-            new ArcCheck(new Vector3(-1, 0, 0), 90, new Vector3(0,0,0)),
-
-            new LineCheck(new Vector3(0,1, 0), new Vector3(0, -1, 0)),
-            new RadiusCheck(new Vector3(0,0, 0)),
-
-            },
-
-          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-          new GestureEvent()));
-
-
-
-
-        tracker.AddGesture("Lightning",
-        new Gesture(new List<Check> {
-            new LineCheck(new Vector3(0,1, 0), new Vector3(-1, 0, 0)),
-            new LineCheck(new Vector3(-1,0, 0), new Vector3(1, 0, 0)),
-            new LineCheck(new Vector3(1,0, 0), new Vector3(0, -1, 0)),
-         },
-
-        new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-        new GestureEvent()));
-
-
-
-        tracker.AddGesture("Parry",
-         new Gesture(new List<Check> {
-            new LineCheck(new Vector3(-1,1, 0), new Vector3(-1, -1, 0)),
-            new LineCheck(new Vector3(-1,-1, 0), new Vector3(1, 1, 0)),
-
-          },
-
-         new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-         new GestureEvent()));
-
-
-        float dp = 0.3f;
-        tracker.AddGesture("Diamond",
-          new Gesture(new List<Check> {
-            new LineCheck(new Vector3(0,1, 0), new Vector3(1, 0, 0), dp),
-            new LineCheck(new Vector3(1,0, 0), new Vector3(0, -1, 0), dp),
-            new LineCheck(new Vector3(0,-1, 0), new Vector3(-1, 0, 0), dp),
-            new LineCheck(new Vector3(-1,0, 0), new Vector3(0, 1, 0), dp),
-
-            new LineCheck(new Vector3(0,1, 0), new Vector3(0, .5f, 0), dp),
-
-            new LineCheck(new Vector3(0,.5f, 0), new Vector3(.5f, 0, 0), dp),
-            new LineCheck(new Vector3(.5f,0, 0), new Vector3(0, -.5f, 0), dp),
-            new LineCheck(new Vector3(0,-.5f, 0), new Vector3(-.5f, 0, 0), dp),
-            new LineCheck(new Vector3(-.5f,0, 0), new Vector3(0, .5f, 0), dp),
-
-           },
-
-          new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)),
-          new GestureEvent()));
-          
-        */
+        tracker.AddGesture("Square", new SquareGesture());
+        tracker.AddGesture("Circle", new CircleGesture());
+        tracker.AddGesture("Triangle", new TriangleGesture());
+        tracker.AddGesture("Heart", new HeartGesture());
 
         tracker.AddGesture("Vertical", 
            new Gesture(new List<Check> {
@@ -180,12 +84,6 @@ public class TrackerSetup : MonoBehaviour {
                new LineCheck(new Vector3(-1, 0, 0), new Vector3(1, 0, 0)) },
                new LineNormalizer(),
                new GestureEvent()));
-
-
-        tracker.AddGesture("Square", new SquareGesture());
-        tracker.AddGesture("Circle", new CircleGesture());
-        tracker.AddGesture("Triangle", new TriangleGesture());
-        tracker.AddGesture("Heart", new HeartGesture());
 
 
         tracker.AddGesture("Letter-J", new Gesture(new List<Check> {

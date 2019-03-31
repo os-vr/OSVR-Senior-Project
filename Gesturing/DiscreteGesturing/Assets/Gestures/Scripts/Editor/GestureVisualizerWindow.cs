@@ -3,6 +3,7 @@ using UnityEditor;
 using System.Collections.Generic;
 
 namespace Gestures {
+
     public class GestureVisualizerWindow : EditorWindow {
         private static GestureMonitor monitor;
         private static int selectedGesture = 0;
