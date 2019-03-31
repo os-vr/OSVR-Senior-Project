@@ -1,23 +1,55 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Makes items, typically text, change size based on distance from user. 
+/// Items still foreshorten, but not at a rate that makes them hard to see.
+/// </summary>
+/// <remarks>
+/// Changes the physical size,
+/// 
+/// </remarks>
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 
 public class ScaleToUser : MonoBehaviour
 {
+    /// <summary>
+    /// The camera that the user uses to see the world
+    /// </summary>
     [Tooltip("The camera that the user uses to see the world")]
     public GameObject userCamera;
+    /// <summary>
+    /// What this object will use as the second point to determine distance and scale, use is center to use this object
+    /// </summary>
     [Tooltip("What this object will use as the second point to determine distance and scale, use is center to use this object")]
     public GameObject pivotPoint;
+    /// <summary>
+    /// boolean for if this object is the second point to determine the distance and scale
+    /// </summary>
     [Tooltip("Is this object the second point to determine the distance and scale?")]
     public bool isCenter;
+    /// <summary>
+    /// The linear scaling past the scaleDist
+    /// </summary>
     [Tooltip("The linear scaling past the scaleDist")]
     public float farScale = 0.1f;
+    /// <summary>
+    /// The linear scaling between the scaleDist and the pivotPoint
+    /// </summary>
     [Tooltip("The linear scaling between the scaleDist and the pivotPoint")]
     public float nearScale = 0.1f;
+    /// <summary>
+    /// Where the object should have its original size
+    /// </summary>
     [Tooltip("Where the object should have its original size")]
     public float scaleDist = 1;
+    /// <summary>
+    /// gets the original dimentions
+    /// </summary>
     Vector3 sizeAtScaleDist;
+    /// <summary>
+    /// initializes the object
+    /// </summary>
     void Start()
     {
         
@@ -36,8 +68,9 @@ public class ScaleToUser : MonoBehaviour
         //scale at scale dist is the original scale
         sizeAtScaleDist = this.transform.localScale;
     }
-
-    // Update is called once per frame
+    /// <summary>
+    /// Update is called once per frame
+    /// </summary>
     void Update(){
         //get distance between obejcts
         float distance = (userCamera.transform.position - pivotPoint.transform.position).magnitude;
