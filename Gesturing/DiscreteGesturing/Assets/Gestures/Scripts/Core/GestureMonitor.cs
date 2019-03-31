@@ -131,6 +131,21 @@ namespace Gestures
             return gestureMap;
         }
 
+        /// <summary>
+        /// Get the data normalizer used by this monitor
+        /// </summary>
+        /// <returns>Return the class's ViewNormalizer</returns>
+        public Normalizer GetViewNormalizer() {
+            return viewNormalizer;
+        }
+
+        /// <summary>
+        /// Get the data buffer used by this monitor
+        /// </summary>
+        /// <returns>Return the class's GTransformBuffer</returns>
+        public GTransformBuffer GetDataBuffer() {
+            return dataQueue;
+        }
 
         /// <summary>
         /// Add a new Gesture to be tracked
