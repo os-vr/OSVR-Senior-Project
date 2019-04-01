@@ -12,7 +12,7 @@ namespace Gestures {
     /// </remarks>
     public class ViewNormalizer : Normalizer {
 
-        public Transform userTransform;
+        private Transform userTransform;
         private Vector3 forward = new Vector3(0, 0, 1);
 
         public ViewNormalizer(Transform userTransform) {

@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+
+    /// <summary>
+    /// A Normalizer that only works to normalize single line segments. 
+    /// </summary>
+    /// <remarks> 
+    /// The class has little use outside of detecting horizontal and vertical lines
+    /// </remarks>
     public class LineNormalizer : Normalizer {
 
         public List<GTransform> Normalize(List<GTransform> data) {

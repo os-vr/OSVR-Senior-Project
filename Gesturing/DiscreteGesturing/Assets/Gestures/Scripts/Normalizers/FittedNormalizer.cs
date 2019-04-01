@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Gestures {
+    
+    /// <summary>
+    /// Fitted Normalizer will be the standard normalizer for any 2D or 3D Gestures.  
+    /// </summary>
     public class FittedNormalizer : Normalizer {
 
         private Vector3 bottomLeft, topRight;
@@ -10,6 +14,12 @@ namespace Gestures {
 
         public FittedNormalizer() : this(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)) { }
 
+        /// <summary>
+        /// Create a new Fitted Normalizer with specific bounds
+        /// </summary>
+        /// <param name="bottomLeft">Vector3 defining the bottomleft-most coordinate of the bounding box encompassing the Gesture</param>
+        /// <param name="topRight">Vector3 defining the topright-most coordinate of the bounding box encompassing the Gesture</param>
+        /// <param name="maintainAspectRatio">`True` if the Gesture must be performed such that the aspect ratio of the drawn figure matches the aspect ratio of the Gesture definition. Most of the time, this should be `False`</param>
         public FittedNormalizer(Vector3 bottomLeft, Vector3 topRight, bool maintainAspectRatio = false) {
             this.topRight = topRight;
             this.bottomLeft = bottomLeft;

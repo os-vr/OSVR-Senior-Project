@@ -8,14 +8,17 @@ using UnityEngine.UI;
 
 namespace Gestures
 {
+    /// <summary>
+    /// Class responsible for tracking gestures. See <see cref="TrackerSetup"/> for example of how to set up instance.
+    /// </summary>
     public class GestureMonitor : MonoBehaviour
     {
-        public LineRenderer pathRenderer;
+        public LineRenderer lineRenderer;
         public IController controller;
 
-        public Normalizer viewNormalizer;
+        private Normalizer viewNormalizer;
         private Dictionary<string, Gesture> gestureMap = new Dictionary<string, Gesture>();
-        public GTransformBuffer dataQueue;
+        private GTransformBuffer dataQueue;
         public int bufferSize = 512;
         private bool gestureActivePreviousFlag = false;
 
@@ -29,7 +32,7 @@ namespace Gestures
             gestureObservedCallback = new GestureEvent();
             gestureFailedCallback = new GestureEvent();
             gestureStartCallback = new UnityEvent();
-            viewNormalizer = viewNormalizer ?? new ViewNormalizer(Camera.main.transform);
+            viewNormalizer = new ViewNormalizer(Camera.main.transform);
             dataQueue = new GTransformBuffer(bufferSize);
         }
 
@@ -89,7 +92,10 @@ namespace Gestures
             }
         }
 
-
+        /// <summary>
+        /// Debug method to set the linerenderer positions
+        /// </summary>
+        /// <param name="transforms"></param>
         void RenderList(List<GTransform> transforms)
         {
             GTransformBuffer buff = new GTransformBuffer(dataQueue.Size());
@@ -98,7 +104,6 @@ namespace Gestures
                 buff.Enqueue(g);
             }
             SetLineRendererPositions(buff);
-
         }
 
 
@@ -111,24 +116,52 @@ namespace Gestures
 
 
         void SetLineRendererPositions(GTransformBuffer queue) {
-            if (pathRenderer != null) {
+            if (lineRenderer != null) {
                 Vector3[] arr = queue.ToArray();
-                pathRenderer.positionCount = arr.Length;
-                pathRenderer.SetPositions(arr);
+                lineRenderer.positionCount = arr.Length;
+                lineRenderer.SetPositions(arr);
             }
         }
 
-
+        /// <summary>
+        /// Get the Dictionary storing Gestures and names.
+        /// </summary>
+        /// <returns>Dictionary mapping Gesture names to gestures</returns>
         public Dictionary<string, Gesture> GetGestureMap() {
             return gestureMap;
         }
 
+        /// <summary>
+        /// Get the data normalizer used by this monitor
+        /// </summary>
+        /// <returns>Return the class's ViewNormalizer</returns>
+        public Normalizer GetViewNormalizer() {
+            return viewNormalizer;
+        }
 
+        /// <summary>
+        /// Get the data buffer used by this monitor
+        /// </summary>
+        /// <returns>Return the class's GTransformBuffer</returns>
+        public GTransformBuffer GetDataBuffer() {
+            return dataQueue;
+        }
+
+        /// <summary>
+        /// Add a new Gesture to be tracked
+        /// </summary>
+        /// <param name="name">The name to reference the Gesture by</param>
+        /// <param name="g">The instance of a Gesture to track</param>
         public void AddGesture(string name, Gesture g){
             gestureMap.Add(name, g);
         }
 
 
+        /// <summary>
+        /// Set the tracking state for a single Gesture
+        /// </summary>
+        /// <param name="gname">The name of the Gesture to set the tracking state of</param>
+        /// <param name="enabled">`True` if the Gesture should be enabled, `False` otherwise</param>
         public void SetTrackGesture(string gname, bool enabled)
         {
             Gesture g;
@@ -138,13 +171,21 @@ namespace Gestures
             }
         }
 
-
+        /// <summary>
+        /// Set the tracking state for a list of Gestures
+        /// </summary>
+        /// <param name="names">The names of all Gestures to set the tracking state of</param>
+        /// <param name="enabled">`True` if the Gestures should be enabled, `False` otherwise</param>
         public void SetTrackGesture(List<string> names, bool enabled){
             foreach (string s in names){
                 SetTrackGesture(s, enabled);
             }
         }
 
+        /// <summary>
+        /// Set the tracking state for all Gestures
+        /// </summary>
+        /// <param name="enabled">`True` if all Gestures should be enabled, `False` otherwise</param>
         public void SetTrackAllGestures(bool enabled) {
             foreach (Gesture g in gestureMap.Values) {
                 g.isEnabled = enabled;
@@ -156,18 +197,28 @@ namespace Gestures
             gestureObservedCallback.Invoke(metaData);
         }
 
+        /// <summary>
+        /// Add an event listener for when a user completes a valid Gesture
+        /// </summary>
+        /// <param name="eve"></param>
         public void AddGestureCompleteCallback(UnityAction<GestureMetaData> eve){
             gestureObservedCallback.AddListener(eve);
         }
 
+        /// <summary>
+        /// Remove an event listener for when a user completes a valid Gesture
+        /// </summary>
+        /// <param name="eve"></param>
         public void RemoveGestureCompleteCallback(UnityAction<GestureMetaData> eve){
             gestureObservedCallback.RemoveListener(eve);
         }
 
+        /// <summary>
+        /// Remove all event listeners for when a user completes a valid Gesture
+        /// </summary>
         public void RemoveAllGestureCompleteCallbacks(){
             gestureObservedCallback.RemoveAllListeners();
         }
-
 
 
 
@@ -175,14 +226,25 @@ namespace Gestures
             gestureFailedCallback.Invoke(metaData);
         }
 
+        /// <summary>
+        /// Add an event listener for when a user fails to complete a valid Gesture
+        /// </summary>
+        /// <param name="eve"></param>
         public void AddGestureFailedCallback(UnityAction<GestureMetaData> eve) {
             gestureFailedCallback.AddListener(eve);
         }
 
+        /// <summary>
+        /// Remove an event listener for when a user fails to complete a valid Gesture
+        /// </summary>
+        /// <param name="eve"></param>
         public void RemoveGestureFailedCallback(UnityAction<GestureMetaData> eve) {
             gestureFailedCallback.RemoveListener(eve);
         }
 
+        /// <summary>
+        /// Remove all event listeners for when a user fails to complete a valid Gesture
+        /// </summary>
         public void RemoveAllGestureFailedCallbacks() {
             gestureFailedCallback.RemoveAllListeners();
         }
@@ -192,26 +254,50 @@ namespace Gestures
             gestureStartCallback.Invoke();
         }
 
+        /// <summary>
+        /// Add an event listener for when a user starts drawing a Gesture
+        /// </summary>
         public void AddGestureStartCallback(UnityAction eve) {
             gestureStartCallback.AddListener(eve);
         }
 
+        /// <summary>
+        /// Remove an event listeners for when a user starts drawing a Gesture
+        /// </summary>
         public void RemoveGestureStartCallback(UnityAction eve) {
             gestureStartCallback.RemoveListener(eve);
         }
 
+        /// <summary>
+        /// Remove all event listeners for when a user starts drawing a Gesture
+        /// </summary>
         public void RemoveAllGestureStartCallbacks() {
             gestureStartCallback.RemoveAllListeners();
         }
 
 
-
+        /// <summary>
+        /// Set the max capacity of the transform buffer
+        /// </summary>
+        /// <param name="size">Set the number of GTransforms that the buffer can hold. Default is 512</param>
         public void SetMaxBufferSize(int size) {
             dataQueue.SetMaxSize(size);
         }
 
+        /// <summary>
+        /// Set whether the buffer should act as a standard array or a circular array
+        /// </summary>
+        /// <param name="circular">`True` if the buffer should wrap, `False` otherwise</param>
         public void SetBufferWrap(bool circular) {
             dataQueue.SetCircular(circular);
+        }
+
+        /// <summary>
+        /// Clear the buffer of all Transforms and erase all positions from the attached LineRenderer
+        /// </summary>
+        public void ClearBuffer() {
+            dataQueue.Clear();
+            SetLineRendererPositions(dataQueue);
         }
 
     }

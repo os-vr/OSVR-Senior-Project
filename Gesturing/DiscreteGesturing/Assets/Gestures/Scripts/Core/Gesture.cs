@@ -28,6 +28,7 @@ namespace Gestures
             isEnabled = true;
         }
 
+        // work on deprecation
         public Gesture(List<Check> st, Normalizer norm, UnityEvent<GestureMetaData> eve)
         {
             normalizer = norm;
@@ -54,11 +55,13 @@ namespace Gestures
 
             int transformCount = normalizedTransforms.Count;
             int checksPassed = 0;
+            int counter = 0;
             gestureCompletionPrecision = 0.0f;
 
 
             foreach (GTransform g in normalizedTransforms)
             {
+                counter++;
                 if (sequentialCheckPtr < sequentialChecks.Count)
                 {
                     Check currentSequentialCheck = sequentialChecks[sequentialCheckPtr];
@@ -99,13 +102,16 @@ namespace Gestures
                     checksPassed++;
                 }
                 gestureCompletionPrecision += min;
+                if ((checksPassed + (transformCount - counter))/(float)transformCount < gestureCompleteConfidence)
+                {
+                    // if expected confidence cannot be achieved, short-circuit
+                    return false;
+                }
 
 
             }
 
             gestureCompletionPrecision /= transformCount;
-
-            //Short circuit
 
             if (sequentialCheckPtr == sequentialChecks.Count &&
                 checkHitList.TrueForAll(b => b) &&
@@ -115,7 +121,6 @@ namespace Gestures
             }
             return false;
         }
-
 
         public void FireEvent(GestureMetaData metaData) {
             completeEvent.Invoke(metaData);
@@ -164,9 +169,7 @@ namespace Gestures
             sequentialChecks.AddRange(newChecks);
             return this;
         }
-
-
-
+        
         public void VisualizeGesture(Rect grid) {
             foreach (Check c in checks) {
                 c.VisualizeCheck(grid);
