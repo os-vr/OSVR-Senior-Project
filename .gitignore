@@ -1,9 +1,3 @@
-/Gesturing/ContinuousGesturing/[Tt]emp/
-/Gesturing/ContinuousGesturing/[Oo]bj/
-/Gesturing/ContinuousGesturing/Assets/AssetStoreTools*
-/Gesturing/ContinuousGesturing/.vs/*
-/Gesturing/ContinuousGesturing/.vs.meta
-
 /Gesturing/DiscreteGesturing/[Tt]emp/
 /Gesturing/DiscreteGesturing/[Oo]bj/
 /Gesturing/DiscreteGesturing/[Ll]ibrary/
@@ -19,17 +13,29 @@
 /Gesturing/DiscreteGesturing/Assets/Oculus/
 /Gesturing/DiscreteGesturing/Assets/Oculus.meta
 
-/UI/Keyboard/[Tt]emp/
-/UI/Keyboard/[Oo]bj/
-/UI/Keyboard/Assets/AssetStoreTools*
-/UI/Keyboard/.vs/*
-/UI/Keyboard/.vs.meta
+/UI/[Tt]emp/
+/UI/[Oo]bj/
+/UI/[Ll]ibrary/
+/UI/[Bb]uild/
+/UI/[Bb]uilds/
+/UI/[Ll]ogs/
+/UI/Assets/AssetStoreTools*
+/UI/.vs/*
+/UI/.vs.meta
 
-/UI/UI-All-In-One/[Tt]emp/
-/UI/UI-All-In-One/[Oo]bj/
-/UI/UI-All-In-One/Assets/AssetStoreTools*
-/UI/UI-All-In-One/.vs/*
-/UI/UI-All-In-One/.vs.meta
+/UI/Assets/Oculus/
+/UI/Assets/OVRAvatarSDK/
+/UI/Assets/Presets/
+/UI/Assets/Resources/
+/UI/Assets/Settings/
+/UI/Assets/TutorialInfo/
+/UI/Assets/Oculus.meta
+/UI/Assets/OVRAvatarSDK.meta
+/UI/Assets/Presets.meta
+/UI/Assets/Resources.meta
+/UI/Assets/Settings.meta
+/UI/Assets/TutorialInfo.meta
+
 
 ExportedObj/
 *.svd
