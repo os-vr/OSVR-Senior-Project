@@ -1,17 +1,17 @@
-/Gesturing/DiscreteGesturing/[Tt]emp/
-/Gesturing/DiscreteGesturing/[Oo]bj/
-/Gesturing/DiscreteGesturing/[Ll]ibrary/
-/Gesturing/DiscreteGesturing/[Bb]uild/
-/Gesturing/DiscreteGesturing/[Bb]uilds/
-/Gesturing/DiscreteGesturing/[Ll]ogs/
-/Gesturing/DiscreteGesturing/Assets/AssetStoreTools*
-/Gesturing/DiscreteGesturing/.vs/*
-/Gesturing/DiscreteGesturing/.vs.meta
+/Gesturing/[Tt]emp/
+/Gesturing/[Oo]bj/
+/Gesturing/[Ll]ibrary/
+/Gesturing/[Bb]uild/
+/Gesturing/[Bb]uilds/
+/Gesturing/[Ll]ogs/
+/Gesturing/Assets/AssetStoreTools*
+/Gesturing/.vs/*
+/Gesturing/.vs.meta
 
-/Gesturing/DiscreteGesturing/Assets/TextMesh*Pro/
-/Gesturing/DiscreteGesturing/Assets/TextMesh*Pro.meta
-/Gesturing/DiscreteGesturing/Assets/Oculus/
-/Gesturing/DiscreteGesturing/Assets/Oculus.meta
+/Gesturing/Assets/TextMesh*Pro/
+/Gesturing/Assets/TextMesh*Pro.meta
+/Gesturing/Assets/Oculus/
+/Gesturing/Assets/Oculus.meta
 
 /UI/[Tt]emp/
 /UI/[Oo]bj/
