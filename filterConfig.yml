@@ -1,0 +1,16 @@
+apiRules:
+ - exclude:
+      uidRegex: Unity
+      type: Type
+
+ - exclude:
+      uidRegex: OVR
+      type: Type
+
+ - exclude:
+      uidRegex: Oculus
+      type: Type
+
+ - exclude:
+      uidRegex: ^System\.Object
+      type: Type

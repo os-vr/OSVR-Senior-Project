@@ -1,0 +1,38 @@
+{
+  "metadata": [
+    {
+      "src": [
+        {
+          "files": [
+            "**.cs"
+          ]
+        }
+      ],
+      "dest": "api",
+      "filter": "filterConfig.yml"
+    }
+  ],
+  "build": {
+    "content": [
+      {
+        "files": [
+          "api/**.yml",
+          "api/index.md",
+		  "toc.yml",
+		  "index.md"
+        ]
+      },
+    ],
+    "dest": "temp",
+    "globalMetadataFiles": [],
+    "fileMetadataFiles": [],
+    "template": [
+      "default"
+    ],
+    "postProcessors": [],
+    "markdownEngineName": "markdig",
+    "noLangKeyword": false,
+    "keepFileLink": false,
+    "cleanupCacheHistory": false,
+  }
+}
