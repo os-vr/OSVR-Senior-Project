@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Gestures.Core;
 
-namespace Gestures {
+namespace Gestures.Checks {
     /// <summary>
     /// A Check to check if a GTransform is within a certain radius of another point.
     /// </summary>

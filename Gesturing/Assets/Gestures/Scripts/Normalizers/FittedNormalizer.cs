@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gestures.Core;
 
-namespace Gestures {
+namespace Gestures.Normalizers {
     
     /// <summary>
     /// Fitted Normalizer will be the standard normalizer for any 2D or 3D Gestures.  

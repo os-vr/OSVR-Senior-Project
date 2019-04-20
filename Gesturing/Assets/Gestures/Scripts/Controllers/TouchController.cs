@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gestures.Core;
 
 namespace Gestures
 {
@@ -49,6 +50,6 @@ namespace Gestures
             int modifier = isActive ? 1 : 0;
             OVRInput.SetControllerVibration(vibrationFrequency * modifier, vibrationAmplitude * modifier, controllerType);
         }
-
     }
 }
+

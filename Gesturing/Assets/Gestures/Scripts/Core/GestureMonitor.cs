@@ -5,9 +5,9 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using Gestures.Normalizers;
 
-namespace Gestures
-{
+namespace Gestures.Core {
     /// <summary>
     /// Class responsible for tracking gestures. See <see cref="TrackerSetup"/> for example of how to set up instance.
     /// </summary>

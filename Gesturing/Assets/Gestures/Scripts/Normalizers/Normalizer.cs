@@ -1,8 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Gestures.Core;
 
-namespace Gestures {
+namespace Gestures.Normalizers {
     
     /// <summary>
     /// Multipurpose interface for normalizing data into a form that can be more easily recognized by the gesture detection algorithm

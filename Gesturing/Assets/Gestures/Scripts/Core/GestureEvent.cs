@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Gestures {
+namespace Gestures.Core {
     /// <summary>
     /// Wrapper class for a Unity Event that takes in GestureMetaData as a parameter
     /// </summary>

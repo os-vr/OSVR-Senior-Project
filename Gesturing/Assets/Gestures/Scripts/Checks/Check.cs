@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using Gestures.Core;
 
-namespace Gestures {
+namespace Gestures.Checks {
 
     /// <summary>
     /// An interface representing a single segment of a gesture. 
