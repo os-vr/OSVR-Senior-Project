@@ -1,5 +1,6 @@
 # Open Source VR Project 
 [![Build Status](https://travis-ci.org/os-vr/OSVR-Senior-Project.svg?branch=master)](https://travis-ci.org/os-vr/OSVR-Senior-Project)
+[API Documentation](https://os-vr.github.io/OSVR-Senior-Project/)
 
 ## Gesturing Framework
 This asset allows you to create detectable, customizable gestures to place into your Unity scenes. Currently compatible with the Oculus Rift with Touch Controllers
