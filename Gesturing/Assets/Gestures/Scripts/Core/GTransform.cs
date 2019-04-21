@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-namespace Gestures.Core {
+namespace Gestures {
 
     /// <summary>
     /// Data class to contain all necessary information related to a controller transform

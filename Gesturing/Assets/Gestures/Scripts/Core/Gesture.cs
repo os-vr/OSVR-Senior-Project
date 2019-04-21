@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using Gestures.Checks;
-using Gestures.Normalizers;
-using Gestures.Core;
 
-namespace Gestures.Core {
+
+namespace Gestures {
     public class Gesture {
         public List<Check> checks;
         public List<Check> sequentialChecks;

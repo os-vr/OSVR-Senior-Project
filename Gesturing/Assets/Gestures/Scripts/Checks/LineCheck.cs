@@ -1,8 +1,8 @@
 ﻿using UnityEditor;
 using UnityEngine;
-using Gestures.Core;
 
-namespace Gestures.Checks {
+
+namespace Gestures {
     /// <summary>
     /// A Line check to check if 
     /// </summary>

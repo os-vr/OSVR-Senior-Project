@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gestures.Core {
+namespace Gestures {
     /// <summary>
     /// A data container class to store extra meta data about the completed gesture
     /// </summary>

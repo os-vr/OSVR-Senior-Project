@@ -1,9 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Gestures.Core;
 
-namespace Gestures.Normalizers {
+namespace Gestures{
 
     /// <summary>
     /// Normalizer implementation that takes the raw world-space GTransform data and rotates it about the user's position.

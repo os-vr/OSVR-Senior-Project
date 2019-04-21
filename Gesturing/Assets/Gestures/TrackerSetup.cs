@@ -5,10 +5,6 @@ using Gestures;
 using UnityEngine.Events;
 using TMPro;
 
-using Gestures.Core;
-using Gestures.Presets;
-using Gestures.Checks;
-using Gestures.Normalizers;
 
 public class TrackerSetup : MonoBehaviour {
 

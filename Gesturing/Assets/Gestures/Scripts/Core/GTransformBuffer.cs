@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-namespace Gestures.Core {
+namespace Gestures {
 
     /// <summary>
     /// Internal class which can behave as either a set-size array or a circular array. 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Gestures.Core
+namespace Gestures
 {
     /// <summary>
     /// Abstract class which is responsible for tracking transform data for a VR headset. 

@@ -1,11 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Gestures.Core;
-using Gestures.Normalizers;
-using Gestures.Checks;
 
-namespace Gestures.Presets {
+
+namespace Gestures{
     /// <summary>
     /// A heart gesture set witha FittedNormalizer.
     /// </summary>
