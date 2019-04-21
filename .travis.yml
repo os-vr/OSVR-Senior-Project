@@ -1,2 +1,12 @@
 language : generic
+
+branches:
+  only:
+    - master
+
+addons:
+  apt:
+    packages:
+      - doxygen
+
 script: bash scripts/deploy.sh
