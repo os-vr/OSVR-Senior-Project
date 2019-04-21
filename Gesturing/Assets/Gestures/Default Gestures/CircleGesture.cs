@@ -4,8 +4,9 @@ using UnityEngine;
 
 namespace Gestures {
     /// <summary>
-    /// A Circle gesture set with a FittedNormalizer.
+    /// A Circular Gesture
     /// </summary>
+    /// <remarks> A proper aspect-ratio is necessary to complete this gesture. As such, an oval or ellipsoid shape will not be detected </remarks>
     public class CircleGesture : Gesture {
 
         /// <summary>
