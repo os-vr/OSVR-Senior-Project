@@ -12,13 +12,22 @@ namespace Gestures{
     /// </remarks>
     public class ViewNormalizer : Normalizer {
 
-        private Transform userTransform;
+        private Transform userTransform; //transform for the user's gameObject to be used in normalization
         private Vector3 forward = new Vector3(0, 0, 1);
 
+        /// <summary>
+        /// Creates a ViewNormalizer based on the provided transform of the user's gameObject.
+        /// </summary>
+        /// <param name="userTransform"></param>
         public ViewNormalizer(Transform userTransform) {
             this.userTransform = userTransform;
         }
 
+        /// <summary>
+        /// Rotates the GTransforms to in front of the user gameObject.
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public List<GTransform> Normalize(List<GTransform> data) {
             Vector3 centroid = new Vector3(0, 0, 0);
             int count = data.Count;

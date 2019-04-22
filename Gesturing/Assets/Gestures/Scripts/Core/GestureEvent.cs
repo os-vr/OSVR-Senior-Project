@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 namespace Gestures {
     /// <summary>
-    /// Wrapper class for a Unity Event that takes in GestureMetaData as a parameter
+    /// Wrapper class for a Unity Event that takes in GestureMetaData as a parameter.
     /// </summary>
     public class GestureEvent : UnityEvent<GestureMetaData> {
         public GestureEvent() : base() {}

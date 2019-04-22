@@ -3,7 +3,9 @@ using UnityEditor;
 using System.Collections.Generic;
 
 namespace Gestures {
-
+    /// <summary>
+    /// The EditorWindow for visualizing gestures.
+    /// </summary>
     public class GestureVisualizerWindow : EditorWindow {
         private static GestureMonitor monitor;
         private static int selectedGesture = 0;

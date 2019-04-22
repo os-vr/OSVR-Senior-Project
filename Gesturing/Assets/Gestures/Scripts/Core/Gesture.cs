@@ -5,18 +5,45 @@ using UnityEngine.Events;
 
 
 namespace Gestures {
+    /// <summary>
+    /// A  class that is composed of Checks to represent a gesture.
+    /// </summary>
     public class Gesture {
-        public List<Check> checks;
-        public List<Check> sequentialChecks;
-        public List<Check> alwaysChecks;
 
+        private List<Check> checks;
+        private List<Check> sequentialChecks;
+        private List<Check> alwaysChecks;
+
+        /// <summary>
+        /// Whether the gesture is actively being detected or not.
+        /// </summary>
         public bool isEnabled { get; set; }
-        public Normalizer normalizer;
-        public UnityEvent<GestureMetaData> completeEvent;
 
+        /// <summary>
+        /// The ratio of points that needs to satisfy gesture checks for gesture completion.
+        /// </summary>
+        /// <remarks>
+        /// Highly advised to leave at 1, or remain above 0.9. Low values will cause unwanted side effects like gesture overlap, or acceptance of random movements as gestures.
+        /// </remarks>
         public float gestureCompleteConfidence { get; set; }
-        public float gestureCompletionPrecision = -1.0f;
 
+
+        private Normalizer normalizer;
+        private UnityEvent<GestureMetaData> completeEvent;
+
+        /// <summary>
+        /// A measure of how close a set of GTransforms is to the gesture definition.
+        /// </summary>
+        /// <remarks>
+        /// 0.0 is a perfect gesture. Humanly impossible. 1.0 is as imperfect as possible while still passing the gesture at full confidence.
+        /// When gesture confidence is not 1, the value is `actual gesture completion precision minus the proportion of points satisfing gesture`.
+        /// 
+        /// </remarks>
+        public float gestureCompletionPrecision {get; set;}
+
+        /// <summary>
+        /// Create a Gesture object. Use additional methods to specify gesture composition for events, checks, and normalizers.
+        /// </summary>
         public Gesture() {
             normalizer = null;
             completeEvent = new GestureEvent();
@@ -28,20 +55,11 @@ namespace Gestures {
             isEnabled = true;
         }
 
-        // work on deprecation
-        public Gesture(List<Check> st, Normalizer norm, UnityEvent<GestureMetaData> eve)
-        {
-            normalizer = norm;
-            completeEvent = eve;
-            checks = st;
-            sequentialChecks = new List<Check>();
-            alwaysChecks = new List<Check>();
-
-            gestureCompleteConfidence = 1;
-            isEnabled = true;
-        }
-
-
+        /// <summary>
+        /// Determines if the specified GTransforms generated satisfy the requirements of this gesture.
+        /// </summary>
+        /// <param name="transforms">The List of Transforms to be checked</param>
+        /// <returns></returns>
         public bool GestureCompleted(List<GTransform> transforms)
         {
             List<GTransform> normalizedTransforms = new List<GTransform>(transforms);
@@ -122,49 +140,94 @@ namespace Gestures {
             return false;
         }
 
+        /// <summary>
+        /// Fires the specifie GestureEvent associated with this gesture.
+        /// </summary>
+        /// <param name="metaData">The GestureMetaData created from the gesture data.</param>
         public void FireEvent(GestureMetaData metaData) {
             completeEvent.Invoke(metaData);
         }
 
+        /// <summary>
+        /// Adds a GestureEvent to be called at gesture completion.
+        /// </summary>
+        /// <param name="eventAction"></param>
+        /// <returns></returns>
         public Gesture AddEvent(UnityAction<GestureMetaData> eventAction) {
             completeEvent.AddListener(eventAction);
             return this;
         }
 
+        /// <summary>
+        /// Removes all events associated with this gesture.
+        /// </summary>
         public void ClearEvents() {
             completeEvent.RemoveAllListeners();
         }
-
-        public Gesture SetNormalizer(Normalizer nm) {
+        /// <summary>
+        /// Sets the Normalizer to be applied to every incoming GTransform data point.
+        /// </summary>
+        /// <param name="normalizer">The Normalizer to be set.</param>
+        public Gesture SetNormalizer(Normalizer normalizer) {
             normalizer = nm;
             return this;
         }
 
+        /// <summary>
+        /// Adds a single check to the list of checks that only need to be satisfied once for gesture completion.
+        /// </summary>
+        /// <param name="newCheck"></param>
+        /// <returns></returns>
         public Gesture AddOnceCheck(Check newCheck) {
             checks.Add(newCheck);
             return this;
         }
 
+        /// <summary>
+        /// Adds a range of checks to the list of checks that only need to be satisfied once for gesture completion.
+        /// </summary>
+        /// <param name="newChecks">IEnumerator of Checks</param>
+        /// <returns></returns>
         public Gesture AddOnceChecks(IEnumerable<Check> newChecks) {
             checks.AddRange(newChecks);
             return this;
         }
 
+        /// <summary>
+        /// Adds a single check to the list of checks that need to be satisfied by every data point for gesture completion.
+        /// </summary>
+        /// <param name="newCheck">The check to be added to the always-check list.</param>
+        /// <returns></returns>
         public Gesture AddAlwaysCheck(Check newCheck) {
             alwaysChecks.Add(newCheck);
             return this;
         }
 
+        /// <summary>
+        /// Adds a range of check to the list of checks that need to be satisfied by every data point for gesture completion.
+        /// </summary>
+        /// <param name="newChecks">IEnumerable of Checks to be passed in.</param>
+        /// <returns></returns>
         public Gesture AddAlwaysChecks(IEnumerable<Check> newChecks) {
             alwaysChecks.AddRange(newChecks);
             return this;
         }
 
+        /// <summary>
+        /// Adds a single check to the list of checks that must be satisfied in sequential order for gesture completion.
+        /// </summary>
+        /// <param name="newCheck">The Check to be added.</param>
+        /// <returns></returns>
         public Gesture AddSequentialCheck(Check newCheck) {
             sequentialChecks.Add(newCheck);
             return this;
         }
 
+        /// <summary>
+        /// Adds a range of checks to the list of chekcs that must be satisfied in sequential order for gesture completion.
+        /// </summary>
+        /// <param name="newChecks">IEnumerable of Checks to be passed in.</param>
+        /// <returns></returns>
         public Gesture AddSequentialChecks(IEnumerable<Check> newChecks) {
             sequentialChecks.AddRange(newChecks);
             return this;

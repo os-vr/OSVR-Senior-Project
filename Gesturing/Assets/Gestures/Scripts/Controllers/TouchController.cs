@@ -21,6 +21,9 @@ namespace Gestures
         /// <summary>
         /// Generate the data representing the position, rotation, velocity, and timing data for the controller
         /// </summary>
+        /// <remark>
+        /// Velocity depends on OVRInput.GetLocalControllerVelocity.
+        /// </remark>
         /// <returns>Returns `GTransform` instance containing transform data</returns>
         public override GTransform QueryGTransform()
         {

@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Gestures {
     
     /// <summary>
-    /// Multipurpose interface for normalizing data into a form that can be more easily recognized by the gesture detection algorithm
+    /// Multipurpose interface for normalizing data into a form that can be more easily recognized by the gesture detection algorithm.
     /// </summary>
     public interface Normalizer {
         /// <summary>

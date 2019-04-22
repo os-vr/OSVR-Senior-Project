@@ -12,6 +12,9 @@ namespace Gestures {
         private Vector3 bottomLeft, topRight;
         private bool maintainAspectRatio;
 
+        /// <summary>
+        /// Create a new FittedNormalizer with bounds of Vector3(-1, -1, 0), Vector3(1, 1, 0)
+        /// </summary>
         public FittedNormalizer() : this(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)) { }
 
         /// <summary>
@@ -26,7 +29,7 @@ namespace Gestures {
             this.maintainAspectRatio = maintainAspectRatio;
         }
 
-        public delegate float MinMaxDelegate(float a, float b);
+        private delegate float MinMaxDelegate(float a, float b); // used internally to apply min / max arbitrarily to vectors
         private Vector3 ApplyPredToVector(Vector3 a, Vector3 b, MinMaxDelegate pred) {
             return new Vector3(pred(a.x, b.x), pred(a.y, b.y), pred(a.z, b.z));
         }
@@ -38,7 +41,11 @@ namespace Gestures {
             return new Vector3(ix, iy, iz);
         }
 
-
+        /// <summary>
+        /// Normalizes the GTransforms with respect to the bounding box FittedNormalizer was initialized with.
+        /// </summary>
+        /// <param name="data">List of GTramsforms</param>
+        /// <returns></returns>
         public List<GTransform> Normalize(List<GTransform> data) {
             List<GTransform> normalizedData = new List<GTransform>();
 

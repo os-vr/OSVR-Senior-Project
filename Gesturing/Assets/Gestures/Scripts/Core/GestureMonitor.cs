@@ -12,22 +12,34 @@ namespace Gestures {
     /// </summary>
     public class GestureMonitor : MonoBehaviour
     {
+        /// <summary>
+        /// A LineRenderer used to visualize the gestures during and after gesture creation.
+        /// </summary>
         public LineRenderer lineRenderer;
+        /// <summary>
+        /// The IController that generates the GTransform objects for gesture recognition.
+        /// </summary>
         public IController controller;
 
-        private Normalizer viewNormalizer;
+        /// <summary>
+        /// The default buffer size for the GTransformBuffer class.
+        /// </summary>
+        public int bufferSize = 512;
+
+        private Normalizer viewNormalizer; // default normalizer for gesture creation=
         private Dictionary<string, Gesture> gestureMap = new Dictionary<string, Gesture>();
         private GTransformBuffer dataQueue;
-        public int bufferSize = 512;
-        private bool gestureActivePreviousFlag = false;
 
         private UnityEvent<GestureMetaData> gestureObservedCallback;
         private UnityEvent<GestureMetaData> gestureFailedCallback;
         private UnityEvent gestureStartCallback;
         private GestureMetaData metaData;
 
+        private bool gestureActivePreviousFlag = false;
 
-        void Awake() {
+
+
+        public void Awake() {
             gestureObservedCallback = new GestureEvent();
             gestureFailedCallback = new GestureEvent();
             gestureStartCallback = new UnityEvent();
@@ -36,7 +48,7 @@ namespace Gestures {
         }
 
 
-        void Update()
+        public void Update()
         {
             if(controller == null) {
                 return;
@@ -69,7 +81,7 @@ namespace Gestures {
         }
 
 
-        void CheckGestures(List<GTransform> transforms)
+        private void CheckGestures(List<GTransform> transforms)
         {
             bool gestureCompleted = false;
             foreach (string name in gestureMap.Keys)
@@ -95,7 +107,7 @@ namespace Gestures {
         /// Debug method to set the linerenderer positions
         /// </summary>
         /// <param name="transforms"></param>
-        void RenderList(List<GTransform> transforms)
+        private void RenderList(List<GTransform> transforms)
         {
             GTransformBuffer buff = new GTransformBuffer(dataQueue.Size());
             foreach (GTransform g in transforms)
@@ -106,7 +118,7 @@ namespace Gestures {
         }
 
 
-        void PopulateQueue()
+        private void PopulateQueue()
         {
             GTransform nextDataPoint = controller.QueryGTransform();
             dataQueue.Enqueue(nextDataPoint);
@@ -114,7 +126,7 @@ namespace Gestures {
         }
 
 
-        void SetLineRendererPositions(GTransformBuffer queue) {
+        private void SetLineRendererPositions(GTransformBuffer queue) {
             if (lineRenderer != null) {
                 Vector3[] arr = queue.ToArray();
                 lineRenderer.positionCount = arr.Length;
@@ -136,6 +148,17 @@ namespace Gestures {
         /// <returns>Return the class's ViewNormalizer</returns>
         public Normalizer GetViewNormalizer() {
             return viewNormalizer;
+        }
+
+
+        /// <summary>
+        /// Sets the normalizer used for pre-processing the datapoints before the individual gestures' normaization takes place.
+        /// </summary>
+        /// <param name="norm"></param>
+        /// <returns></returns>
+        public Normalizer SetViewNormalizer(Normalizer norm)
+        {
+            this.viewNormalizer = norm;
         }
 
         /// <summary>

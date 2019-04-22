@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using Gestures;
 using UnityEngine.Events;
-using TMPro;
 
 
 public class TrackerSetup : MonoBehaviour {
 
-    public TextMeshPro text;
+    //public TextMesh text; //set text to a TextMesh object, or something that displays text in game.
     private GestureMonitor tracker;
     public LineRenderer lineRenderer;
 
@@ -62,7 +61,7 @@ public class TrackerSetup : MonoBehaviour {
 
 
     void GestureFailed(GestureMetaData data) {
-        text.SetText("---");
+        //text.SetText("---"); //set text to a TextMesh object, or something that displays text in game.
     }
 
 
@@ -73,6 +72,7 @@ public class TrackerSetup : MonoBehaviour {
         tracker.AddGesture("Triangle", new TriangleGesture());
         tracker.AddGesture("Heart", new HeartGesture());
 
+        /* using deprecated Gesture constructor, fix
         tracker.AddGesture("Vertical", 
            new Gesture(new List<Check> {
                new LineCheck(new Vector3(0, 1, 0), new Vector3(0, -1, 0)) },
@@ -191,7 +191,7 @@ public class TrackerSetup : MonoBehaviour {
           new FittedNormalizer(new Vector3(-.5f, -1, 0), new Vector3(.5f, 1, 0)),
           new GestureEvent(DisplayHints)));
 
-
+        */
     }
 
 
@@ -204,7 +204,7 @@ public class TrackerSetup : MonoBehaviour {
             }
             newText += keys[i] + ", ";
         }
-        text.SetText(newText);
+        //text.SetText(newText); //set text to a TextMesh object, or something that displays text in game.
     }
 
 
@@ -213,7 +213,7 @@ public class TrackerSetup : MonoBehaviour {
                          "Scale: " + data.scale.ToString("G4") + "\n" +
                          "Position: " + data.centroid.ToString("G4") + "\n" +
                          "Speed: " + data.averageSpeed.ToString("G4");
-        text.SetText(newText);
+        //text.SetText(newText); //set text to a TextMesh object, or something that displays text in game.
     }
 
 }

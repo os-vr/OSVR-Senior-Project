@@ -12,6 +12,15 @@ namespace Gestures {
     /// </remarks>
     public class LineNormalizer : Normalizer {
 
+
+        /// <summary>
+        /// Normalizes the series of GTransforms with respect to the proportion of X / Y scale in the given data.
+        /// </summary>
+        /// <remarks>
+        /// Works for horizontal and vertical lines in the viewing plane.
+        /// </remarks>
+        /// <param name="data"></param>
+        /// <returns></returns>
         public List<GTransform> Normalize(List<GTransform> data) {
             List<GTransform> normalizedData = new List<GTransform>();
 
