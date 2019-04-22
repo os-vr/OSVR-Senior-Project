@@ -5,15 +5,19 @@ using UnityEngine;
 
 
 namespace Gestures {
+
     /// <summary>
-    /// An Arc check in a single plane.
+    /// A Check to determine whether a point fits inside an Arc.
     /// </summary>
     public class ArcCheck : Check {
 
+        /// <summary>
+        /// Enum describing the orientation of the Arc along the three axes.
+        /// </summary>
         public enum ARC_ORIENTATION {
-            XY,
-            YZ,
-            XZ,
+            XY, /// <summary> Arc orientation is in the XY-plane </summary>
+            YZ, /// <summary> Arc orientation is in the YZ-plane </summary>
+            XZ, /// <summary> Arc orientation is in the XZ-plane </summary>
         };
 
         private float precision;
@@ -25,21 +29,22 @@ namespace Gestures {
         private ARC_ORIENTATION orientation;
 
         /// <summary>
-        /// 
+        /// Create an Arc Check used to determine whether a point fits inside the defined Arc. 
         /// </summary>
         /// <param name="startPosition">The starting position of the arc.</param>
         /// <param name="degrees">Number of degrees to extent. MUST be between -90 and 90 degrees, otherwise unpredictable consequences occur.</param>
         /// <param name="center">The center point of circle on which the Arc lies.</param>
-        /// <param name="precision">The distance tolerance from which a point can be considered within the arc.</param>
+        /// <param name="tolerance">The distance tolerance from which a point can be considered within the arc</param>
         /// <param name="orientation">ARC_ORIENTATION enum, specifying which plane the arc resides in</param>
-        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float precision = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY) {
+        public ArcCheck(Vector3 startPosition, float degrees, Vector3 center, float tolerance = 0.4f, ARC_ORIENTATION orientation = ARC_ORIENTATION.XY) {
             this.startPosition = startPosition;
-            this.degrees = degrees;
+            this.degrees = Mathf.Clamp(degrees, -90.0f, 90.0f);
             this.center = center;
             this.radius = Vector3.Distance(center, startPosition);
-            this.precision = precision;
+            this.precision = tolerance;
             this.orientation = orientation;
         }
+
 
         private bool IsClockwise(Vector3 v1, Vector3 v2) {
             if (orientation == ARC_ORIENTATION.XY) {
@@ -51,9 +56,13 @@ namespace Gestures {
             }
 
             return Mathf.Sign(degrees) * (-v1.y * v2.z + v1.z * v2.y) >= 0;
-
         }
 
+        /// <summary>
+        /// Determine whether a single GTransform fits inside the area defined by the Arc 
+        /// </summary>
+        /// <param name="g">GTransform to check position against</param>
+        /// <returns> Returns a float (between 0 and 1) representing the distance from the center of the arc, or -1 if the check fails </returns>
         override public float CheckPasses(GTransform g) {
 
             Vector3 rotation = new Vector3(
@@ -76,7 +85,6 @@ namespace Gestures {
                 return Mathf.Abs((distance - radius))/(precision/2.0f);
             }
             return -1;
-
         }
 
         override public void VisualizeCheck(Rect grid) {

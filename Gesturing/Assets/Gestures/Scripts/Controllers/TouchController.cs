@@ -5,17 +5,20 @@ using UnityEngine;
 namespace Gestures
 {
     /// <summary>
-    /// TouchController is a concrete implementation of the IController class, targeted at the Oculus Rift Touch Controllers
+    /// A concrete implementation of the IController class, targeted at the Oculus Rift Touch Controllers
     /// </summary>
     public class TouchController : IController
     {
         /// <summary> The Touch Controller to use. Typically LTouch or RTouch for left and right hands. </summary>
         public OVRInput.Controller controllerType;
 
-        /// <summary> The button which will activate a gesture </summary>
+        /// <summary> The controller button which will activate a gesture </summary>
         public OVRInput.Button gestureActiveButton;
 
+        /// <summary> The frequency of the controller vibration when the gestureActiveButton is pressed </summary>
         public float vibrationFrequency = 0.2f;
+
+        /// <summary> The amplitude of the controller vibration when the gestureActiveButton is pressed </summary>
         public float vibrationAmplitude = 0.2f;
 
         /// <summary>
