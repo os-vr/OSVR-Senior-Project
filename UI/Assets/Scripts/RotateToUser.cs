@@ -17,6 +17,11 @@ public class RotateToUser : MonoBehaviour {
     [Tooltip("What this object will orbit around")]
     public GameObject pivotPoint;
     /// <summary>
+    /// boolean for if this object is the second point to determine the distance and scale
+    /// </summary>
+    [Tooltip("Is this object the second point to determine the rotation?")]
+    public bool isCenter;
+    /// <summary>
     /// Distance this object will orbit around the pivotPoint
     /// </summary>
     [Tooltip("Distance this object will orbit around the pivotPoint")]
@@ -28,6 +33,17 @@ public class RotateToUser : MonoBehaviour {
     /// <summary>
     /// FixedUpdate is called once per frame
     /// </summary>
+    void Start()
+    {
+        if (isCenter)
+        {
+            pivotPoint = this;
+        }
+        if (pivotPoint == null)
+        {
+            Debug.LogError("No pivot point specified");
+        }
+    } 
     void FixedUpdate() {
         //vector between objects
         Vector3 direction = pivotPoint.transform.position - userCamera.transform.position;
@@ -35,7 +51,7 @@ public class RotateToUser : MonoBehaviour {
         Vector3 up = userCamera.transform.up;
         //up is normalized to the plane of the screen
         up = (up - Vector3.Project(up, direction)).normalized;
-        //andle when up is in line with direction, leading to up = 0
+        //angle when up is in line with direction, leading to up = 0
         if (up.magnitude != 0)
         {
             //update lastUp

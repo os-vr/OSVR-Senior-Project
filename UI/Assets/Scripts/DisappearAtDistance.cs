@@ -25,25 +25,21 @@ public class DisappearAtDistance : MonoBehaviour {
     [Tooltip("Is this object the second point to determine the distance and scale?")]
     public bool isCenter;
     /// <summary>
-    /// Where the object should have its original size
-    /// </summary>
-    [Tooltip("Where the object should have its original size")]
-    public float scaleDist = 1;
-    /// <summary>
     /// How close the user should be when this item disappears
     /// </summary>
     [Tooltip("How close the user should be when this item disappears")]
-    public float disapearAtCloseDistance = -1;
+    public float disappearAtCloseDistance = -1;
     /// <summary>
     /// Should this item disappear if the user gets to far away?
     /// </summary>
     [Tooltip("Should this item disappear if the user gets to far away?")]
-    public bool disapearWhenFarAway = false;
+    public bool disappearWhenFarAway = false;
     /// <summary>
     /// The distance at which this item should disapear
     /// </summary>
-    [Tooltip("The distance at which this item should disapear")]
-    public float disapearAtFarDistance = 1000;
+    [Tooltip("The distance at which this item should disappear")]
+    public float disappearAtFarDistance = 1000;
+
     /// <summary>
     /// Renderers that will turn on or off as stated by the script
     /// </summary>
@@ -124,7 +120,7 @@ public class DisappearAtDistance : MonoBehaviour {
         //get distance between obejcts
         float distance = (userCamera.transform.position - pivotPoint.transform.position).magnitude;
         print(distance);
-        if (distance < disapearAtCloseDistance)
+        if (distance < disappearAtCloseDistance)
         {
             //check if you need to set visibility
             if (isVisible)
@@ -141,10 +137,10 @@ public class DisappearAtDistance : MonoBehaviour {
         else
         {
             //check if you need to check for invisibility at distance
-            if (disapearWhenFarAway)
+            if (disappearWhenFarAway)
             {
                 //check if you are far enough to be invisible
-                if (distance > disapearAtFarDistance)
+                if (distance > disappearAtFarDistance)
                 {
                     //check if you need to change visibility
                     if (isVisible)
@@ -171,7 +167,7 @@ public class DisappearAtDistance : MonoBehaviour {
                         }
                     }
                 }
-                //if not close enough to be invisible and doesn't disapear at range, then it is visibile
+                //if not close enough to be invisible and doesn't disappear at range, then it is visibile
             }
             else
             {

@@ -57,6 +57,10 @@ public class ScaleToUser : MonoBehaviour
         {
             pivotPoint = this.gameObject;
         }
+        if (pivotPoint == null)
+        {
+            Debug.LogError("No pivot point specified");
+        }
         if (farScale > 1)
         {
             Debug.LogError("FarScale is incredibly large, please check the function that supplies this number");
