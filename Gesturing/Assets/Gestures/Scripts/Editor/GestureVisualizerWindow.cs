@@ -143,7 +143,7 @@ namespace Gestures {
                         GL.Color(Color.red);
 
                         List<GTransform> transforms = new List<GTransform>(buffer);
-                        transforms = g.normalizer.Normalize(monitor.GetViewNormalizer().Normalize(transforms));
+                        transforms = g.GetNormalizer().Normalize(monitor.GetViewNormalizer().Normalize(transforms));
                         foreach (GTransform gt in transforms) {
                             GL.Vertex(gridCenter + Vector3.Scale(new Vector3(gridSize.x/2, -gridSize.y/2, 0), gt.position));
                         }

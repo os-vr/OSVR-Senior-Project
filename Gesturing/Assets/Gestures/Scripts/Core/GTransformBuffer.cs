@@ -84,7 +84,7 @@ namespace Gestures {
         /// Returns the Enumerator over the GTransforrms in the buffer.
         /// </summary>
         /// <returns></returns>
-        public IEnumerator IEnumerable.GetEnumerator() {
+        IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
          

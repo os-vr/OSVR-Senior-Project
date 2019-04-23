@@ -37,7 +37,6 @@ namespace Gestures {
         /// <remarks>
         /// 0.0 is a perfect gesture. Humanly impossible. 1.0 is as imperfect as possible while still passing the gesture at full confidence.
         /// When gesture confidence is not 1, the value is `actual gesture completion precision minus the proportion of points satisfing gesture`.
-        /// 
         /// </remarks>
         public float gestureCompletionPrecision {get; set;}
 
@@ -152,7 +151,7 @@ namespace Gestures {
         /// Adds a GestureEvent to be called at gesture completion.
         /// </summary>
         /// <param name="eventAction"></param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddEvent(UnityAction<GestureMetaData> eventAction) {
             completeEvent.AddListener(eventAction);
             return this;
@@ -168,16 +167,25 @@ namespace Gestures {
         /// Sets the Normalizer to be applied to every incoming GTransform data point.
         /// </summary>
         /// <param name="normalizer">The Normalizer to be set.</param>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture SetNormalizer(Normalizer normalizer) {
-            normalizer = nm;
+            this.normalizer = normalizer;
             return this;
+        }
+
+        /// <summary>
+        /// Gets the Normalizer attached to this Gesture
+        /// </summary>
+        /// <returns>Return the Normalizer attached to the Gesture</returns>
+        public Normalizer GetNormalizer() {
+            return normalizer;
         }
 
         /// <summary>
         /// Adds a single check to the list of checks that only need to be satisfied once for gesture completion.
         /// </summary>
         /// <param name="newCheck"></param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddOnceCheck(Check newCheck) {
             checks.Add(newCheck);
             return this;
@@ -187,7 +195,7 @@ namespace Gestures {
         /// Adds a range of checks to the list of checks that only need to be satisfied once for gesture completion.
         /// </summary>
         /// <param name="newChecks">IEnumerator of Checks</param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddOnceChecks(IEnumerable<Check> newChecks) {
             checks.AddRange(newChecks);
             return this;
@@ -197,7 +205,7 @@ namespace Gestures {
         /// Adds a single check to the list of checks that need to be satisfied by every data point for gesture completion.
         /// </summary>
         /// <param name="newCheck">The check to be added to the always-check list.</param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddAlwaysCheck(Check newCheck) {
             alwaysChecks.Add(newCheck);
             return this;
@@ -207,7 +215,7 @@ namespace Gestures {
         /// Adds a range of check to the list of checks that need to be satisfied by every data point for gesture completion.
         /// </summary>
         /// <param name="newChecks">IEnumerable of Checks to be passed in.</param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddAlwaysChecks(IEnumerable<Check> newChecks) {
             alwaysChecks.AddRange(newChecks);
             return this;
@@ -217,7 +225,7 @@ namespace Gestures {
         /// Adds a single check to the list of checks that must be satisfied in sequential order for gesture completion.
         /// </summary>
         /// <param name="newCheck">The Check to be added.</param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddSequentialCheck(Check newCheck) {
             sequentialChecks.Add(newCheck);
             return this;
@@ -227,7 +235,7 @@ namespace Gestures {
         /// Adds a range of checks to the list of chekcs that must be satisfied in sequential order for gesture completion.
         /// </summary>
         /// <param name="newChecks">IEnumerable of Checks to be passed in.</param>
-        /// <returns></returns>
+        /// <returns>Reference to the Gesture</returns>
         public Gesture AddSequentialChecks(IEnumerable<Check> newChecks) {
             sequentialChecks.AddRange(newChecks);
             return this;

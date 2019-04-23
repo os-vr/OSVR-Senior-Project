@@ -156,7 +156,7 @@ namespace Gestures {
         /// </summary>
         /// <param name="norm"></param>
         /// <returns></returns>
-        public Normalizer SetViewNormalizer(Normalizer norm)
+        public void SetViewNormalizer(Normalizer norm)
         {
             this.viewNormalizer = norm;
         }
