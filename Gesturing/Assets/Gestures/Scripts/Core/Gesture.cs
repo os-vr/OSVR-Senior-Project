@@ -241,14 +241,16 @@ namespace Gestures {
             return this;
         }
         
-        public void VisualizeGesture(Rect grid) {
-            foreach (Check c in checks) {
-                c.VisualizeCheck(grid);
-            }
-
-            foreach (Check c in sequentialChecks) {
-                c.VisualizeCheck(grid);
-            }
+        /// <summary>
+        /// Get all checks attached to this Gesture
+        /// </summary>
+        /// <returns>Return a List of Checks</returns>
+        public List<Check> GetAllChecks() {
+            List<Check> allChecks = new List<Check>();
+            allChecks.AddRange(checks);
+            allChecks.AddRange(sequentialChecks);
+            allChecks.AddRange(alwaysChecks);
+            return allChecks;
         }
 
     }

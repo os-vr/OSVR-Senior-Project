@@ -10,7 +10,7 @@ namespace Gestures {
 
         private Vector3 firstPosition;
         private Vector3 secondPosition;
-        private float precision;
+        private float tolerance;
         private LineRenderer lineRenderer;
 
         /// <summary>
@@ -22,7 +22,7 @@ namespace Gestures {
         public LineCheck(Vector3 firstPosition, Vector3 secondPosition, float tolerance = 0.4f) {
             this.firstPosition = firstPosition;
             this.secondPosition = secondPosition;
-            this.precision = tolerance;
+            this.tolerance = tolerance;
         }
 
 
@@ -33,11 +33,11 @@ namespace Gestures {
         /// <returns> Returns a float (between 0 and 1) representing the distance from the center of the line, or -1 if the check fails </returns>
         override public float CheckPasses(GTransform g) {
             float distance = Vector3.Distance(g.position, GetClosestPointOnLineSegment(firstPosition, secondPosition, g.position));
-            if (distance > precision/2.0f) {
+            if (distance > tolerance/2.0f) {
                 return -1;
             }
 
-            return distance/(precision/2.0f);
+            return distance/(tolerance/2.0f);
         }
 
 
@@ -57,36 +57,6 @@ namespace Gestures {
             } else {
                 return A + AB * distance;
             }
-        }
-
-
-        override public void VisualizeCheck(Rect grid) {
-            GL.PushMatrix();
-            Material mat = new Material(Shader.Find("Sprites/Default"));
-            mat.SetPass(0);
-            GL.Begin(GL.QUADS);
-            GL.Color(Color.black);
-
-            Vector2 seg = (secondPosition - firstPosition).normalized;
-            Vector3 norm = new Vector3(seg.y, -seg.x);
-            Vector3 p1 = firstPosition + precision/2 * norm;
-            Vector3 p2 = firstPosition + -precision/2 * norm;
-            Vector3 p3 = secondPosition + -precision/2 * norm;
-            Vector3 p4 = secondPosition + precision /2 * norm;
-
-            Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
-
-            GL.Vertex(Vector3.Scale(p1, size) + new Vector3(grid.position.x, grid.position.y));
-            GL.Vertex(Vector3.Scale(p2, size) + new Vector3(grid.position.x, grid.position.y));
-            GL.Vertex(Vector3.Scale(p3, size) + new Vector3(grid.position.x, grid.position.y));
-            GL.Vertex(Vector3.Scale(p4, size) + new Vector3(grid.position.x, grid.position.y));
-            GL.End();
-            GL.PopMatrix();
-
-            EditorGUILayout.BeginHorizontal();
-            firstPosition = EditorGUILayout.Vector3Field("First Position: ", firstPosition);
-            secondPosition = EditorGUILayout.Vector3Field("Second Position: ", secondPosition);
-            EditorGUILayout.EndHorizontal();
         }
 
     }

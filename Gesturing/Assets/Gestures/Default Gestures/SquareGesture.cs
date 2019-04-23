@@ -21,10 +21,10 @@ namespace Gestures {
                 new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0), tolerance),
                 new LineCheck(new Vector3(1, -1, 0), new Vector3(1, 1, 0), tolerance),
 
-                new RadiusCheck(new Vector3(1, 1, 0), tolerance),
-                new RadiusCheck(new Vector3(-1, 1, 0), tolerance),
-                new RadiusCheck(new Vector3(-1, -1, 0), tolerance),
-                new RadiusCheck(new Vector3(1, -1, 0), tolerance),
+                new RadiusCheck(new Vector3(1, 1, 0), tolerance/2),
+                new RadiusCheck(new Vector3(-1, 1, 0), tolerance/2),
+                new RadiusCheck(new Vector3(-1, -1, 0), tolerance/2),
+                new RadiusCheck(new Vector3(1, -1, 0), tolerance/2),
             })
             .SetNormalizer(new FittedNormalizer(new Vector3(-1, -1, 0), new Vector3(1, 1, 0)));
 

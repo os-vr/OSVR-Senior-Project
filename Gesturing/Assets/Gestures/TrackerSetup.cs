@@ -42,7 +42,7 @@ public class TrackerSetup : MonoBehaviour {
         lineRenderer.startColor = Color.green;
         lineRenderer.endColor = Color.green;
 
-        if (data.name.Equals("Circle")) {
+        if (data.name.Equals("Letter-Z")) {
             tracker.SetMaxBufferSize(128);
             tracker.SetBufferWrap(true);
         }

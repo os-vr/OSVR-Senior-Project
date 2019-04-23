@@ -20,7 +20,7 @@ namespace Gestures {
             XZ, /// <summary> Arc orientation is in the XZ-plane </summary>
         };
 
-        private float precision;
+        private float tolerance;
         private Vector3 startPosition;
         private float degrees;
         private Vector3 center;
@@ -41,7 +41,7 @@ namespace Gestures {
             this.degrees = Mathf.Clamp(degrees, -90.0f, 90.0f);
             this.center = center;
             this.radius = Vector3.Distance(center, startPosition);
-            this.precision = tolerance;
+            this.tolerance = tolerance;
             this.orientation = orientation;
         }
 
@@ -79,50 +79,12 @@ namespace Gestures {
 
             bool inArc = IsClockwise(sectorStart, direction) && !IsClockwise(sectorEnd, direction);
             bool prettyClose = (Vector3.Dot(sectorStart, direction) >= (1.0f - eps)) || (Vector3.Dot(sectorEnd, direction) >= (1.0f - eps));
-            bool withinRadius = (distance < radius + precision/2.0f && distance > radius - precision/2.0f);
+            bool withinRadius = (distance < radius + tolerance/2.0f && distance > radius - tolerance/2.0f);
 
             if (withinRadius && (inArc || prettyClose)) {
-                return Mathf.Abs((distance - radius))/(precision/2.0f);
+                return Mathf.Abs((distance - radius))/(tolerance/2.0f);
             }
             return -1;
-        }
-
-        override public void VisualizeCheck(Rect grid) {
-            GL.PushMatrix();
-            Material mat = new Material(Shader.Find("Sprites/Default"));
-            mat.SetPass(0);
-            GL.Begin(GL.TRIANGLE_STRIP);
-           
-            GL.Color(Color.black);
-
-            float startRadians = Mathf.Atan2(center.y - startPosition.y, center.x - startPosition.x) + Mathf.PI;
-            float endRadians = startRadians - degrees * Mathf.PI / 180;
-            float radianDifference = endRadians - startRadians;
-
-            Vector3 size = new Vector3(grid.size.x, -grid.size.y, 0);
-
-            int divisions = 16;
-            float r = radianDifference / divisions;
-
-            for (int i = 0; i <= divisions; i++) {
-                Vector3 pos = center + radius * new Vector3(Mathf.Cos(startRadians + r * i), Mathf.Sin(startRadians + r * i), 0);
-               
-                Vector3 norm = (center - pos).normalized;
-                GL.Vertex(Vector3.Scale(pos + precision / 2 * norm, size) + new Vector3(grid.position.x, grid.position.y));
-                GL.Vertex(Vector3.Scale(pos - precision / 2 * norm, size) + new Vector3(grid.position.x, grid.position.y));
-            }
-
-            GL.End();
-            GL.PopMatrix();
-
-
-
-            EditorGUILayout.BeginHorizontal();
-            startPosition = EditorGUILayout.Vector3Field("Start : ", startPosition);
-            center = EditorGUILayout.Vector3Field("Center : ", center);
-            degrees = EditorGUILayout.Slider("Degrees : ", degrees, -90, 90);
-            EditorGUILayout.EndHorizontal();
-
         }
 
     }

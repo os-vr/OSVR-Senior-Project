@@ -321,6 +321,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e1f2f6e529adb1469e3574f6ed92dd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerType: 2
+  gestureActiveButton: 8192
+  vibrationFrequency: 0.2
+  vibrationAmplitude: 0.2
 --- !u!135 &298671157
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -391,6 +395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1818a9815a41143a0a4459ec61bde7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  controllerType: 2
 --- !u!120 &298671162
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -522,6 +527,7 @@ MonoBehaviour:
   maxRenderScale: 1
   _headPoseRelativeOffsetRotation: {x: 0, y: 0, z: 0}
   _headPoseRelativeOffsetTranslation: {x: 0, y: 0, z: 0}
+  profilerTcpPort: 32419
   expandMixedRealityCapturePropertySheet: 0
   enableMixedReality: 0
   compositionMethod: 0
@@ -582,7 +588,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8113374cd556ae54b9cd7e7cf6def8e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 0}
   lineRenderer: {fileID: 298671162}
 --- !u!1 &425571917
 GameObject:
