@@ -47,7 +47,7 @@ Visit [Full Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated
   * Search for `Oculus Integration`
   * Download the package and import the assets.
 
-* Download the Gesture Framework asset from the Unity Asset Store
+* Download the `OSVR Gesture Framework` asset from the Unity Asset Store
   * *If the Gesture Framework is downloaded before Oculus Integration, various scripts will not be loaded correctly*
   * Open the `Gestures/ExampleScenes/GestureDemoScene` scene.
 
