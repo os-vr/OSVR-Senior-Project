@@ -37,7 +37,7 @@ public class RotateToUser : MonoBehaviour {
     {
         if (isCenter)
         {
-            pivotPoint = this;
+            pivotPoint = this.gameObject;
         }
         if (pivotPoint == null)
         {
