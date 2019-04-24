@@ -17,7 +17,7 @@ namespace Gestures {
         private static BindingFlags flags = BindingFlags.NonPublic | BindingFlags.GetField | BindingFlags.Instance;
         private static bool customBounds = false;
 
-        [MenuItem("Window/Gesture Visualization")]
+        [MenuItem("Tools/Gesture Visualization")]
         static void Init() {
             GestureVisualizerWindow window =
                 (GestureVisualizerWindow)GetWindow(typeof(GestureVisualizerWindow));
