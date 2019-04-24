@@ -243,7 +243,7 @@ public class ButtonScript : MonoBehaviour
         //update extras
         nextStep();
         //gradient handling
-        if (useTransition)
+        if (useGradient)
         {
             if (hoverTime == 1) {
                 if (endColor != null)
