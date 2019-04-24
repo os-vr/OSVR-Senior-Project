@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NewButtonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour
 {
     /// <summary>
     /// The extra gameobject that is selected to be shown and exists in the gameworld
