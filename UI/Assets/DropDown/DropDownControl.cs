@@ -261,14 +261,14 @@ public class DropDownControl : MonoBehaviour
     /// <summary>
     /// The button in the current game object that this script offloads the button functionality onto.
     /// </summary>
-    private NewButtonScript DropButton;
+    private ButtonScript DropButton;
     /// <summary>
     /// set up of the object that happens before start
     /// </summary>
     void Awake()
     {
         //find and set button
-        DropButton = this.GetComponent<NewButtonScript>() as NewButtonScript;
+        DropButton = this.GetComponent<ButtonScript>() as ButtonScript;
         //will produce errors if no button is set change to give readible error
         DropButton.onPress.AddListener(activate_dropdown);
         //set the layers
@@ -482,7 +482,7 @@ public class DropDownControl : MonoBehaviour
                 //gets the created gameobject with the collider
                 GameObject DDinst = inst.gameObject.GetComponentInChildren<Collider>().gameObject;
                 //DDi stands for Drop Down Item a deprecated script but a useful name. It is actually a new button script
-                NewButtonScript DDI = DDinst.AddComponent<NewButtonScript>() as NewButtonScript;
+                ButtonScript DDI = DDinst.AddComponent<ButtonScript>() as ButtonScript;
                 //may be incorrect
                 if (extra != null)
                 {
