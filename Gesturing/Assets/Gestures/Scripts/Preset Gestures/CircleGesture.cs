@@ -14,7 +14,7 @@ namespace Gestures {
         /// </summary>
         /// <param name="tolerance">The tolerance value for the circle gesture. Default is 0.4f</param>
         public CircleGesture(float tolerance = 0.4f) : base() {
-            this.AddOnceChecks(new List<Check> {
+            this.AddChecks(new List<Check> {
                 new ArcCheck(new Vector3(0, 1, 0), 90, new Vector3(0,0,0), tolerance),
                 new ArcCheck(new Vector3(1, 0, 0), 90, new Vector3(0,0,0), tolerance),
                 new ArcCheck(new Vector3(0, -1, 0), 90, new Vector3(0,0,0), tolerance),

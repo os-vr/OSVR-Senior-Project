@@ -15,7 +15,7 @@ namespace Gestures {
         /// <param name="tolerance">The tolerance value for the edges of the square. Default is 0.4f</param>
         public SquareGesture(float tolerance = 0.4f) : base()
         {
-            this.AddOnceChecks(new List<Check> {
+            this.AddChecks(new List<Check> {
                 new LineCheck(new Vector3(1, 1, 0), new Vector3(-1, 1, 0), tolerance),
                 new LineCheck(new Vector3(-1, 1, 0), new Vector3(-1, -1, 0), tolerance),
                 new LineCheck(new Vector3(-1, -1, 0), new Vector3(1, -1, 0), tolerance),

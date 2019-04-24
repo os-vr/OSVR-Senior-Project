@@ -186,7 +186,7 @@ namespace Gestures {
         /// </summary>
         /// <param name="newCheck"></param>
         /// <returns>Reference to the Gesture</returns>
-        public Gesture AddOnceCheck(Check newCheck) {
+        public Gesture AddCheck(Check newCheck) {
             checks.Add(newCheck);
             return this;
         }
@@ -196,7 +196,7 @@ namespace Gestures {
         /// </summary>
         /// <param name="newChecks">IEnumerator of Checks</param>
         /// <returns>Reference to the Gesture</returns>
-        public Gesture AddOnceChecks(IEnumerable<Check> newChecks) {
+        public Gesture AddChecks(IEnumerable<Check> newChecks) {
             checks.AddRange(newChecks);
             return this;
         }
