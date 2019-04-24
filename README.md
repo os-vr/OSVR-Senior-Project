@@ -1,6 +1,6 @@
 # Open Source VR Project 
 [![Build Status](https://travis-ci.org/os-vr/OSVR-Senior-Project.svg?branch=master)](https://travis-ci.org/os-vr/OSVR-Senior-Project)
-[API Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated.html)
+[API Documentation](s://os-vr.github.io/OSVR-Senior-Project/namespace_gestures.html)
 
 
 
@@ -16,7 +16,7 @@
 
 ### Documentation
 
-Visit [Full Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated.html) for a detailed API
+Visit [Full Documentation](s://os-vr.github.io/OSVR-Senior-Project/namespace_gestures.html) for a detailed API
 
 ### Setting up the project
 
