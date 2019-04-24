@@ -21,9 +21,6 @@ namespace Gestures {
         /// <returns> Returns a float (between 0 and 1) representing the distance from the center of a check, or -1 if the check fails </returns>
         public abstract float CheckPasses(GTransform transform);
 
-
-        public virtual void VisualizeCheck(Rect grid) {}
-
     }
 
 }
