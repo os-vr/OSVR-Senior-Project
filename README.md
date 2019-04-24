@@ -3,25 +3,6 @@
 [API Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated.html)
 
 
-## UI Framework
-There will be multiple projects showcasing each element individually as well as a single project that has all of the UI elements bundled into one project under its Assetes folder. The UI-All-In-One is the recommended project to download for testing out the elements.
-
-Additionally, under the Scripts folder of each project are some scripts that you can attach to any object that affect how the object interacts with regards to the headset view.
-
-#### GUI Elements
-Buttons, Sliders, Dropdown menus, Dials, and a Keyboard
-
-#### Attachable scripts
-Scaling, Pivoting, and Relative visibility
-
-
-
-
-
-
-
-
-
 
 # OSVR Gesturing Installation Guide   
 
@@ -35,7 +16,7 @@ Scaling, Pivoting, and Relative visibility
 
 ### Documentation
 
-Visit [API Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated.html) for a detailed API
+Visit [Full Documentation](https://os-vr.github.io/OSVR-Senior-Project/annotated.html) for a detailed API
 
 ### Setting up the project
 
