@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class NewButtonScript : MonoBehaviour
+public class ButtonScript : MonoBehaviour
 {
     /// <summary>
     /// The extra gameobject that is selected to be shown and exists in the gameworld
@@ -243,7 +243,7 @@ public class NewButtonScript : MonoBehaviour
         //update extras
         nextStep();
         //gradient handling
-        if (useTransition)
+        if (useGradient)
         {
             if (hoverTime == 1) {
                 if (endColor != null)
