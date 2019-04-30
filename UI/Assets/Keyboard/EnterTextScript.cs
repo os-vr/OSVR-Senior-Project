@@ -1,43 +1,44 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Script attachable to a keyboard key that enables that key create a new line
+/// </summary>
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class EnterTextScript : MonoBehaviour
+namespace OSVR.UI
 {
-    public Text text;
-    private bool needDelay;
-    private float timer = -1;
-    public float timeDelay = 0.25f;
-    // Start is called before the first frame update
-    void Start()
+    public class EnterTextScript : MonoBehaviour
     {
-        needDelay = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // if (timer <= 0.0)
-        //  {
-        //      timer = 0.25f;
-        //  }
-
-        //     timer -= Time.deltaTime;
-
-        // Debug.Log(timer);
-
-    }
-
-    public void AddText()
-    {
-        if (Time.time - timer > timeDelay)
+        /// <summary>
+        /// Text object that the script will modify
+        /// </summary>
+        public Text text;
+        /// <summary>
+        /// Timer for input delay
+        /// </summary>
+        private float timer = -1;
+        /// <summary>
+        /// User specified float for seconds to delay before accepting more input
+        /// </summary>
+        public float timeDelay = 0.25f;
+        // Start is called before the first frame update
+        void Start()
         {
-            text.text += "\r\n";
-            timer = Time.time;
         }
-            
 
+        // Update is called once per frame
+        void Update()
+        {
+        }
 
+        public void AddText()
+        {
+            if (Time.time - timer > timeDelay)
+            {
+                text.text += "\r\n";
+                timer = Time.time;
+            }
+        }
     }
 }

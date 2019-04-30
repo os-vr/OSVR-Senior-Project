@@ -1,43 +1,43 @@
-﻿using System.Collections;
+﻿/// <summary>
+/// Script attachable to a keyboard key that enables that key to delete letters once per press.
+/// </summary>
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class BackTextScript : MonoBehaviour
-{
-    public Text text;
-    private bool needDelay;
-    private float timer = -1;
-    public float timeDelay = 0.25f;
-    // Start is called before the first frame update
-    void Start()
+namespace OSVR.UI {
+    public class BackTextScript : MonoBehaviour
     {
-        needDelay = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // if (timer <= 0.0)
-        //  {
-        //      timer = 0.25f;
-        //  }
-
-        //     timer -= Time.deltaTime;
-
-        // Debug.Log(timer);
-
-    }
-
-    public void AddText()
-    {
-        if (Time.time - timer > timeDelay)
+        /// <summary>
+        /// Text object that the script will modify
+        /// </summary>
+        public Text text;
+        /// <summary>
+        /// Timer for input delay
+        /// </summary>
+        private float timer = -1;
+        /// <summary>
+        /// User specified float for seconds to delay before accepting more input
+        /// </summary>
+        public float timeDelay = 0.25f;
+        // Start is called before the first frame update
+        void Start()
         {
-            text.text = text.text.Substring(0,text.text.Length - 1);
-            timer = Time.time;
         }
-            
 
+        // Update is called once per frame
+        void Update()
+        {
+        }
 
+        public void AddText()
+        {
+            if (Time.time - timer > timeDelay)
+            {
+                text.text = text.text.Substring(0, text.text.Length - 1);
+                timer = Time.time;
+            }
+        }
     }
 }
