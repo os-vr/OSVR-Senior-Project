@@ -3,7 +3,7 @@
 [API Documentation](https://os-vr.github.io/OSVR-Senior-Project/namespace_gestures.html)
 
 
-# OSVR Gesturing Installation Guide   
+# OSVR User Interface Installation Guide   
 
 > **Requires** the Unity software version 2019.1 (or above).
 
@@ -66,10 +66,32 @@ Visit [Full Documentation](https://os-vr.github.io/OSVR-Senior-Project/namespace
   * set first offset to an appropriate value for the template to be spawned away from the main dropdown button
   * set Use Gradient or Use Instant Transition to true if you want all the buttons made by the drop down to have the same hovering effect
   * set the values below that to the values you want the spawned buttons to have when they are hovered.
-  * if neither Use Gradient or Use Instant Transiition are set to true the buttons will have the values specified on their option
-  * go to options and set the number of options you wnat to display
+  * if neither Use Gradient or Use Instant Transition are set to true the buttons will have the values specified on their option
+  * go to options and set the number of options you want to display
   * set The label to the string you want to have displayed on the button's text mesh
   * set the parameters in option in the same manner as a button for all the extras gradients and colors
-  * color fade of the gradient can olny be set as the item fade in the dropdown script
+  * color fade of the gradient can only be set as the item fade in the dropdown script
 
 * Keyboard
+
+* Rotate To User
+  * attach to the Game Object you want to rotate
+  * set user camera to the camera the user uses to see the world
+  * set is center to true if it should rotate in place if you set this to true ignore the rest of the set up guide
+  * set the pivot point the object you want this object to orbit
+  * set distance from pivot point to a reasonable value
+* Scale to user
+  * attach to the Game Object you want to scale
+  * set user camera to the camera the user uses to see the world
+  * set ScaleDist to the distance at which this object should be at its starting size
+  * set near scale and far scale to the appropriate value for how quickly you want them to scale
+  * set is center to true if it should scale based on its current position if you set this to true ignore the rest of the set up guide
+  * set the pivot point the object you want this object to do the distance scaling based on
+* Disappear At Distance
+  * attach to the Game Object you want to toggle the visibility of
+  * set user camera to the camera the user uses to see the world
+  * set Disappear at Close Distance to a positive number if you want it to disappear when you get within that distance
+  * set Disappear When Far Away and Disappear At Far Distance to True and the right value if you want it to disappear at a certain distance
+  * set Item Renderer and Child Renderer to true if you want to have the renderer of the item and or the children of the item affected
+  * set is center to true if it should scale based on its current position if you set this to true ignore the rest of the set up guide
+  * set the pivot point the object you want this object to do the distance scaling based on
