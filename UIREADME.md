@@ -73,7 +73,9 @@ Visit [Full Documentation](https://os-vr.github.io/OSVR-Senior-Project/namespace
   * color fade of the gradient can only be set as the item fade in the dropdown script
 
 * Keyboard
-
+  * drag the keyboard prefab into your scene
+  * the keys are made using our ButtonScript where the events firing are tied to script modifying a Text object
+  * To set the keys' text object to the one you want to modify, click on the key or shift click and select multiple keys, and within the attached TextScript, select the text object you want to be modified by the keys
 * Rotate To User
   * attach to the Game Object you want to rotate
   * set user camera to the camera the user uses to see the world
