@@ -1,15 +1,15 @@
-﻿/// <summary>
-/// Handles a basic button. This is used by other functions that use buttons
-/// </summary>
-/// <remarks>
-/// Keyboard, and dropdown heavily rely on buttons
-/// </remarks>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 namespace OSVR.UI
 {
+/// <summary>
+/// Handles a basic button. This is used by other functions that use buttons
+/// </summary>
+/// <remarks>
+/// Keyboard, and dropdown heavily rely on buttons
+/// </remarks>
     public class ButtonScript : MonoBehaviour
     {
         /// <summary>
