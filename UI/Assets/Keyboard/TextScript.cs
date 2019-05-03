@@ -26,7 +26,8 @@ namespace OSVR.UI
         /// User specified float for seconds to delay before accepting more input
         /// </summary>
         public float timeDelay = 0.25f;
-        // Start is called before the first frame update
+        public enum Text_Type {Normal, Enter, Backspace};
+        public Text_Type TextType;
         void Start()
         {
         }
@@ -38,10 +39,21 @@ namespace OSVR.UI
 
         public void AddText()
         {
-
             if (Time.time - timer > timeDelay)
             {
-                text.text += key;
+
+                switch (TextType)
+                {
+                    case Text_Type.Backspace:
+                        text.text = text.text.Substring(0, text.text.Length - 1);
+                        break;
+                    case Text_Type.Enter:
+                        text.text += "\r\n";
+                        break;
+                    default:
+                        text.text += key;
+                        break;
+                }
                 timer = Time.time;
             }
         }
