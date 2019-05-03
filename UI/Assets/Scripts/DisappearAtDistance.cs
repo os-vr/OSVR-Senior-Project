@@ -1,15 +1,15 @@
-﻿/// <summary>
-/// controls the visibility of text based on distance, both close and long range.
-/// </summary>
-/// <remarks>
-/// ensures the screen is not cluttered since most items you care about must be within a certian range to be relevant.
-/// </remarks>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace OSVR.UI
 {
+/// <summary>
+/// controls the visibility of text based on distance, both close and long range.
+/// </summary>
+/// <remarks>
+/// ensures the screen is not cluttered since most items you care about must be within a certian range to be relevant.
+/// </remarks>
     public class DisappearAtDistance : MonoBehaviour
     {
         /// <summary>
