@@ -8,7 +8,7 @@ namespace OSVR.UI{
 /// Items still foreshorten, but not at a rate that makes them hard to see.
 /// </summary>
 /// <remarks>
-/// Changes the physical size,
+/// Changes the physical size, in relation to a given object relative to the user.
 /// 
 /// </remarks>
     public class ScaleToUser : MonoBehaviour
