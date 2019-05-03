@@ -1,6 +1,3 @@
-﻿/// <summary>
-/// Script attachable to a keyboard key that enables that key add onto a text object any user specified key
-/// </summary>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +5,9 @@ using UnityEngine.UI;
 
 namespace OSVR.UI
 {
+/// <summary>
+/// Script attachable to a keyboard key that enables that key add onto a text object any user specified key
+/// </summary>
     public class TextScript : MonoBehaviour
     {
         /// <summary>
