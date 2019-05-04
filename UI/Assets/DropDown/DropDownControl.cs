@@ -1,11 +1,3 @@
-﻿/// <summary>
-/// This should be attached to a object that will serve as the base of the dropdown
-/// The game object must also have a NewButtonScript to handle the button
-/// </summary>
-/// <remarks>
-/// most of the functionality is ported to the NewButtonScript or to how the Game objects that
-/// serve as templates are set up.
-/// </remarks>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,6 +6,14 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 namespace OSVR.UI
 {
+/// <summary>
+/// This should be attached to a object that will serve as the base of the dropdown
+/// The game object must also have a NewButtonScript to handle the button
+/// </summary>
+/// <remarks>
+/// most of the functionality is ported to the NewButtonScript or to how the Game objects that
+/// serve as templates are set up.
+/// </remarks>
     public class DropDownControl : MonoBehaviour
     {
         /// <summary>

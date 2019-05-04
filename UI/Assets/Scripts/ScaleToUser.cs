@@ -1,16 +1,16 @@
-﻿/// <summary>
-/// Makes items, typically text, change size based on distance from user. 
-/// Items still foreshorten, but not at a rate that makes them hard to see.
-/// </summary>
-/// <remarks>
-/// Changes the physical size,
-/// 
-/// </remarks>
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
 namespace OSVR.UI{
+/// <summary>
+/// Makes items, typically text, change size based on distance from user. 
+/// Items still foreshorten, but not at a rate that makes them hard to see.
+/// </summary>
+/// <remarks>
+/// Changes the physical size, in relation to a given object relative to the user.
+/// 
+/// </remarks>
     public class ScaleToUser : MonoBehaviour
     {
         /// <summary>

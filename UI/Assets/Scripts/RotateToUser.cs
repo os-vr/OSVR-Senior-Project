@@ -1,12 +1,12 @@
-﻿/// <summary>
-/// ensures the items are turned in the right direction, intended to keep text readable at all angles.
-/// </summary>
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 namespace OSVR.UI
 {
+/// <summary>
+/// ensures the items are turned in the right direction, intended to keep text readable at all angles.
+/// </summary>
     public class RotateToUser : MonoBehaviour
     {
         /// <summary>
