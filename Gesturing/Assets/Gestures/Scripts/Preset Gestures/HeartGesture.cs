@@ -14,7 +14,7 @@ namespace Gestures{
         /// </summary>
         /// <param name="tolerance">The tolerance value for the lines and arcs of the heart. Default is 0.4f</param>
         public HeartGesture(float tolerance = 0.4f) : base() {
-            this.AddOnceChecks(new List<Check>{
+            this.AddChecks(new List<Check>{
 
                 new ArcCheck(new Vector3(0, .5f, 0),        90, new Vector3(.5f, .5f, 0),       tolerance),
                 new ArcCheck(new Vector3(.5f, 1.0f, 0),     90, new Vector3(.5f, .5f, 0),       tolerance),

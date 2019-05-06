@@ -48,12 +48,12 @@ public class TrackerSetup : MonoBehaviour {
 
     void GenerateGestures() {
 
-        tracker.AddGesture("Square", new SquareGesture(.5f));
+        tracker.AddGesture("Square", new SquareGesture(.6f));
         tracker.AddGesture("Circle", new CircleGesture(.4f));
         tracker.AddGesture("Triangle", new TriangleGesture(.8f));
         tracker.AddGesture("Heart", new HeartGesture());
 
-        tracker.AddGesture("Letter-S", new Gesture().AddOnceChecks(new List<Check> {
+        tracker.AddGesture("Letter-S", new Gesture().AddChecks(new List<Check> {
             new ArcCheck(new Vector3(.5f, .5f, 0), -90, new Vector3(0,.5f,0)),
             new ArcCheck(new Vector3(0, 1, 0), -90, new Vector3(0,.5f,0)),
             new ArcCheck(new Vector3(-.5f,.5f,0), -90, new Vector3(0,.5f,0)),
@@ -65,7 +65,7 @@ public class TrackerSetup : MonoBehaviour {
             .SetNormalizer(new FittedNormalizer(new Vector3(-.5f, -1.0f, 0), new Vector3(.5f, 1.0f, 0))));
 
 
-        tracker.AddGesture("Plus", new Gesture().AddOnceChecks(new List<Check>() {
+        tracker.AddGesture("Plus", new Gesture().AddChecks(new List<Check>() {
             new LineCheck(new Vector3(-1,0,0), new Vector3(1,0,0)),
             new LineCheck(new Vector3(0,-1,0), new Vector3(0,1,0)),
 
