@@ -202,7 +202,7 @@ namespace OSVR.UI
                 Debug.LogError("You can only use one kind of transition, defaulting to Instant transition");
                 useGradient = false;
             }
-            print(useGradient);
+            
         }
         /// <summary>
         /// Update is called once per frame
