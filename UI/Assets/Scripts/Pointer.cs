@@ -18,17 +18,23 @@ public class Pointer : MonoBehaviour
 
         gameObject.layer = initLayer;
         cc = GetComponent<CharacterController>();
+        GameObject hand = GameObject.Find("hand_right");
+        gameObject.transform.parent = hand.transform;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (OVRInput.Get(OVRInput.Axis1D.PrimaryIndexTrigger, OVRInput.Controller.RTouch) > 0)
+        GameObject go = GameObject.Find("hands:b_r_index_ignore");
+        if(go != null) {
+            Vector3 newPos = go.transform.position + transform.up*transform.localScale.y;
+            transform.position = newPos;
+        }
+        
+        if (OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch))
         {
             gameObject.layer = collLayer;
-            
-
         }
         else
         {

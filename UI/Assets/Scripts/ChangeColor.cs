@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+/// <summary>
+/// A simple script to change the color of an object
+/// </summary>
+
 public class ChangeColor : MonoBehaviour
 {
     Renderer rend;

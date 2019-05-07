@@ -75,7 +75,7 @@ namespace OSVR.UI
         private bool interactable_past = true;
         private bool Interactable = true;
         /// <summary>
-        /// Weather the dropdown is interactable, sets all items to off, but will not set all items to on if they were off before
+        /// Whether the dropdown is interactable, sets all items to off, but will not set all items to on if they were off before
         /// </summary>
         /// <value>
         /// The boolean that represents the state of the system
@@ -221,9 +221,9 @@ namespace OSVR.UI
         /// custom event to tell listeners what item was selected
         /// </summary>
         [System.Serializable]
-        public class onValueChange : UnityEvent<int> { };
+        public class OnValueChange : UnityEvent<int> { };
         [SerializeField]
-        public onValueChange onValueChanged = new onValueChange();
+        public OnValueChange onValueChanged = new OnValueChange();
 
         /// <summary>
         /// lets users create buttons in the menu, contains information about making buttons on dropdown activation
