@@ -173,7 +173,7 @@ namespace OSVR.UI
         void Start()
         {
             Collider col = this.GetComponent<Collider>();
-            if (col != null)
+            if (col != null && !col.isTrigger)
             {
                 Debug.Log("Set your collider isTrigger to true");
                 col.isTrigger = true;
