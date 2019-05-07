@@ -512,18 +512,18 @@ namespace OSVR.UI
             }
         }
         /// <summary>
-        /// Set weather the item is hovered
+        /// Set whether the item is hovered
         /// </summary>
-        /// <param name="state">weather the item is hovered</param>
+        /// <param name="state">whether the item is hovered</param>
         public void setHovered(bool state)
         {
             hovered = state;
             nextStep();
         }
         /// <summary>
-        /// Set weather the item is pressed
+        /// Set whether the item is pressed
         /// </summary>
-        /// <param name="state">weather the item is pressed</param>
+        /// <param name="state">whether the item is pressed</param>
         public void setPressed(bool state)
         {
             pressed = state;
@@ -532,7 +532,7 @@ namespace OSVR.UI
         /// <summary>
         /// set weather the item is disabled
         /// </summary>
-        /// <param name="state">weather the item is disabled</param>
+        /// <param name="state">whether the item is disabled</param>
         public void setDisabled(bool state)
         {
             disabled = state;
