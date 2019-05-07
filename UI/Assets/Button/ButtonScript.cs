@@ -31,9 +31,9 @@ namespace OSVR.UI
         [Tooltip("The gradient for color changing")]
         public Gradient gradient;
         /// <summary>
-        /// Weather we use the gradient
+        /// Whether we use the gradient
         /// </summary>
-        [Tooltip("Weather we use the gradient or instant transition")]
+        [Tooltip("Whether we use the gradient or instant transition")]
         public bool useGradient;
         /// <summary>
         /// The start color in instant transitions
@@ -46,9 +46,9 @@ namespace OSVR.UI
         [Tooltip("The end color in instant transitions")]
         public Color endColor;
         /// <summary>
-        /// Weather we use the instant transition
+        /// Whether we use the instant transition
         /// </summary>
-        [Tooltip("Weather we use the instant transition")]
+        [Tooltip("Whether we use the instant transition")]
         public bool useInstantTransition;
         /// <summary>
         /// The time it takes to get the hovered item to do a fade transition
