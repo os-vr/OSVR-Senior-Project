@@ -19,7 +19,7 @@ public class Pointer : MonoBehaviour
         gameObject.layer = initLayer;
         cc = GetComponent<CharacterController>();
         GameObject hand = GameObject.Find("hand_right");
-        gameObject.transform.parent = hand.transform;
+        //gameObject.transform.parent = hand.transform;
 
     }
 
