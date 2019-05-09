@@ -530,7 +530,7 @@ namespace OSVR.UI
             nextStep();
         }
         /// <summary>
-        /// set weather the item is disabled
+        /// set whether the item is disabled
         /// </summary>
         /// <param name="state">whether the item is disabled</param>
         public void setDisabled(bool state)
