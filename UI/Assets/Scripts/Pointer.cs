@@ -6,33 +6,45 @@ public class Pointer : MonoBehaviour
 {
     public LayerMask initialLayer;
     public LayerMask layerForCollision;
-    private CharacterController cc;
     private int initLayer;
     private int collLayer;
-    
-    // Start is called before the first frame update
+    private LineRenderer pointerLine;
+    private SphereCollider pointerCollider;
+    public float maxDrawDistance = 10.0f;
+    public OVRInput.Controller controllerType;
+    public OVRInput.Button activationButton;
+
     void Start()
     {
         initLayer = (int)Mathf.Log(initialLayer.value, 2);
         collLayer = (int)Mathf.Log(layerForCollision.value, 2);
 
         gameObject.layer = initLayer;
-        cc = GetComponent<CharacterController>();
-        GameObject hand = GameObject.Find("hand_right");
-        //gameObject.transform.parent = hand.transform;
-
+        pointerLine = GetComponent<LineRenderer>();
+        pointerCollider = GetComponent<SphereCollider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        GameObject go = GameObject.Find("hands:b_r_index_ignore");
-        if(go != null) {
-            Vector3 newPos = go.transform.position + transform.up*transform.localScale.y;
-            transform.position = newPos;
-        }
         
-        if (OVRInput.Get(OVRInput.Button.Two, OVRInput.Controller.RTouch))
+        if(pointerLine != null) {
+            RaycastHit info;
+            Vector3 pos = gameObject.transform.position;
+            Vector3 forward = gameObject.transform.forward;
+            Vector3 hitPoint = pos + maxDrawDistance*forward;
+            if (Physics.Raycast(new Ray(pos, forward), out info, maxDrawDistance, initLayer|collLayer)) {
+                hitPoint = info.point;
+            }
+
+            pointerLine.SetPosition(0, pos);
+            pointerLine.SetPosition(1, hitPoint);
+
+            float height = Vector3.Distance(pos, hitPoint) / transform.lossyScale.z;
+            pointerCollider.center = Vector3.forward * height;
+
+        }
+
+        if (OVRInput.Get(activationButton, controllerType))
         {
             gameObject.layer = collLayer;
         }

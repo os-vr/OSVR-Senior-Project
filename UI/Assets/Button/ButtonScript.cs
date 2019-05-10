@@ -178,7 +178,7 @@ namespace OSVR.UI
                 Debug.Log("Set your collider isTrigger to true");
                 col.isTrigger = true;
             }
-            else
+            else if(col == null)
             {
                 Debug.Log("You need a collider");
                 col = this.gameObject.AddComponent<Collider>();
