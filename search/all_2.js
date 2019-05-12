@@ -1,0 +1,23 @@
+var searchData=
+[
+  ['centroid',['centroid',['../class_gestures_1_1_gesture_meta_data.html#afe4630518ee7a56388211879025a9853',1,'Gestures::GestureMetaData']]],
+  ['changecolor',['ChangeColor',['../class_change_color.html',1,'']]],
+  ['changecolor_2ecs',['ChangeColor.cs',['../_change_color_8cs.html',1,'']]],
+  ['changeinheight',['changeInHeight',['../class_o_s_v_r_1_1_u_i_1_1_drop_down_control.html#a10412cbbde1bf72f64466921eebad853',1,'OSVR::UI::DropDownControl']]],
+  ['check',['Check',['../class_gestures_1_1_check.html',1,'Gestures']]],
+  ['check_2ecs',['Check.cs',['../_check_8cs.html',1,'']]],
+  ['checkpasses',['CheckPasses',['../class_gestures_1_1_arc_check.html#a7e47e626a6a35c67b32fbf9c4e083190',1,'Gestures.ArcCheck.CheckPasses()'],['../class_gestures_1_1_check.html#a14eadc45515066e69eccef328c069db7',1,'Gestures.Check.CheckPasses()'],['../class_gestures_1_1_line_check.html#a2a6a02791a2ff4dc7fc86a0ff60a802f',1,'Gestures.LineCheck.CheckPasses()'],['../class_gestures_1_1_radius_check.html#a21a79a1979fb271f37b93708fcb2d9cc',1,'Gestures.RadiusCheck.CheckPasses()']]],
+  ['childrenrenderer',['childrenRenderer',['../class_o_s_v_r_1_1_u_i_1_1_disappear_at_distance.html#a3a07889b2033f122d9cc45f8242b4f15',1,'OSVR::UI::DisappearAtDistance']]],
+  ['circlegesture',['CircleGesture',['../class_gestures_1_1_circle_gesture.html#ae9dda59fe1973b2bc144b021bdb51c7b',1,'Gestures::CircleGesture']]],
+  ['circlegesture',['CircleGesture',['../class_gestures_1_1_circle_gesture.html',1,'Gestures']]],
+  ['circlegesture_2ecs',['CircleGesture.cs',['../_circle_gesture_8cs.html',1,'']]],
+  ['clear',['Clear',['../class_gestures_1_1_g_transform_buffer.html#af9a5c67c0af6e9f8b43ea43ab92eb118',1,'Gestures::GTransformBuffer']]],
+  ['clearbuffer',['ClearBuffer',['../class_gestures_1_1_gesture_monitor.html#ac74cb09fb6edfa1a74cbddaf44521c82',1,'Gestures::GestureMonitor']]],
+  ['clearevents',['ClearEvents',['../class_gestures_1_1_gesture.html#a4cc15d01e9db5f0249688fbb53f2fcdc',1,'Gestures::Gesture']]],
+  ['closeandpick',['closeAndPick',['../class_o_s_v_r_1_1_u_i_1_1_drop_down_control.html#a036422302c7c1ea15207a9981a4f7bee',1,'OSVR::UI::DropDownControl']]],
+  ['colorchange',['ColorChange',['../class_change_color.html#a2bfdf709a5e987c3bff87b0bed5cd68d',1,'ChangeColor']]],
+  ['colors',['colors',['../class_change_color.html#a1b1d37cd4d394115bac16dc00057ccde',1,'ChangeColor']]],
+  ['controller',['controller',['../class_gestures_1_1_gesture_monitor.html#ac344480d8534d8b2bb1c8152542b22c1',1,'Gestures.GestureMonitor.controller()'],['../class_tracker_setup.html#a4b4441190bfbe67dc273802188bc619c',1,'TrackerSetup.controller()']]],
+  ['controllertype',['controllerType',['../class_gestures_1_1_touch_controller.html#afec8fe8d86cf4f74850170296e329bdd',1,'Gestures.TouchController.controllerType()'],['../class_simple_hand.html#af9a62660d08c2688c373f70c8cc26ece',1,'SimpleHand.controllerType()'],['../class_pointer.html#a9526ed6db854119a29ac6051d530e558',1,'Pointer.controllerType()']]],
+  ['copy',['Copy',['../class_gestures_1_1_g_transform.html#afc6cf719994dc2f565e168d2c94466d7',1,'Gestures::GTransform']]]
+];
